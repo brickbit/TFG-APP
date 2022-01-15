@@ -1,6 +1,6 @@
 
 import 'package:get/get.dart';
-import 'package:tfg_app/controllers/splash_controller.dart';
+import 'package:tfg_app/app/controllers/splash_controller.dart';
 
 class SplashBinding extends Bindings {
 

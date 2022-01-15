@@ -1,9 +1,9 @@
 
 import 'package:get/get.dart';
+import 'package:tfg_app/app/controllers/login_controller.dart';
 import 'package:tfg_app/data/login_provider.dart';
-import 'package:tfg_app/data/login_repository_impl.dart';
+import 'package:tfg_app/data/repository/login_repository_impl.dart';
 import 'package:tfg_app/domain/login_repository.dart';
-import 'package:tfg_app/controllers/login_controller.dart';
 
 class LoginBinding extends Bindings {
 

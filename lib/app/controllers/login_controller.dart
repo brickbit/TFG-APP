@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
-import 'package:tfg_app/data/cases_model.dart';
-import 'package:tfg_app/data/login_model.dart';
+import 'package:tfg_app/app/navigation/app_routes.dart';
+import 'package:tfg_app/data/model/login_model.dart';
 import 'package:tfg_app/domain/login_repository.dart';
-import 'package:tfg_app/navigation/app_routes.dart';
 
 class LoginController extends GetxController with StateMixin<LoginModel?>{
 

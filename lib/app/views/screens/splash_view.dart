@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tfg_app/controllers/splash_controller.dart';
+import 'package:tfg_app/app/controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
 

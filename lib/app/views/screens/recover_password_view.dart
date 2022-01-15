@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:tfg_app/controllers/recover_password_controller.dart';
-import 'package:tfg_app/views/widget/build_text_field.dart';
+import 'package:tfg_app/app/controllers/recover_password_controller.dart';
+import 'package:tfg_app/app/views/widget/build_text_field.dart';
 
 class RecoverPasswordView extends GetView<RecoverPasswordController> {
 

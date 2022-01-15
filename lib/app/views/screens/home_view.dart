@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:tfg_app/controllers/home_controller.dart';
-import 'package:tfg_app/views/screens/data_view.dart';
-import 'package:tfg_app/views/screens/schedule_view.dart';
+import 'package:tfg_app/app/controllers/home_controller.dart';
+import 'package:tfg_app/app/views/screens/schedule_view.dart';
+
+import 'data_view.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);

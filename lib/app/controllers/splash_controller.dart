@@ -1,8 +1,8 @@
 
 import 'dart:async';
 import 'package:get/get.dart';
-import 'package:tfg_app/data/cases_model.dart';
-import 'package:tfg_app/navigation/app_routes.dart';
+import 'package:tfg_app/app/navigation/app_routes.dart';
+import 'package:tfg_app/data/model/cases_model.dart';
 
 class SplashController extends GetxController with StateMixin<CasesModel>{
 

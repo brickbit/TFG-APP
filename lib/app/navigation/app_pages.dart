@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
-import 'package:tfg_app/binding/data_binding.dart';
-import 'package:tfg_app/binding/home_binding.dart';
-import 'package:tfg_app/binding/login_binding.dart';
-import 'package:tfg_app/binding/recover_password_binding.dart';
-import 'package:tfg_app/binding/schedule_binding.dart';
-import 'package:tfg_app/binding/splash_binding.dart';
-import 'package:tfg_app/navigation/app_routes.dart';
-import 'package:tfg_app/views/screens/data_view.dart';
-import 'package:tfg_app/views/screens/home_view.dart';
-import 'package:tfg_app/views/screens/login_view.dart';
-import 'package:tfg_app/views/screens/recover_password_view.dart';
-import 'package:tfg_app/views/screens/schedule_view.dart';
-import 'package:tfg_app/views/screens/splash_view.dart';
+import 'package:tfg_app/app/binding/data_binding.dart';
+import 'package:tfg_app/app/binding/home_binding.dart';
+import 'package:tfg_app/app/binding/login_binding.dart';
+import 'package:tfg_app/app/binding/recover_password_binding.dart';
+import 'package:tfg_app/app/binding/schedule_binding.dart';
+import 'package:tfg_app/app/binding/splash_binding.dart';
+import 'package:tfg_app/app/views/screens/data_view.dart';
+import 'package:tfg_app/app/views/screens/home_view.dart';
+import 'package:tfg_app/app/views/screens/login_view.dart';
+import 'package:tfg_app/app/views/screens/recover_password_view.dart';
+import 'package:tfg_app/app/views/screens/schedule_view.dart';
+import 'package:tfg_app/app/views/screens/splash_view.dart';
+import 'app_routes.dart';
 
 class AppPages {
   static const INITIAL = Routes.SPLASH;
