@@ -2,14 +2,14 @@
 import 'dart:convert';
 
 import 'package:tfg_app/data/model/degree_model.dart';
-import 'package:tfg_app/domain/data_repository.dart';
+import 'package:tfg_app/domain/degree_repository.dart';
 
-import '../data_provider.dart';
+import '../degree_provider.dart';
 
-class DataRepositoryImpl implements DataRepository {
-  DataRepositoryImpl({required this.provider});
+class DegreeRepositoryImpl implements DegreeRepository {
+  DegreeRepositoryImpl({required this.provider});
 
-  final DataProvider provider;
+  final DegreeProvider provider;
 
   @override
   Future<List<DegreeModel>> getDegrees() async {
@@ -24,6 +24,16 @@ class DataRepositoryImpl implements DataRepository {
   @override
   Future<List<DegreeModel>> updateDegree(DegreeModel degree) async {
     final response = await provider.updateDegree("https://politech-manager.herokuapp.com/degree/update", degree);
+    if (response.statusCode == 200) {
+      return getDegrees();
+    } else {
+      return Future.error(response.statusCode);
+    }
+  }
+
+  @override
+  Future<List<DegreeModel>> createDegree(DegreeModel degree) async {
+    final response = await provider.createDegree("https://politech-manager.herokuapp.com/degree", degree);
     if (response.statusCode == 200) {
       return getDegrees();
     } else {

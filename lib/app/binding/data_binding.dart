@@ -1,16 +1,16 @@
 
 import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/degree_controller.dart';
-import 'package:tfg_app/data/data_provider.dart';
-import 'package:tfg_app/data/repository/data_repository_impl.dart';
-import 'package:tfg_app/domain/data_repository.dart';
+import 'package:tfg_app/data/degree_provider.dart';
+import 'package:tfg_app/data/repository/degree_repository_impl.dart';
+import 'package:tfg_app/domain/degree_repository.dart';
 
 class DataBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.lazyPut<DataProvider>(() => DataProviderImpl());
-    Get.lazyPut<DataRepository>(() => DataRepositoryImpl(provider: Get.find()));
+    Get.lazyPut<DegreeProvider>(() => DegreeProviderImpl());
+    Get.lazyPut<DegreeRepository>(() => DegreeRepositoryImpl(provider: Get.find()));
     Get.lazyPut(() => DegreeController(dataRepository:  Get.find(),));
   }
 

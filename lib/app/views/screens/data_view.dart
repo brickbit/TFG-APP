@@ -2,23 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/degree_controller.dart';
 import 'package:tfg_app/app/model/edit_data_model.dart';
-import 'package:tfg_app/app/navigation/app_routes.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/views/screens/tile_data_degree_view.dart';
 
 class DataView extends GetView<DegreeController> {
 
   DataView({Key? key}) : super(key: key);
 
   final dataList = [
-    EditDataModel(
-        title: 'Degree',
-        onPlusPressed: () =>
-            print('add degree')
-            /*Provider.of<DegreeManager>(context, listen: false)
-                .createNewItem()*/,
-        onSeeAllPressed: () =>
-            Get.toNamed(Routes.DATA+Routes.DEGREE_LIST)
-            /*Provider.of<DegreeManager>(context, listen: false).showList()*/),
     EditDataModel(
         title: 'Classroom',
         onPlusPressed: () =>
@@ -69,47 +60,10 @@ class DataView extends GetView<DegreeController> {
         title: const Text('Fill data'),
       ),
       body: SafeArea(
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return _tileDataOption(dataList[index]);
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  height: 16,
-                );
-              },
-              itemCount: dataList.length)),
+          child: ListView(
+        children: [
+          TileDataDegreeView(title: 'Degree'),
+      ],),),
     );
   }
-
-  Widget _tileDataOption(EditDataModel data) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                IconButton(
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.green,
-                    ),
-                    onPressed: data.onPlusPressed),
-                Text(data.title, style: const TextStyle(fontSize: 20)),
-              ],
-            ),
-            TextButton(
-                onPressed: data.onSeeAllPressed,
-                child: const Text(
-                  'See all',
-                  style: TextStyle(color: Colors.green),
-                ))
-          ],
-        ),
-        const SizedBox(height: 10)
-      ],
-    );
-  }
-
 }
