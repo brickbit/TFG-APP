@@ -38,5 +38,12 @@ class DegreeController extends GetxController with StateMixin {
       change(null, status: RxStatus.error(err.toString()));
     });
   }
+  void deleteDegree(int id) {
+    dataRepository.deleteDegree(id).then((data) {
+      change(data, status: RxStatus.success());
+    }, onError: (err) {
+      change(null, status: RxStatus.error(err.toString()));
+    });
+  }
 }
 

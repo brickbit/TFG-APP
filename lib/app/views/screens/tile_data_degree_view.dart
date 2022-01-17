@@ -21,7 +21,7 @@ class TileDataDegreeView extends GetView<DegreeController> {
       ),
     ),
   );
-  
+
   TileDataDegreeView({Key? key, required this.title}) : super(key: key);
 
   @override

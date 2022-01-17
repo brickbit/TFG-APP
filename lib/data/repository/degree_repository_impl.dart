@@ -40,4 +40,14 @@ class DegreeRepositoryImpl implements DegreeRepository {
       return Future.error(response.statusCode);
     }
   }
+
+  @override
+  Future<List<DegreeModel>> deleteDegree(int id) async {
+    final response = await provider.deleteDegree("https://politech-manager.herokuapp.com/degree/delete/$id");
+    if (response.statusCode == 200) {
+      return getDegrees();
+    } else {
+      return Future.error(response.statusCode);
+    }
+  }
 }

@@ -67,7 +67,9 @@ class DegreeListView extends GetView<DegreeController> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () => print('delete clicked'),
+                        onPressed: () async {
+                          controller.deleteDegree(listDegree[index].id);
+                        },
                         icon: const Icon(
                           Icons.delete,
                           color: Colors.grey,
