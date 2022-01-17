@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/degree_controller.dart';
 import 'package:tfg_app/app/model/edit_data_model.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/views/screens/tile_data_classroom_view.dart';
 import 'package:tfg_app/app/views/screens/tile_data_degree_view.dart';
 
 class DataView extends GetView<DegreeController> {
@@ -63,6 +64,7 @@ class DataView extends GetView<DegreeController> {
           child: ListView(
         children: [
           TileDataDegreeView(title: 'Degree'),
+          TileDataClassroomView(title: 'Classroom'),
       ],),),
     );
   }

@@ -1,9 +1,7 @@
 
 import 'dart:convert';
-
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/domain/degree_repository.dart';
-
 import '../degree_provider.dart';
 
 class DegreeRepositoryImpl implements DegreeRepository {

@@ -5,7 +5,7 @@ import 'package:tfg_app/data/degree_provider.dart';
 import 'package:tfg_app/data/repository/degree_repository_impl.dart';
 import 'package:tfg_app/domain/degree_repository.dart';
 
-class DataBinding extends Bindings {
+class DegreeBinding extends Bindings {
 
   @override
   void dependencies() {
