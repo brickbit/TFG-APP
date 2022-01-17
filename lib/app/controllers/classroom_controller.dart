@@ -1,9 +1,7 @@
 
 import 'package:get/get.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
-import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/domain/classroom_repository.dart';
-import 'package:tfg_app/domain/degree_repository.dart';
 
 class ClassroomController extends GetxController with StateMixin {
 
