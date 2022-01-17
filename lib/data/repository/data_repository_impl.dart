@@ -22,10 +22,10 @@ class DataRepositoryImpl implements DataRepository {
   }
 
   @override
-  Future updateDegree(DegreeModel degree) async {
+  Future<List<DegreeModel>> updateDegree(DegreeModel degree) async {
     final response = await provider.updateDegree("https://politech-manager.herokuapp.com/degree/update", degree);
     if (response.statusCode == 200) {
-      return;
+      return getDegrees();
     } else {
       return Future.error(response.statusCode);
     }

@@ -18,10 +18,7 @@ class DegreeListView extends GetView<DegreeController> {
                 title: const Text('Degrees'),
               ),
               body: SafeArea(
-                child: controller.obx((listDegree) {
-                  var degrees = listDegree ?? List.empty();
-                  return _listDegree(degrees);
-                }),
+                child: _listDegree(),
               ),
             );
           } else {
@@ -39,60 +36,63 @@ class DegreeListView extends GetView<DegreeController> {
     );
   }
 
-  Widget _listDegree(List<DegreeModel> degrees) {
-    return ListView.separated(
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _showContent(
-                    MediaQuery.of(context).size.width < 600, degrees, index),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () async {
-                        degreeDialog(degrees[index], 'Edit Degree').then(
-                          (value) {
-                            if (value != null) {
-                              controller.updateDegree(value);
-                              controller.getDegrees();
-                            }
-                          },
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.edit,
-                        color: Colors.grey,
+  Widget _listDegree() {
+    return controller.obx((listDegree) {
+      return ListView.separated(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _showContent(
+                      MediaQuery.of(context).size.width < 600, listDegree, index),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () async {
+                          degreeDialog(listDegree[index], 'Edit Degree').then(
+                                (value) {
+                              if (value != null) {
+                                controller.updateDegree(value);
+                                controller.update();
+                              }
+                            },
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.edit,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () => print('delete clicked'),
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.grey,
+                      IconButton(
+                        onPressed: () => print('delete clicked'),
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: SizedBox(
-              height: 1,
-              child: Container(
-                color: Colors.grey,
+                    ],
+                  )
+                ],
               ),
-            ),
-          );
-        },
-        itemCount: degrees.length);
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: SizedBox(
+                height: 1,
+                child: Container(
+                  color: Colors.grey,
+                ),
+              ),
+            );
+          },
+          itemCount: listDegree.length);
+    });
+
   }
 
   Widget _showContent(bool mobile, List<DegreeModel> degrees, int index) {

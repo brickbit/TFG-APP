@@ -25,7 +25,7 @@ class DegreeController extends GetxController with StateMixin {
 
   void updateDegree(DegreeModel degree) {
     dataRepository.updateDegree(degree).then((data) {
-      update();
+      change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
     });
