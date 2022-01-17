@@ -6,6 +6,7 @@ import 'package:tfg_app/app/binding/recover_password_binding.dart';
 import 'package:tfg_app/app/binding/schedule_binding.dart';
 import 'package:tfg_app/app/binding/splash_binding.dart';
 import 'package:tfg_app/app/views/screens/data_view.dart';
+import 'package:tfg_app/app/views/screens/degree_list_view.dart';
 import 'package:tfg_app/app/views/screens/home_view.dart';
 import 'package:tfg_app/app/views/screens/login_view.dart';
 import 'package:tfg_app/app/views/screens/recover_password_view.dart';
@@ -39,8 +40,15 @@ class AppPages {
     ),
     GetPage(
       name: Routes.DATA,
-      page: () => const DataView(),
+      page: () => DataView(),
       binding: DataBinding(),
+      children: [
+        GetPage(
+          name: Routes.DEGREE_LIST,
+          page: () => const DegreeListView(),
+          binding: DataBinding(),
+        )
+      ]
     ),
     GetPage(
       name: Routes.SCHEDULE,

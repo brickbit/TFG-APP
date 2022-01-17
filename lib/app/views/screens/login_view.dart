@@ -49,7 +49,7 @@ class LoginView extends GetView<LoginController> {
               ),
               SizedBox(
                 width: userTextFieldWidth,
-                child: buildTextField('Usuario', _usernameController),
+                child: buildTextField('Usuario', "", _usernameController),
               ),
               const SizedBox(
                 height: 16.0,

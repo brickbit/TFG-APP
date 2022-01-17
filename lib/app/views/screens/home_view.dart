@@ -47,9 +47,9 @@ class HomeView extends GetView<HomeController> {
         body: Obx(
           () => IndexedStack(
             index: controller.tabIndex.value,
-            children: const [
+            children: [
               DataView(),
-              ScheduleView(),
+              const ScheduleView(),
             ],
           ),
         ),

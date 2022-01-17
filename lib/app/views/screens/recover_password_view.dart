@@ -56,7 +56,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
                 SizedBox(
                   width: mailTextFieldWidth,
                   child:
-                  buildTextField('Introcuzca su correo', _mailController),
+                  buildTextField('Introcuzca su correo', "", _mailController),
                 ),
                 const SizedBox(
                   height: 16,

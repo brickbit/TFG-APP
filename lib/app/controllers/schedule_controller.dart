@@ -1,8 +1,7 @@
 
 import 'package:get/get.dart';
-import 'package:tfg_app/data/model/cases_model.dart';
 
-class ScheduleController extends GetxController with StateMixin<CasesModel>{
+class ScheduleController extends GetxController {
 
   ScheduleController();
 
