@@ -7,5 +7,6 @@ abstract class Routes {
   static const DEGREE_LIST = '/degreeList';
   static const CLASSROOM_LIST = '/classroomList';
   static const DEPARTMENT_LIST = '/departmentList';
+  static const SUBJECT_LIST = '/subjectList';
   static const SCHEDULE = '/schedule';
 }

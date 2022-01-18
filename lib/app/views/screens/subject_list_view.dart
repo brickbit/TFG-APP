@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/app/controllers/classroom_controller.dart';
-import 'package:tfg_app/app/views/widget/classroom_dialog.dart';
-import 'package:tfg_app/data/model/classroom_model.dart';
+import 'package:tfg_app/app/controllers/subject_controller.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/views/widget/subject_dialog.dart';
+import 'package:tfg_app/data/model/subject_model.dart';
 
-class ClassroomListView extends GetView<ClassroomController> {
-  const ClassroomListView({Key? key}) : super(key: key);
+class SubjectListView extends GetView<SubjectController> {
+  const SubjectListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +15,16 @@ class ClassroomListView extends GetView<ClassroomController> {
           if (constraints.maxWidth < 600) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Classrooms'),
+                title: const Text('Subjects'),
               ),
               body: SafeArea(
-                child: _listClassroom(),
+                child: _listSubject(),
               ),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Classrooms'),
+                title: const Text('Subjects'),
               ),
               body: SafeArea(
                 child: Column(),
@@ -36,8 +36,8 @@ class ClassroomListView extends GetView<ClassroomController> {
     );
   }
 
-  Widget _listClassroom() {
-    return controller.obx((listClassroom) {
+  Widget _listSubject() {
+    return controller.obx((listSubject) {
       return ListView.separated(
           itemBuilder: (context, index) {
             return Padding(
@@ -47,16 +47,16 @@ class ClassroomListView extends GetView<ClassroomController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _showContent(MediaQuery.of(context).size.width < 600,
-                      listClassroom, index),
-                  Row(
+                      listSubject, index),
+                  Column(
                     children: [
                       IconButton(
                         onPressed: () async {
-                          classroomDialog(listClassroom[index], 'Edit Classroom')
+                          subjectDialog(listSubject[index], 'Edit Subject')
                               .then(
-                            (value) {
+                                (value) {
                               if (value != null) {
-                                controller.updateClassroom(value);
+                                controller.updateSubject(value);
                                 controller.update();
                               }
                             },
@@ -69,7 +69,7 @@ class ClassroomListView extends GetView<ClassroomController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteClassroom(listClassroom[index].id);
+                          controller.deleteSubject(listSubject[index].id);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -93,11 +93,11 @@ class ClassroomListView extends GetView<ClassroomController> {
               ),
             );
           },
-          itemCount: listClassroom.length);
+          itemCount: listSubject.length);
     });
   }
 
-  Widget _showContent(bool mobile, List<ClassroomModel> subjects, int index) {
+  Widget _showContent(bool mobile, List<SubjectModel> subjects, int index) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (mobile) {
@@ -111,12 +111,52 @@ class ClassroomListView extends GetView<ClassroomController> {
                 const SizedBox(
                   height: 4,
                 ),
-                Text(
-                  'Pavilion: ${subjects[index].pavilion}',
+                const SizedBox(
+                  height: 4,
                 ),
+                Text(
+                  subjects[index].degree.name.toString()
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Department: ${subjects[index].department.acronym}',
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Classroom: ${subjects[index].classroom.acronym}',
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Semester: ${subjects[index].semester + 1}',
+                    ),
+                    Text(
+                        'Language: ${subjects[index].english==false ? 'Español':'English'}'
+                    ),
+                ],),
                 const SizedBox(
                   height: 8,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Laboratorio: ${subjects[index].laboratory==false ? 'No':'Yes'}'
+                    ),
+                    Text(
+                        'Seminario: ${subjects[index].seminary==false ? 'No':'Yes'}'
+                    ),
+
+                ],),
+
               ],
             ),
           );
@@ -131,7 +171,7 @@ class ClassroomListView extends GetView<ClassroomController> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Pavilion: ${subjects[index].pavilion}',
+                    'Semester: ${subjects[index].semester}',
                   ),
                 ],
               ),

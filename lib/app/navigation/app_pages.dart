@@ -7,6 +7,7 @@ import 'package:tfg_app/app/binding/login_binding.dart';
 import 'package:tfg_app/app/binding/recover_password_binding.dart';
 import 'package:tfg_app/app/binding/schedule_binding.dart';
 import 'package:tfg_app/app/binding/splash_binding.dart';
+import 'package:tfg_app/app/binding/subject_binding.dart';
 import 'package:tfg_app/app/views/screens/classroom_list_view.dart';
 import 'package:tfg_app/app/views/screens/data_view.dart';
 import 'package:tfg_app/app/views/screens/degree_list_view.dart';
@@ -16,6 +17,7 @@ import 'package:tfg_app/app/views/screens/login_view.dart';
 import 'package:tfg_app/app/views/screens/recover_password_view.dart';
 import 'package:tfg_app/app/views/screens/schedule_view.dart';
 import 'package:tfg_app/app/views/screens/splash_view.dart';
+import 'package:tfg_app/app/views/screens/subject_list_view.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -61,6 +63,11 @@ class AppPages {
           name: Routes.DEPARTMENT_LIST,
           page: () => const DepartmentListView(),
           binding: DepartmentBinding(),
+        ),
+        GetPage(
+          name: Routes.SUBJECT_LIST,
+          page: () => const SubjectListView(),
+          binding: SubjectBinding(),
         ),
       ]
     ),

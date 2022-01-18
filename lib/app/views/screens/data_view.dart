@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:tfg_app/app/views/screens/tile_data_classroom_view.dart';
 import 'package:tfg_app/app/views/screens/tile_data_degree_view.dart';
 import 'package:tfg_app/app/views/screens/tile_data_department_view.dart';
+import 'package:tfg_app/app/views/screens/tile_data_subject.dart';
 
 class DataView extends GetView<DegreeController> {
 
@@ -48,6 +49,7 @@ class DataView extends GetView<DegreeController> {
           TileDataDegreeView(title: 'Degree'),
           TileDataClassroomView(title: 'Classroom'),
           TileDataDepartmentView(title: 'Department'),
+          TileDataSubjectView(title: 'Subject',)
       ],),),
     );
   }
