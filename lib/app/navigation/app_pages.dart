@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tfg_app/app/binding/classroom_binding.dart';
+import 'package:tfg_app/app/binding/data_binding.dart';
 import 'package:tfg_app/app/binding/degree_binding.dart';
 import 'package:tfg_app/app/binding/department_binding.dart';
 import 'package:tfg_app/app/binding/home_binding.dart';
@@ -47,7 +48,7 @@ class AppPages {
     GetPage(
       name: Routes.DATA,
       page: () => DataView(),
-      binding: DegreeBinding(),
+      binding: DataBinding(),
       children: [
         GetPage(
           name: Routes.DEGREE_LIST,

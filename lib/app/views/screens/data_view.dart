@@ -1,44 +1,32 @@
 
 import 'package:flutter/material.dart';
-import 'package:tfg_app/app/controllers/degree_controller.dart';
-import 'package:tfg_app/app/model/edit_data_model.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/controllers/data_controller.dart';
 import 'package:tfg_app/app/views/screens/tile_data_classroom_view.dart';
 import 'package:tfg_app/app/views/screens/tile_data_degree_view.dart';
 import 'package:tfg_app/app/views/screens/tile_data_department_view.dart';
 import 'package:tfg_app/app/views/screens/tile_data_subject.dart';
 
-class DataView extends GetView<DegreeController> {
+class DataView extends GetView<DataController> {
 
   DataView({Key? key}) : super(key: key);
 
-  final dataList = [
-    EditDataModel(
-        title: 'Subject',
-        onPlusPressed: () =>
-            print('add subject')
-            /*Provider.of<SubjectManager>(context, listen: false)
-                .createNewItem()*/,
-        onSeeAllPressed: () =>
-            print('show subjects')
-            /*Provider.of<SubjectManager>(context, listen: false).showList()*/)
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
-            return _dataViewSmall(dataList);
+            return _dataViewSmall();
           } else {
-            return _dataViewSmall(dataList);
+            return _dataViewSmall();
           }
         },
       ),
     );
   }
 
-  Widget _dataViewSmall(List<EditDataModel> dataList) {
+  Widget _dataViewSmall() {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Fill data'),
