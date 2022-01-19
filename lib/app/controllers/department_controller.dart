@@ -5,6 +5,8 @@ import 'package:tfg_app/domain/department_repository.dart';
 
 class DepartmentController extends GetxController with StateMixin {
 
+  var departments = Rx<List<DepartmentModel>>([]);
+
   DepartmentController({required this.dataRepository});
 
   final DepartmentRepository dataRepository;
@@ -25,6 +27,8 @@ class DepartmentController extends GetxController with StateMixin {
 
   void getDepartments() {
     dataRepository.getDepartments().then((data) {
+      departments.value.clear();
+      departments.value.addAll(data);
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));

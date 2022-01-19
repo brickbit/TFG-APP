@@ -1,11 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_app/app/controllers/classroom_controller.dart';
+import 'package:tfg_app/app/controllers/degree_controller.dart';
+import 'package:tfg_app/app/controllers/department_controller.dart';
 import 'package:tfg_app/app/controllers/subject_controller.dart';
 import 'package:get/get.dart';
 import 'package:tfg_app/app/views/widget/subject_dialog.dart';
+import 'package:tfg_app/data/classroom_provider.dart';
+import 'package:tfg_app/data/degree_provider.dart';
+import 'package:tfg_app/data/department_provider.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
+import 'package:tfg_app/data/repository/classroom_repository_impl.dart';
+import 'package:tfg_app/data/repository/degree_repository_impl.dart';
+import 'package:tfg_app/data/repository/department_repository_impl.dart';
+import 'package:tfg_app/domain/classroom_repository.dart';
+import 'package:tfg_app/domain/degree_repository.dart';
+import 'package:tfg_app/domain/department_repository.dart';
 
 class SubjectListView extends GetView<SubjectController> {
-  const SubjectListView({Key? key}) : super(key: key);
+  SubjectListView({Key? key}) : super(key: key);
+  final DegreeController degreeController = Get.put(
+    DegreeController(
+      dataRepository: Get.put<DegreeRepository>(
+        DegreeRepositoryImpl(
+          provider: Get.put<DegreeProvider>(
+            DegreeProviderImpl(),
+          ),
+        ),
+      ),
+    ),
+  );
+  final ClassroomController classroomController = Get.put(
+    ClassroomController(
+      dataRepository: Get.put<ClassroomRepository>(
+        ClassroomRepositoryImpl(
+          provider: Get.put<ClassroomProvider>(
+            ClassroomProviderImpl(),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  final DepartmentController departmentController = Get.put(
+    DepartmentController(
+      dataRepository: Get.put<DepartmentRepository>(
+        DepartmentRepositoryImpl(
+          provider: Get.put<DepartmentProvider>(
+            DepartmentProviderImpl(),
+          ),
+        ),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +98,10 @@ class SubjectListView extends GetView<SubjectController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          subjectDialog(listSubject[index], 'Edit Subject')
+                          var degrees = degreeController.degrees.value;
+                          var classrooms = classroomController.classrooms.value;
+                          var departments = departmentController.departments.value;
+                          subjectDialog(listSubject[index], 'Edit Subject',degrees, departments,classrooms)
                               .then(
                                 (value) {
                               if (value != null) {

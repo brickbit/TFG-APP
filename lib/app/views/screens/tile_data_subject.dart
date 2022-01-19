@@ -40,7 +40,7 @@ class TileDataSubjectView extends GetView<SubjectController> {
                       color: Colors.green,
                     ),
                     onPressed: () async {
-                      subjectDialog(null, 'Create Subject').then(
+                      subjectDialog(null, 'Create Subject',[],[],[]).then(
                             (value) {
                           if (value != null) {
                             controller.createSubject(value);

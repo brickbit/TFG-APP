@@ -5,6 +5,8 @@ import 'package:tfg_app/domain/classroom_repository.dart';
 
 class ClassroomController extends GetxController with StateMixin {
 
+  var classrooms = Rx<List<ClassroomModel>>([]);
+
   ClassroomController({required this.dataRepository});
 
   final ClassroomRepository dataRepository;
@@ -25,6 +27,8 @@ class ClassroomController extends GetxController with StateMixin {
 
   void getClassrooms() {
     dataRepository.getClassrooms().then((data) {
+      classrooms.value.clear();
+      classrooms.value.addAll(data);
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));

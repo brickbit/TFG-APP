@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/app/controllers/classroom_controller.dart';
-import 'package:tfg_app/data/classroom_provider.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
-import 'package:tfg_app/data/repository/classroom_repository_impl.dart';
-import 'package:tfg_app/domain/classroom_repository.dart';
 import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
 import 'package:get/get.dart';
 
-Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title) {
+Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, List<DegreeModel>degrees, List<DepartmentModel> departments, List<ClassroomModel> classrooms) {
   final _nameController = TextEditingController();
   final _acronymController = TextEditingController();
   final _groupController = TextEditingController();
@@ -22,41 +18,11 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title) {
   var _semester = ((subject?.semester ?? 0) + 1).toString().obs;
   var id = subject?.id;
 
-  final classroomController = Get.lazyPut(
-        () => ClassroomController(
-      dataRepository: Get.put<ClassroomRepository>(
-        ClassroomRepositoryImpl(
-          provider: Get.put<ClassroomProvider>(
-            ClassroomProviderImpl(),
-          ),
-        ),
-      ),
-    ),
-  );
-
-  var _classroomItems = [
-    ClassroomModel(id: 0, name: 'C1', pavilion: 'Central', acronym: 'C1'),
-    ClassroomModel(
-        id: 1, name: 'Laboratorio Física', pavilion: 'Central', acronym: 'LFIS')
-  ];
+  var _classroomItems = classrooms;
   var _classroom = _classroomItems[0].obs;
-  var _departmentItems = [
-    DepartmentModel(id: 0, name: 'Tecnología de computadores', acronym: 'TCC'),
-    DepartmentModel(id: 1, name: 'Sistemas de información', acronym: 'SI')
-  ];
+  var _departmentItems = departments;
   var _department = _departmentItems[0].obs;
-  var _degreeItems = [
-    DegreeModel(
-        id: 0,
-        name: 'Grado en Ingeniería Informática en Ingeniería de computadores',
-        num_semesters: 8,
-        year: '2021-2022'),
-    DegreeModel(
-        id: 1,
-        name: 'Grado en Edificación',
-        num_semesters: 8,
-        year: '2021-2022')
-  ];
+  var _degreeItems = degrees;
   var _degree = _degreeItems[0].obs;
   var _colorItems = ['Azul', 'Verde', 'Rojo'];
   var _color = _colorItems[0].obs;

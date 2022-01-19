@@ -5,6 +5,8 @@ import 'package:tfg_app/domain/degree_repository.dart';
 
 class DegreeController extends GetxController with StateMixin {
 
+  var degrees = Rx<List<DegreeModel>>([]);
+
   DegreeController({required this.dataRepository});
 
   final DegreeRepository dataRepository;
@@ -25,6 +27,8 @@ class DegreeController extends GetxController with StateMixin {
 
   void getDegrees() {
     dataRepository.getDegrees().then((data) {
+      degrees.value.clear();
+      degrees.value.addAll(data);
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));

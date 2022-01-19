@@ -66,7 +66,7 @@ class AppPages {
         ),
         GetPage(
           name: Routes.SUBJECT_LIST,
-          page: () => const SubjectListView(),
+          page: () => SubjectListView(),
           binding: SubjectBinding(),
         ),
       ]
