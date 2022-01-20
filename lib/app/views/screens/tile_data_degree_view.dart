@@ -9,7 +9,7 @@ import 'package:tfg_app/domain/degree_repository.dart';
 
 class TileDataDegreeView extends GetView<DegreeController> {
   final String title;
-
+  final bool mobile;
   final degreeController = Get.lazyPut(
     () => DegreeController(
       dataRepository: Get.put<DegreeRepository>(
@@ -22,7 +22,8 @@ class TileDataDegreeView extends GetView<DegreeController> {
     ),
   );
 
-  TileDataDegreeView({Key? key, required this.title}) : super(key: key);
+  TileDataDegreeView({Key? key, required this.title, required this.mobile})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +52,13 @@ class TileDataDegreeView extends GetView<DegreeController> {
                 Text(title, style: const TextStyle(fontSize: 20)),
               ],
             ),
-            TextButton(
-                onPressed: () => Get.toNamed(Routes.DATA + Routes.DEGREE_LIST),
-                child: const Text(
-                  'See all',
-                  style: TextStyle(color: Colors.green),
-                ))
+            mobile != false ? TextButton(
+              onPressed: () => Get.toNamed(Routes.DATA + Routes.DEGREE_LIST),
+              child: const Text(
+                'See all',
+                style: TextStyle(color: Colors.green),
+              ),
+            ) : Container(),
           ],
         ),
         const SizedBox(height: 10)

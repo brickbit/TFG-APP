@@ -9,6 +9,7 @@ import 'package:tfg_app/domain/department_repository.dart';
 
 class TileDataDepartmentView extends GetView<DepartmentController> {
   final String title;
+  final bool mobile;
 
   final departmentController = Get.lazyPut(
         () => DepartmentController(
@@ -22,7 +23,7 @@ class TileDataDepartmentView extends GetView<DepartmentController> {
     ),
   );
 
-  TileDataDepartmentView({Key? key, required this.title}) : super(key: key);
+  TileDataDepartmentView({Key? key, required this.title, required this.mobile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +52,12 @@ class TileDataDepartmentView extends GetView<DepartmentController> {
                 Text(title, style: const TextStyle(fontSize: 20)),
               ],
             ),
-            TextButton(
+            mobile != false ? TextButton(
                 onPressed: () => Get.toNamed(Routes.DATA + Routes.DEPARTMENT_LIST),
                 child: const Text(
                   'See all',
                   style: TextStyle(color: Colors.green),
-                ))
+                ),) : Container(),
           ],
         ),
         const SizedBox(height: 10)

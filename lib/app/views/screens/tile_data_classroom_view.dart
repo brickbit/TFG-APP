@@ -10,6 +10,7 @@ import 'package:tfg_app/domain/classroom_repository.dart';
 
 class TileDataClassroomView extends GetView<ClassroomController> {
   final String title;
+  final bool mobile;
 
   final classroomController = Get.lazyPut(
         () => ClassroomController(
@@ -23,7 +24,7 @@ class TileDataClassroomView extends GetView<ClassroomController> {
     ),
   );
 
-  TileDataClassroomView({Key? key, required this.title}) : super(key: key);
+  TileDataClassroomView({Key? key, required this.title, required this.mobile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,12 @@ class TileDataClassroomView extends GetView<ClassroomController> {
                 Text(title, style: const TextStyle(fontSize: 20)),
               ],
             ),
-            TextButton(
+            mobile != false ? TextButton(
                 onPressed: () => Get.toNamed(Routes.DATA + Routes.CLASSROOM_LIST),
                 child: const Text(
                   'See all',
                   style: TextStyle(color: Colors.green),
-                ))
+                ),) : Container(),
           ],
         ),
         const SizedBox(height: 10)

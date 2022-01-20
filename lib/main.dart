@@ -1,11 +1,20 @@
+import 'dart:io';
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'app/logger/Logger.dart';
 import 'app/navigation/app_pages.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+    await DesktopWindow.setWindowSize(const Size(1350, 900));
+    await DesktopWindow.setMinWindowSize(const Size(1350, 900));
+    await DesktopWindow.setMaxWindowSize(Size.infinite);
+  }
+
   runApp(const EpccApp());
 }
 

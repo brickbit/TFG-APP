@@ -10,6 +10,7 @@ import 'package:tfg_app/domain/subject_repository.dart';
 
 class TileDataSubjectView extends GetView<SubjectController> {
   final String title;
+  final bool mobile;
 
   final subjectController = Get.lazyPut(
         () => SubjectController(
@@ -23,7 +24,7 @@ class TileDataSubjectView extends GetView<SubjectController> {
     ),
   );
 
-  TileDataSubjectView({Key? key, required this.title}) : super(key: key);
+  TileDataSubjectView({Key? key, required this.title, required this.mobile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,12 @@ class TileDataSubjectView extends GetView<SubjectController> {
                 Text(title, style: const TextStyle(fontSize: 20)),
               ],
             ),
-            TextButton(
+            mobile != false ? TextButton(
                 onPressed: () => Get.toNamed(Routes.DATA + Routes.SUBJECT_LIST),
                 child: const Text(
                   'See all',
                   style: TextStyle(color: Colors.green),
-                ))
+                ),) : Container(),
           ],
         ),
         const SizedBox(height: 10)
