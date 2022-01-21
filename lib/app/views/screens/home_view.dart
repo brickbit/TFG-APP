@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/app/views/screens/schedule_view.dart';
-
 import 'data_view.dart';
+import 'package:get/get.dart';
 
 class HomeView extends GetView<HomeController> {
-  HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   buildBottomNavigationMenu(context, landingPageController) {
     return Obx(
@@ -43,17 +41,26 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: buildBottomNavigationMenu(context, controller),
-        body: Obx(
-          () => IndexedStack(
-            index: controller.tabIndex.value,
-            children: [
-              DataView(),
-              const ScheduleView(),
-            ],
-          ),
-        ),
-      ),
+          bottomNavigationBar: buildBottomNavigationMenu(context, controller),
+          body: controller.obx(
+            (data) => IndexedStack(
+              index: controller.tabIndex.value,
+              children: const [
+                DataView(),
+                ScheduleView(),
+              ],
+            ),
+            onLoading: Container(
+              color: Colors.white,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            onEmpty: Container(
+              color: Colors.white,
+              child: const Text('There is not data to load'),
+            ),
+          )),
     );
   }
 }

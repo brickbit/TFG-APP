@@ -46,31 +46,24 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: Routes.DATA,
-      page: () => DataView(),
-      binding: DataBinding(),
-      children: [
-        GetPage(
-          name: Routes.DEGREE_LIST,
-          page: () => const DegreeListView(),
-          binding: DegreeBinding(),
-        ),
-        GetPage(
-          name: Routes.CLASSROOM_LIST,
-          page: () => const ClassroomListView(),
-          binding: ClassroomBinding(),
-        ),
-        GetPage(
-          name: Routes.DEPARTMENT_LIST,
-          page: () => const DepartmentListView(),
-          binding: DepartmentBinding(),
-        ),
-        GetPage(
-          name: Routes.SUBJECT_LIST,
-          page: () => SubjectListView(),
-          binding: SubjectBinding(),
-        ),
-      ]
+      name: Routes.DEGREE_LIST,
+      page: () => const DegreeListView(),
+      binding: DegreeBinding(),
+    ),
+    GetPage(
+      name: Routes.CLASSROOM_LIST,
+      page: () => const ClassroomListView(),
+      binding: ClassroomBinding(),
+    ),
+    GetPage(
+      name: Routes.DEPARTMENT_LIST,
+      page: () => const DepartmentListView(),
+      binding: DepartmentBinding(),
+    ),
+    GetPage(
+      name: Routes.SUBJECT_LIST,
+      page: () => SubjectListView(),
+      binding: SubjectBinding(),
     ),
     GetPage(
       name: Routes.SCHEDULE,
