@@ -54,7 +54,7 @@ class TileDataSubjectView extends GetView<SubjectController> {
               ],
             ),
             mobile != false ? TextButton(
-                onPressed: () => Get.toNamed(Routes.DATA + Routes.SUBJECT_LIST),
+                onPressed: () => Get.toNamed(Routes.SUBJECT_LIST),
                 child: const Text(
                   'See all',
                   style: TextStyle(color: Colors.green),

@@ -54,7 +54,7 @@ class TileDataClassroomView extends GetView<ClassroomController> {
               ],
             ),
             mobile != false ? TextButton(
-                onPressed: () => Get.toNamed(Routes.DATA + Routes.CLASSROOM_LIST),
+                onPressed: () => Get.toNamed(Routes.CLASSROOM_LIST),
                 child: const Text(
                   'See all',
                   style: TextStyle(color: Colors.green),

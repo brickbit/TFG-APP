@@ -53,7 +53,7 @@ class TileDataDepartmentView extends GetView<DepartmentController> {
               ],
             ),
             mobile != false ? TextButton(
-                onPressed: () => Get.toNamed(Routes.DATA + Routes.DEPARTMENT_LIST),
+                onPressed: () => Get.toNamed(Routes.DEPARTMENT_LIST),
                 child: const Text(
                   'See all',
                   style: TextStyle(color: Colors.green),

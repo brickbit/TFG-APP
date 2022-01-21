@@ -53,7 +53,7 @@ class TileDataDegreeView extends GetView<DegreeController> {
               ],
             ),
             mobile != false ? TextButton(
-              onPressed: () => Get.toNamed(Routes.DATA + Routes.DEGREE_LIST),
+              onPressed: () => Get.toNamed(Routes.DEGREE_LIST),
               child: const Text(
                 'See all',
                 style: TextStyle(color: Colors.green),
