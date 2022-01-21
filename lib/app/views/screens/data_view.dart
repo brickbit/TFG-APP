@@ -114,7 +114,7 @@ class DataView extends GetView<HomeController> {
 
   Future<void> showClassroomDialog() async {
     classroomDialog(null, 'Create Classroom').then(
-          (value) {
+      (value) {
         if (value != null) {
           controller.createClassroom(value);
           controller.update();
@@ -125,7 +125,7 @@ class DataView extends GetView<HomeController> {
 
   Future<void> showDepartmentDialog() async {
     departmentDialog(null, 'Create Department').then(
-          (value) {
+      (value) {
         if (value != null) {
           controller.createDepartment(value);
           controller.update();
@@ -203,69 +203,73 @@ class DataView extends GetView<HomeController> {
 
   Widget _listDegree() {
     return controller.obx(
-        (data) => ListView.separated(
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    degreeTile(MediaQuery.of(context).size.width < 600,
-                        data?.degrees ?? [], index),
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () async {
-                            degreeDialog(data?.degrees[index], 'Edit Degree')
-                                .then(
-                              (value) {
-                                if (value != null) {
-                                  controller.updateDegree(value);
-                                  controller.update();
-                                }
-                              },
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.edit,
-                            color: Colors.grey,
-                          ),
+      (data) => ListView.separated(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  degreeTile(MediaQuery.of(context).size.width < 600,
+                      data?.degrees ?? [], index),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () async {
+                          degreeDialog(data?.degrees[index], 'Edit Degree')
+                              .then(
+                            (value) {
+                              if (value != null) {
+                                controller.updateDegree(value);
+                                controller.update();
+                              }
+                            },
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.edit,
+                          color: Colors.grey,
                         ),
-                        IconButton(
-                          onPressed: () async {
-                            controller
-                                .deleteDegree(data?.degrees[index].id ?? 0);
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.grey,
-                          ),
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          controller.deleteDegree(data?.degrees[index].id ?? 0);
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.grey,
                         ),
-                      ],
-                    )
-                  ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: SizedBox(
+                height: 1,
+                child: Container(
+                  color: Colors.grey,
                 ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: SizedBox(
-                  height: 1,
-                  child: Container(
-                    color: Colors.grey,
-                  ),
-                ),
-              );
-            },
-            itemCount: data?.degrees.length ?? 0),
-        onLoading: Container(
-          color: Colors.white,
-          child: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ));
+              ),
+            );
+          },
+          itemCount: data?.degrees.length ?? 0),
+      onLoading: Container(
+        color: Colors.white,
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+      onEmpty: Container(
+        color: Colors.white,
+        child: const Text('There is not data to load'),
+      ),
+    );
   }
 
   Widget _listClassroom() {
@@ -302,7 +306,8 @@ class DataView extends GetView<HomeController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteClassroom(data?.classrooms[index].id ?? 0);
+                          controller
+                              .deleteClassroom(data?.classrooms[index].id ?? 0);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -364,7 +369,8 @@ class DataView extends GetView<HomeController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteDepartment(data?.departments[index].id ?? 0);
+                          controller.deleteDepartment(
+                              data?.departments[index].id ?? 0);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -428,7 +434,8 @@ class DataView extends GetView<HomeController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteSubject(data?.subjects[index].id ?? 0);
+                          controller
+                              .deleteSubject(data?.subjects[index].id ?? 0);
                         },
                         icon: const Icon(
                           Icons.delete,
