@@ -14,6 +14,9 @@ class SubjectModel {
   final bool english;
   final int time;
   final int semester;
+  final String days;
+  final String hours;
+  final String turns;
   final ClassroomModel classroom;
   final DepartmentModel department;
   final DegreeModel degree;
@@ -29,6 +32,9 @@ class SubjectModel {
     required this.english,
     required this.time,
     required this.semester,
+    required this.days,
+    required this.hours,
+    required this.turns,
     required this.classroom,
     required this.department,
     required this.degree,
@@ -45,6 +51,9 @@ class SubjectModel {
     english: json["english"] as bool,
     time: json["time"] as int,
     semester: json["semester"] as int,
+    days: json["days"] as String,
+    hours: json["hours"] as String,
+    turns: json["turns"] as String,
     classroom: ClassroomModel.fromJson(json["classroom"] as Map<String, dynamic>),
     department: DepartmentModel.fromJson(json["department"] as Map<String, dynamic>),
     degree: DegreeModel.fromJson(json["degree"] as Map<String, dynamic>),
@@ -64,6 +73,9 @@ class SubjectModel {
     "english":english,
     "time":time,
     "semester":semester,
+    "days": days,
+    "hours":hours,
+    "turns": turns,
     "classroom":classroom,
     "department":department,
     "degree":degree,

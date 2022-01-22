@@ -8,6 +8,7 @@ import 'package:tfg_app/app/views/widget/degree_dialog.dart';
 import 'package:tfg_app/app/views/widget/degree_tile.dart';
 import 'package:tfg_app/app/views/widget/department_dialog.dart';
 import 'package:tfg_app/app/views/widget/department_tile.dart';
+import 'package:tfg_app/app/views/widget/subject_dialog.dart';
 import 'package:tfg_app/app/views/widget/subject_tile.dart';
 
 class DataView extends GetView<HomeController> {
@@ -121,14 +122,14 @@ class DataView extends GetView<HomeController> {
   }
 
   Future<void> showSubjectDialog() async {
-    /*subjectDialog(null, 'Create Subject').then(
+    subjectDialog(null, 'Create Subject', controller).then(
           (value) {
         if (value != null) {
           controller.createSubject(value);
           controller.update();
         }
       },
-    );*/
+    );
   }
 
   Widget _dataTile(String title, int index, Rx<int> indexObx, mobile) {
@@ -184,7 +185,7 @@ class DataView extends GetView<HomeController> {
           'See all',
           style: TextStyle(color: Colors.green),
         ),
-      ) : Container(),
+      ) : null,
       selectedColor: selectedIndex.value == index ? Colors.grey : null,
       onTap: () {
         indexObx.value = index;

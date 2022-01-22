@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
@@ -7,7 +8,7 @@ import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
 import 'package:get/get.dart';
 
-Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, List<DegreeModel>degrees, List<DepartmentModel> departments, List<ClassroomModel> classrooms) {
+Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeController controller) {
   final _nameController = TextEditingController();
   final _acronymController = TextEditingController();
   final _groupController = TextEditingController();
@@ -18,11 +19,11 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, List<De
   var _semester = ((subject?.semester ?? 0) + 1).toString().obs;
   var id = subject?.id;
 
-  var _classroomItems = classrooms;
+  var _classroomItems = controller.classrooms.value;
   var _classroom = _classroomItems[0].obs;
-  var _departmentItems = departments;
+  var _departmentItems = controller.departments.value;
   var _department = _departmentItems[0].obs;
-  var _degreeItems = degrees;
+  var _degreeItems = controller.degrees.value;
   var _degree = _degreeItems[0].obs;
   var _colorItems = ['Azul', 'Verde', 'Rojo'];
   var _color = _colorItems[0].obs;
@@ -159,6 +160,9 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, List<De
             english: _isEnglish.value,
             time: int.parse(_time.value),
             semester: int.parse(_semester.value),
+            days: "",
+            hours: "",
+            turns: "",
             classroom: _classroom.value,
             department: _department.value,
             degree: _degree.value,
