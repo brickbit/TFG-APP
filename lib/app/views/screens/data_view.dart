@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
-import 'package:tfg_app/app/views/screens/tile_data_classroom_view.dart';
-import 'package:tfg_app/app/views/screens/tile_data_degree_view.dart';
-import 'package:tfg_app/app/views/screens/tile_data_department_view.dart';
-import 'package:tfg_app/app/views/screens/tile_data_subject.dart';
+import 'package:tfg_app/app/navigation/app_routes.dart';
 import 'package:tfg_app/app/views/widget/classroom_dialog.dart';
 import 'package:tfg_app/app/views/widget/classroom_tile.dart';
 import 'package:tfg_app/app/views/widget/degree_dialog.dart';
 import 'package:tfg_app/app/views/widget/degree_tile.dart';
 import 'package:tfg_app/app/views/widget/department_dialog.dart';
 import 'package:tfg_app/app/views/widget/department_tile.dart';
-import 'package:tfg_app/app/views/widget/subject_dialog.dart';
 import 'package:tfg_app/app/views/widget/subject_tile.dart';
 
 class DataView extends GetView<HomeController> {
@@ -33,33 +29,23 @@ class DataView extends GetView<HomeController> {
   }
 
   Widget _dataViewSmall() {
-    return Scaffold(
+    var indexObx = 0.obs;
+    return Obx(
+            () => Scaffold(
       appBar: AppBar(
         title: const Text('Fill data'),
       ),
       body: SafeArea(
         child: ListView(
           children: [
-            TileDataDegreeView(
-              title: 'Degree',
-              mobile: true,
-            ),
-            TileDataClassroomView(
-              title: 'Classroom',
-              mobile: true,
-            ),
-            TileDataDepartmentView(
-              title: 'Department',
-              mobile: true,
-            ),
-            TileDataSubjectView(
-              title: 'Subject',
-              mobile: true,
-            ),
+            _dataTile('Degree', 0, indexObx, true),
+            _dataTile('Classroom',1, indexObx, true),
+            _dataTile('Department',2, indexObx, true),
+            _dataTile('Subject',3, indexObx, true),
           ],
         ),
       ),
-    );
+    ),);
   }
 
   Widget _dataViewLarge() {
@@ -76,10 +62,10 @@ class DataView extends GetView<HomeController> {
                 width: 300,
                 child: ListView(
                   children: [
-                    _dataTile('Degree', 0, indexObx),
-                    _dataTile('Classroom', 1, indexObx),
-                    _dataTile('Department', 2, indexObx),
-                    _dataTile('Subject', 3, indexObx)
+                    _dataTile('Degree', 0, indexObx, false),
+                    _dataTile('Classroom', 1, indexObx, false),
+                    _dataTile('Department', 2, indexObx, false),
+                    _dataTile('Subject', 3, indexObx, false)
                   ],
                 ),
               ),
@@ -145,7 +131,7 @@ class DataView extends GetView<HomeController> {
     );*/
   }
 
-  Widget _dataTile(String title, int index, Rx<int> indexObx) {
+  Widget _dataTile(String title, int index, Rx<int> indexObx, mobile) {
     var selectedIndex = 3.obs;
     return ListTile(
       leading: IconButton(
@@ -175,6 +161,30 @@ class DataView extends GetView<HomeController> {
         title,
         style: const TextStyle(fontSize: 20),
       ),
+      trailing: mobile != false ? TextButton(
+        onPressed: () {
+          switch (index) {
+            case 0:
+              Get.toNamed(Routes.DEGREE_LIST);
+              break;
+            case 1:
+              Get.toNamed(Routes.CLASSROOM_LIST);
+              break;
+            case 2:
+              Get.toNamed(Routes.DEPARTMENT_LIST);
+              break;
+            case 3:
+              Get.toNamed(Routes.SUBJECT_LIST);
+              break;
+            default:
+              Get.toNamed(Routes.DEGREE_LIST);
+          }
+        },
+        child: const Text(
+          'See all',
+          style: TextStyle(color: Colors.green),
+        ),
+      ) : Container(),
       selectedColor: selectedIndex.value == index ? Colors.grey : null,
       onTap: () {
         indexObx.value = index;

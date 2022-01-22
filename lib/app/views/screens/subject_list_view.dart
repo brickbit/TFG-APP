@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/classroom_controller.dart';
 import 'package:tfg_app/app/controllers/degree_controller.dart';
 import 'package:tfg_app/app/controllers/department_controller.dart';
-import 'package:tfg_app/app/controllers/subject_controller.dart';
+import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:tfg_app/app/views/widget/subject_dialog.dart';
 import 'package:tfg_app/data/classroom_provider.dart';
@@ -16,7 +16,7 @@ import 'package:tfg_app/domain/classroom_repository.dart';
 import 'package:tfg_app/domain/degree_repository.dart';
 import 'package:tfg_app/domain/department_repository.dart';
 
-class SubjectListView extends GetView<SubjectController> {
+class SubjectListView extends GetView<HomeController> {
   SubjectListView({Key? key}) : super(key: key);
   final DegreeController degreeController = Get.put(
     DegreeController(
@@ -83,7 +83,7 @@ class SubjectListView extends GetView<SubjectController> {
   }
 
   Widget _listSubject() {
-    return controller.obx((listSubject) {
+    return controller.obx((data) {
       return ListView.separated(
           itemBuilder: (context, index) {
             return Padding(
@@ -93,7 +93,7 @@ class SubjectListView extends GetView<SubjectController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _showContent(MediaQuery.of(context).size.width < 600,
-                      listSubject, index),
+                      data?.subjects ?? [], index),
                   Column(
                     children: [
                       IconButton(
@@ -101,7 +101,7 @@ class SubjectListView extends GetView<SubjectController> {
                           var degrees = degreeController.degrees.value;
                           var classrooms = classroomController.classrooms.value;
                           var departments = departmentController.departments.value;
-                          subjectDialog(listSubject[index], 'Edit Subject',degrees, departments,classrooms)
+                          subjectDialog(data?.subjects[index], 'Edit Subject',degrees, departments,classrooms)
                               .then(
                                 (value) {
                               if (value != null) {
@@ -118,7 +118,7 @@ class SubjectListView extends GetView<SubjectController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteSubject(listSubject[index].id);
+                          controller.deleteSubject(data?.subjects[index].id ?? -1);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -142,7 +142,7 @@ class SubjectListView extends GetView<SubjectController> {
               ),
             );
           },
-          itemCount: listSubject.length);
+          itemCount: data?.subjects.length ?? 0);
     });
   }
 

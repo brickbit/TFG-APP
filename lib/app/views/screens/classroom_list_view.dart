@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/app/controllers/classroom_controller.dart';
+import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/app/views/widget/classroom_dialog.dart';
-import 'package:tfg_app/data/model/classroom_model.dart';
+import 'package:tfg_app/app/views/widget/classroom_tile.dart';
 import 'package:get/get.dart';
 
-class ClassroomListView extends GetView<ClassroomController> {
+class ClassroomListView extends GetView<HomeController> {
   const ClassroomListView({Key? key}) : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class ClassroomListView extends GetView<ClassroomController> {
   }
 
   Widget _listClassroom() {
-    return controller.obx((listClassroom) {
+    return controller.obx((data) {
       return ListView.separated(
           itemBuilder: (context, index) {
             return Padding(
@@ -46,13 +46,13 @@ class ClassroomListView extends GetView<ClassroomController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _showContent(MediaQuery.of(context).size.width < 600,
-                      listClassroom, index),
+                  classroomTile(MediaQuery.of(context).size.width < 600,
+                      data?.classrooms ?? [], index),
                   Row(
                     children: [
                       IconButton(
                         onPressed: () async {
-                          classroomDialog(listClassroom[index], 'Edit Classroom')
+                          classroomDialog(data?.classrooms[index], 'Edit Classroom')
                               .then(
                             (value) {
                               if (value != null) {
@@ -69,7 +69,7 @@ class ClassroomListView extends GetView<ClassroomController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteClassroom(listClassroom[index].id);
+                          controller.deleteClassroom(data?.classrooms[index].id ?? -1);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -93,55 +93,7 @@ class ClassroomListView extends GetView<ClassroomController> {
               ),
             );
           },
-          itemCount: listClassroom.length);
+          itemCount: data?.classrooms.length ?? 0);
     });
-  }
-
-  Widget _showContent(bool mobile, List<ClassroomModel> subjects, int index) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (mobile) {
-          return Container(
-            constraints: const BoxConstraints(maxWidth: 250),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('${subjects[index].name!} - ${subjects[index].acronym!}',
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Pavilion: ${subjects[index].pavilion}',
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-              ],
-            ),
-          );
-        } else {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    '${subjects[index].name!} - ${subjects[index].acronym!}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Pavilion: ${subjects[index].pavilion}',
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-            ],
-          );
-        }
-      },
-    );
   }
 }

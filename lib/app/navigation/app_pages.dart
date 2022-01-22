@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:tfg_app/app/binding/classroom_binding.dart';
-import 'package:tfg_app/app/binding/data_binding.dart';
 import 'package:tfg_app/app/binding/degree_binding.dart';
 import 'package:tfg_app/app/binding/department_binding.dart';
 import 'package:tfg_app/app/binding/home_binding.dart';
@@ -10,7 +9,6 @@ import 'package:tfg_app/app/binding/schedule_binding.dart';
 import 'package:tfg_app/app/binding/splash_binding.dart';
 import 'package:tfg_app/app/binding/subject_binding.dart';
 import 'package:tfg_app/app/views/screens/classroom_list_view.dart';
-import 'package:tfg_app/app/views/screens/data_view.dart';
 import 'package:tfg_app/app/views/screens/degree_list_view.dart';
 import 'package:tfg_app/app/views/screens/department_list_view.dart';
 import 'package:tfg_app/app/views/screens/home_view.dart';

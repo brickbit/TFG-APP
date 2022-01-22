@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/app/controllers/degree_controller.dart';
+import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/app/views/widget/degree_dialog.dart';
-import 'package:tfg_app/data/model/degree_model.dart';
+import 'package:tfg_app/app/views/widget/degree_tile.dart';
 import 'package:get/get.dart';
 
-class DegreeListView extends GetView<DegreeController> {
+class DegreeListView extends GetView<HomeController> {
   const DegreeListView({Key? key}) : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class DegreeListView extends GetView<DegreeController> {
   }
 
   Widget _listDegree() {
-    return controller.obx((listDegree) {
+    return controller.obx((data) {
       return ListView.separated(
           itemBuilder: (context, index) {
             return Padding(
@@ -46,13 +46,13 @@ class DegreeListView extends GetView<DegreeController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _showContent(
-                      MediaQuery.of(context).size.width < 600, listDegree, index),
+                  degreeTile(
+                      MediaQuery.of(context).size.width < 600, data?.degrees ?? [], index),
                   Row(
                     children: [
                       IconButton(
                         onPressed: () async {
-                          degreeDialog(listDegree[index], 'Edit Degree').then(
+                          degreeDialog(data?.degrees[index], 'Edit Degree').then(
                                 (value) {
                               if (value != null) {
                                 controller.updateDegree(value);
@@ -68,7 +68,7 @@ class DegreeListView extends GetView<DegreeController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteDegree(listDegree[index].id);
+                          controller.deleteDegree(data?.degrees[index].id ?? -1);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -92,60 +92,7 @@ class DegreeListView extends GetView<DegreeController> {
               ),
             );
           },
-          itemCount: listDegree.length);
+          itemCount: data?.degrees.length ?? 0);
     });
-
-  }
-
-  Widget _showContent(bool mobile, List<DegreeModel> degrees, int index) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (mobile) {
-          return Container(
-            constraints: const BoxConstraints(maxWidth: 250),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(degrees[index].name!,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Num.semesters: ${degrees[index].num_semesters}',
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text('A ${degrees[index].year}',
-                    style: const TextStyle(fontSize: 12)),
-              ],
-            ),
-          );
-        } else {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    degrees[index].name!,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    ' - Num.semesters: ${degrees[index].num_semesters}',
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text('Year ${degrees[index].year}',
-                  style: const TextStyle(fontSize: 12)),
-            ],
-          );
-        }
-      },
-    );
   }
 }
