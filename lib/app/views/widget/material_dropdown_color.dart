@@ -45,6 +45,8 @@ MaterialColor getColor(value) {
       return Colors.orange;
     case 'Verde':
       return Colors.green;
+    case 'Amarillo':
+      return Colors.yellow;
     default:
       return Colors.blue;
   }

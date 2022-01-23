@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/extension/color_extension.dart';
+import 'package:tfg_app/app/views/screens/edit_schedule_view.dart';
 import 'package:tfg_app/app/views/widget/subject_dialog.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 
@@ -52,9 +54,10 @@ class SubjectListView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          subjectDialog(data?.subjects[index], 'Edit Subject',controller)
+                          subjectDialog(data?.subjects[index], 'Edit Subject',
+                                  controller)
                               .then(
-                                (value) {
+                            (value) {
                               if (value != null) {
                                 controller.updateSubject(value);
                                 controller.update();
@@ -69,7 +72,8 @@ class SubjectListView extends GetView<HomeController> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          controller.deleteSubject(data?.subjects[index].id ?? -1);
+                          controller
+                              .deleteSubject(data?.subjects[index].id ?? -1);
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -103,60 +107,62 @@ class SubjectListView extends GetView<HomeController> {
         if (mobile) {
           return Container(
             constraints: const BoxConstraints(maxWidth: 250),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Text('${subjects[index].name!} - ${subjects[index].acronym!}',
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(
-                  height: 4,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  subjects[index].degree.name.toString()
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Department: ${subjects[index].department.acronym}',
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Classroom: ${subjects[index].classroom.acronym}',
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                SizedBox(width: 6, height: 140, child: Container(color: subjects[index].color.parseColor(),),),
+                const SizedBox(width: 8,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Semester: ${subjects[index].semester + 1}',
+                        '${subjects[index].name!} - ${subjects[index].acronym!}',
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(subjects[index].degree.name.toString()),
+                    const SizedBox(
+                      height: 4,
                     ),
                     Text(
-                        'Language: ${subjects[index].english==false ? 'Español':'English'}'
+                      'Department: ${subjects[index].department.acronym}',
                     ),
-                ],),
-                const SizedBox(
-                  height: 8,
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      'Classroom: ${subjects[index].classroom.acronym}',
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Semester: ${subjects[index].semester + 1}',
+                        ),
+                        Text(
+                            'Language: ${subjects[index].english == false ? 'Español' : 'English'}'),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            'Laboratorio: ${subjects[index].laboratory == false ? 'No' : 'Yes'}'),
+                        Text(
+                            'Seminario: ${subjects[index].seminary == false ? 'No' : 'Yes'}'),
+                      ],
+                    ),
+                  ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Laboratorio: ${subjects[index].laboratory==false ? 'No':'Yes'}'
-                    ),
-                    Text(
-                        'Seminario: ${subjects[index].seminary==false ? 'No':'Yes'}'
-                    ),
-
-                ],),
-
               ],
             ),
           );

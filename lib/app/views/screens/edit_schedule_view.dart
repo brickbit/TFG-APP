@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/extension/color_extension.dart';
 import 'package:tfg_app/app/model/schedule_features_model.dart';
 import 'package:tfg_app/app/views/widget/drag_list_subjects.dart';
 import 'package:tfg_app/app/views/widget/subject_box.dart';
@@ -69,25 +70,6 @@ class EditScheduleView extends GetView<HomeController> {
     return Container(
       color: Colors.blue,
     );
-  }
-}
-
-extension ColorToMaterial on int {
-  MaterialColor parseColor() {
-    switch (this) {
-      case 0:
-        return Colors.red;
-      case 1:
-        return Colors.blue;
-      case 2:
-        return Colors.amber;
-      case 3:
-        return Colors.green;
-      case 4:
-        return Colors.orange;
-      default:
-        return Colors.grey;
-    }
   }
 }
 

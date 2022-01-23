@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
+import 'package:tfg_app/app/extension/color_extension.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
@@ -27,7 +28,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
   var _department = _departmentItems[0].obs;
   var _degreeItems = controller.degrees.value;
   var _degree = _degreeItems[0].obs;
-  var _colorItems = ['Azul', 'Verde', 'Rojo'];
+  var _colorItems = ['Azul', 'Verde', 'Rojo','Amarillo','Naranja'];
   var _color = _colorItems[0].obs;
 
   return Get.defaultDialog(
@@ -168,7 +169,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
             classroom: _classroom.value,
             department: _department.value,
             degree: _degree.value,
-            color: 0,
+            color: _color.value.getColorNumber(),
           );
           Get.back(result: subject);
         },
@@ -180,6 +181,8 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
     ],
   );
 }
+
+
 
 
 
