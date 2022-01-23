@@ -93,6 +93,7 @@ class DataView extends GetView<HomeController> {
       (value) {
         if (value != null) {
           controller.createDegree(value);
+          controller.getData();
           controller.update();
         }
       },
@@ -104,6 +105,7 @@ class DataView extends GetView<HomeController> {
       (value) {
         if (value != null) {
           controller.createClassroom(value);
+          controller.getData();
           controller.update();
         }
       },
@@ -115,6 +117,7 @@ class DataView extends GetView<HomeController> {
       (value) {
         if (value != null) {
           controller.createDepartment(value);
+          controller.getData();
           controller.update();
         }
       },
@@ -126,6 +129,7 @@ class DataView extends GetView<HomeController> {
           (value) {
         if (value != null) {
           controller.createSubject(value);
+          controller.getData();
           controller.update();
         }
       },
