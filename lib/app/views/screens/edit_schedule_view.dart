@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/model/schedule_features_model.dart';
 
 class EditScheduleView extends GetView<HomeController> {
-  const EditScheduleView({Key? key}) : super(key: key);
+
+  final ScheduleFeaturesModel features = Get.arguments;
+  EditScheduleView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class EditScheduleView extends GetView<HomeController> {
                 title: const Text('Edit schedule'),
               ),
               body: SafeArea(
-                child: Column(),
+                child: features.scheduleType == 'One subject per hour' ? oneSubjectPerHourView() : severalSubjectsPerHourView(),
               ),
             );
           } else {
@@ -25,12 +28,20 @@ class EditScheduleView extends GetView<HomeController> {
                 title: const Text('Edit schedule'),
               ),
               body: SafeArea(
-                child: Column(),
+                child: features.scheduleType == 'One subject per hour' ? oneSubjectPerHourView() : severalSubjectsPerHourView(),
               ),
             );
           }
         },
       ),
     );
+  }
+
+  Widget oneSubjectPerHourView() {
+    return Container(color: Colors.red,);
+  }
+
+  Widget severalSubjectsPerHourView() {
+    return Container(color: Colors.blue,);
   }
 }

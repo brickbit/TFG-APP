@@ -72,7 +72,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.EDIT_SCHEDULE,
-      page: () => const EditScheduleView(),
+      page: () => EditScheduleView(),
       binding: EditScheduleBinding(),
     ),
   ];

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:tfg_app/app/model/schedule_features_model.dart';
 import 'package:tfg_app/app/navigation/app_routes.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:get/get.dart';
@@ -57,8 +58,9 @@ Future<DegreeModel?> scheduleDialog(String title, List<DegreeModel> degrees ) {
       ),
       TextButton(
         onPressed: () {
+          var features = ScheduleFeaturesModel(scheduleType: _scheduleType.value, semester: int.parse(_semester.value), degree: _degree.value);
           Get.back();
-          Get.toNamed(Routes.EDIT_SCHEDULE);
+          Get.toNamed(Routes.EDIT_SCHEDULE, arguments: features);
         },
         child: const Text(
           'OK',
