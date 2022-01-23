@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
-import 'custom_dropdown.dart';
 import 'package:get/get.dart';
+import 'material_dropdown.dart';
 
 Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
   final _nameController = TextEditingController();
   final _yearController = TextEditingController();
   var id = degree?.id;
-  int _numSemesters = degree?.num_semesters ?? 8;
-  var _controller = Get.put(DropdownController(selected: (degree?.num_semesters ?? 8).toString().obs));
+  var _numSemesters = (degree?.num_semesters.toString() ?? '8').obs;
 
   return Get.defaultDialog(
     title: title,
@@ -30,11 +29,10 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
             SizedBox(
               height: 50,
               width: Size.infinite.width,
-              child: DropdownPickerGetX(
-                menuOptions: const ['4', '8'],
-                selectedOption: _numSemesters.toString(),
-                controller: _controller,
-              ),
+              child: materialDropdown(_numSemesters, [
+                  '4',
+                  '8'
+                ])
             ),
           ],
         ),
@@ -56,7 +54,7 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
           var degree = DegreeModel(
               id: id ?? uuid.v4().hashCode,
               name: _nameController.text,
-              num_semesters: int.parse(_controller.selected.value),
+              num_semesters: int.parse(_numSemesters.value),
               year: _yearController.text);
           Get.back(result: degree);
         },

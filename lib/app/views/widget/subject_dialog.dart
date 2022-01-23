@@ -8,6 +8,12 @@ import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
 import 'package:get/get.dart';
 
+import 'material_dropdown.dart';
+import 'material_dropdown_classroom.dart';
+import 'material_dropdown_color.dart';
+import 'material_dropdown_degree.dart';
+import 'material_dropdown_department.dart';
+
 Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeController controller) {
   final _nameController = TextEditingController();
   final _acronymController = TextEditingController();
@@ -93,7 +99,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Time(minutes)'),
-                  _materialDropdown(_time, [
+                  materialDropdown(_time, [
                     '60',
                     '90',
                     '120',
@@ -109,28 +115,28 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Text('Semester'),
-                _materialDropdown(
+                materialDropdown(
                     _semester, ['1', '2', '3', '4', '5', '6', '7', '8']),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Text('Classroom'),
-                _materialDropdownClassroom(_classroom, _classroomItems),
+                materialDropdownClassroom(_classroom, _classroomItems),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Text('Department'),
-                _materialDropdownDepartment(_department, _departmentItems),
+                materialDropdownDepartment(_department, _departmentItems),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Text('Degree'),
-                _materialDropdownDegree(_degree, _degreeItems),
+                materialDropdownDegree(_degree, _degreeItems),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Text('Color'),
-                _materialDropdownColor(_color, _colorItems),
+                materialDropdownColor(_color, _colorItems),
               ]),
             ],
           ),
@@ -179,151 +185,10 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
   );
 }
 
-Widget _materialDropdown(RxString selected, List<String> items) {
-  return Obx(
-    () => DropdownButton<String>(
-      value: selected.value,
-      style: const TextStyle(color: Colors.green, fontSize: 16.0),
-      underline: Container(
-        height: 2,
-        color: Colors.green,
-      ),
-      isExpanded: true,
-      items: items.map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-      onChanged: (String? updatedValue) {
-        selected.value = updatedValue!;
-      },
-    ),
-  );
-}
 
-Widget _materialDropdownClassroom(
-    Rx<ClassroomModel> selected, List<ClassroomModel> items) {
-  return Obx(
-    () => DropdownButton<String>(
-      value: selected.value.acronym,
-      style: const TextStyle(color: Colors.green, fontSize: 16.0),
-      underline: Container(
-        height: 2,
-        color: Colors.green,
-      ),
-      isExpanded: true,
-      items: items.map((ClassroomModel value) {
-        return DropdownMenuItem<String>(
-          value: value.acronym,
-          child: Text(value.acronym!),
-        );
-      }).toList(),
-      onChanged: (String? updatedValue) {
-        var result =
-            items.firstWhere((element) => element.acronym == updatedValue!);
-        selected.value = result;
-      },
-    ),
-  );
-}
 
-Widget _materialDropdownDepartment(
-    Rx<DepartmentModel> selected, List<DepartmentModel> items) {
-  return Obx(
-    () => DropdownButton<String>(
-      value: selected.value.acronym,
-      style: const TextStyle(color: Colors.green, fontSize: 16.0),
-      underline: Container(
-        height: 2,
-        color: Colors.green,
-      ),
-      isExpanded: true,
-      items: items.map((DepartmentModel value) {
-        return DropdownMenuItem<String>(
-          value: value.acronym,
-          child: Text(value.acronym!),
-        );
-      }).toList(),
-      onChanged: (String? updatedValue) {
-        var result =
-            items.firstWhere((element) => element.acronym == updatedValue!);
-        selected.value = result;
-      },
-    ),
-  );
-}
 
-Widget _materialDropdownDegree(
-    Rx<DegreeModel> selected, List<DegreeModel> items) {
-  return Obx(
-    () => DropdownButton<String>(
-      value: selected.value.name,
-      style: const TextStyle(color: Colors.green, fontSize: 16.0),
-      underline: Container(
-        height: 2,
-        color: Colors.green,
-      ),
-      isExpanded: true,
-      items: items.map((DegreeModel value) {
-        return DropdownMenuItem<String>(
-          value: value.name,
-          child: Text(value.name!),
-        );
-      }).toList(),
-      onChanged: (String? updatedValue) {
-        var result =
-            items.firstWhere((element) => element.name == updatedValue!);
-        selected.value = result;
-      },
-    ),
-  );
-}
 
-Widget _materialDropdownColor(RxString selected, List<String> items) {
-  return Obx(
-    () => DropdownButton<String>(
-      value: selected.value,
-      style: const TextStyle(color: Colors.green, fontSize: 16.0),
-      underline: Container(
-        height: 2,
-        color: Colors.green,
-      ),
-      isExpanded: true,
-      items: items.map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(value),
-              SizedBox(
-                height: 20,
-                width: 20,
-                child: Container(color: getColor(value)),
-              )
-            ],
-          ),
-        );
-      }).toList(),
-      onChanged: (String? updatedValue) {
-        selected.value = updatedValue!;
-      },
-    ),
-  );
-}
 
-MaterialColor getColor(value) {
-  switch (value) {
-    case 'Azul':
-      return Colors.blue;
-    case 'Rojo':
-      return Colors.red;
-    case 'Naranja':
-      return Colors.orange;
-    case 'Verde':
-      return Colors.green;
-    default:
-      return Colors.blue;
-  }
-}
+
+

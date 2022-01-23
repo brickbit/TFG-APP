@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
-import 'custom_dropdown.dart';
 import 'package:get/get.dart';
+
+import 'material_dropdown.dart';
 
 Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title ) {
   final _nameController = TextEditingController();
   final _acronymController = TextEditingController();
   var id = classroom?.id;
-  String _pavilion = classroom?.pavilion ?? 'TELECOMMUNICATION';
-  var _controller = Get.put(DropdownController(selected: (classroom?.pavilion ?? 8).toString().obs));
+  var _pavilion = (classroom?.pavilion ?? 'TELECOMMUNICATION').obs;
 
   return Get.defaultDialog(
     title: title,
@@ -31,11 +31,9 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
             SizedBox(
               height: 50,
               width: Size.infinite.width,
-              child: DropdownPickerGetX(
-                menuOptions: const ['TELECOMMUNICATION', 'COMPUTING', 'ARCHITECTURE', 'CIVIL_WORK', 'CENTRAL'],
-                selectedOption: _pavilion,
-                controller: _controller,
-              ),
+              child: materialDropdown(_pavilion, [
+                  'TELECOMMUNICATION', 'COMPUTING', 'ARCHITECTURE', 'CIVIL_WORK', 'CENTRAL'
+                ])
             ),
           ],
         ),
@@ -57,7 +55,7 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
           var classroom = ClassroomModel(
               id: id ?? uuid.v4().hashCode,
               name: _nameController.text,
-              pavilion: _controller.selected.value,
+              pavilion: _pavilion.value,
               acronym: _acronymController.text);
           Get.back(result: classroom);
         },
