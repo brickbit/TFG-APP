@@ -43,13 +43,17 @@ class HomeView extends GetView<HomeController> {
       child: Scaffold(
           bottomNavigationBar: buildBottomNavigationMenu(context, controller),
           body: controller.obx(
-            (data) => IndexedStack(
-              index: controller.tabIndex.value,
-              children: const [
-                DataView(),
-                ScheduleView(),
-              ],
-            ),
+            (data) {
+              return Obx(
+                () => IndexedStack(
+                  index: controller.tabIndex.value,
+                  children: const [
+                    DataView(),
+                    ScheduleView(),
+                  ],
+                ),
+              );
+            },
             onLoading: Container(
               color: Colors.white,
               child: const Center(
