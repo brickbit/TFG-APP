@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:tfg_app/app/binding/classroom_binding.dart';
 import 'package:tfg_app/app/binding/degree_binding.dart';
 import 'package:tfg_app/app/binding/department_binding.dart';
+import 'package:tfg_app/app/binding/edit_schedule_binding.dart';
 import 'package:tfg_app/app/binding/home_binding.dart';
 import 'package:tfg_app/app/binding/login_binding.dart';
 import 'package:tfg_app/app/binding/recover_password_binding.dart';
@@ -11,6 +12,7 @@ import 'package:tfg_app/app/binding/subject_binding.dart';
 import 'package:tfg_app/app/views/screens/classroom_list_view.dart';
 import 'package:tfg_app/app/views/screens/degree_list_view.dart';
 import 'package:tfg_app/app/views/screens/department_list_view.dart';
+import 'package:tfg_app/app/views/screens/edit_schedule_view.dart';
 import 'package:tfg_app/app/views/screens/home_view.dart';
 import 'package:tfg_app/app/views/screens/login_view.dart';
 import 'package:tfg_app/app/views/screens/recover_password_view.dart';
@@ -60,13 +62,18 @@ class AppPages {
     ),
     GetPage(
       name: Routes.SUBJECT_LIST,
-      page: () => SubjectListView(),
+      page: () => const SubjectListView(),
       binding: SubjectBinding(),
     ),
     GetPage(
       name: Routes.SCHEDULE,
-      page: () => const ScheduleView(),
+      page: () => ScheduleView(),
       binding: ScheduleBinding(),
+    ),
+    GetPage(
+      name: Routes.EDIT_SCHEDULE,
+      page: () => const EditScheduleView(),
+      binding: EditScheduleBinding(),
     ),
   ];
 }

@@ -9,4 +9,5 @@ abstract class Routes {
   static const DEPARTMENT_LIST = '/departmentList';
   static const SUBJECT_LIST = '/subjectList';
   static const SCHEDULE = '/schedule';
+  static const EDIT_SCHEDULE = '/editSchedule';
 }

@@ -8,7 +8,7 @@ import 'package:tfg_app/data/repository/data_repository_impl.dart';
 import 'package:tfg_app/data/subject_provider.dart';
 import 'package:tfg_app/domain/data_repository.dart';
 
-class ScheduleBinding extends Bindings {
+class EditScheduleBinding extends Bindings {
 
   @override
   void dependencies() {
