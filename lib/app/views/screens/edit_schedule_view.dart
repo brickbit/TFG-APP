@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
-import 'package:tfg_app/app/extension/color_extension.dart';
+import 'package:tfg_app/app/controllers/schedule_controller.dart';
+import 'package:tfg_app/app/mappers/subject_model_mapper.dart';
 import 'package:tfg_app/app/model/schedule_features_model.dart';
-import 'package:tfg_app/app/views/widget/drag_list_subjects.dart';
+import 'package:tfg_app/app/views/widget/build_schedule_day_5_rows.dart';
 import 'package:tfg_app/app/views/widget/subject_box.dart';
-import 'package:tfg_app/data/model/subject_model.dart';
 
-class EditScheduleView extends GetView<HomeController> {
+class EditScheduleView extends GetView<ScheduleController> {
   final ScheduleFeaturesModel features = Get.arguments;
   EditScheduleView({Key? key}) : super(key: key);
 
@@ -23,7 +22,7 @@ class EditScheduleView extends GetView<HomeController> {
               ),
               body: SafeArea(
                 child: features.scheduleType == 'One subject per hour'
-                    ? oneSubjectPerHourView(data?.subjects ?? [])
+                    ? oneSubjectPerHourView()
                     : severalSubjectsPerHourView(),
               ),
             );
@@ -34,7 +33,7 @@ class EditScheduleView extends GetView<HomeController> {
               ),
               body: SafeArea(
                 child: features.scheduleType == 'One subject per hour'
-                    ? oneSubjectPerHourView(data?.subjects ?? [])
+                    ? oneSubjectPerHourView()
                     : severalSubjectsPerHourView(),
               ),
             );
@@ -54,28 +53,89 @@ class EditScheduleView extends GetView<HomeController> {
     );
   }
 
-  Widget oneSubjectPerHourView(List<SubjectModel> subjects) {
-    List<SubjectBox> subjectBoxes = subjects.map((data) => data.toSubjectBox()).toList();
+  Widget oneSubjectPerHourView() {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Expanded(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        SizedBox(height: 615, child: Column() //buildDaySchedule5Rows(0)
-            ),
+        SizedBox(height: 615, child: buildScheduleDay5Rows(0)),
       ])),
-      dragListSubject(subjectBoxes)
+      controller.obx((data) {
+        return dragListSubject();
+      })
     ]);
+  }
+
+  Widget dragListSubject() {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(children: [
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.grey[300],
+              border: Border.all(
+                color: Colors.grey,
+              ),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          height: 65,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+            height: 50.0,
+            child: controller.obx(
+              (state) => ListView.separated(
+                primary: false,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.subjects.value.length,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: 70,
+                    height: 50,
+                    child: Draggable<SubjectBox>(
+                      data: controller.subjects.value
+                          .map((data) => data.toSubjectBox())
+                          .toList()[index],
+                      child: controller.subjects.value
+                          .map((data) => data.toSubjectBox())
+                          .toList()[index],
+                      feedback: controller.subjects.value
+                          .map((data) => data.toSubjectBox())
+                          .toList()[index],
+                      onDragCompleted: () {
+                        var item = controller.subjects.value.firstWhere(
+                            (element) =>
+                                controller.subjects.value
+                                    .map((data) => data.toSubjectBox())
+                                    .toList()[index]
+                                    .subject
+                                    .id ==
+                                element.id);
+                        var pos = controller.subjects.value.indexOf(item);
+                        controller.subjects.value[pos] =
+                            item.copyWith(newTime: item.time - 30);
+                        if (controller.subjects.value[pos].time == 0) {
+                          controller.subjects.value.removeAt(pos);
+                        }
+                        controller.update();
+                      },
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(
+                    width: 16,
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      ]),
+    );
   }
 
   Widget severalSubjectsPerHourView() {
     return Container(
       color: Colors.blue,
     );
-  }
-}
-
-
-extension SubjectModelMapper on SubjectModel {
-  SubjectBox toSubjectBox() {
-    return SubjectBox(color: color.parseColor(), name: acronym ?? '', time: time);
   }
 }

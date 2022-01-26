@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_app/app/extension/color_extension.dart';
+import 'package:tfg_app/data/model/subject_model.dart';
 
 class SubjectBox extends StatelessWidget {
-  final MaterialColor color;
-  final String name;
-  int time;
+  final SubjectModel subject;
 
-  SubjectBox({
+  const SubjectBox({
     Key? key,
-    required this.color,
-    required this.name,
-    required this.time,
+    required this.subject,
   }) : super(key: key);
 
   @override
@@ -18,7 +16,7 @@ class SubjectBox extends StatelessWidget {
       width: 70,
       height: 60,
       decoration: BoxDecoration(
-          color: color,
+          color: subject.color.parseColor(),
           border: Border.all(
             color: Colors.black,
           ),
@@ -28,7 +26,7 @@ class SubjectBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              name,
+              subject.acronym ?? '',
               style: const TextStyle(fontSize: 12, color: Colors.black),
             ),
             const SizedBox(height: 8),
@@ -43,7 +41,7 @@ class SubjectBox extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  time.toString(),
+                  subject.time.toString(),
                   style: const TextStyle(fontSize: 12, color: Colors.black),
                 ),
               ],

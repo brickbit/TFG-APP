@@ -1,6 +1,6 @@
 
 import 'package:get/get.dart';
-import 'package:tfg_app/app/controllers/home_controller.dart';
+import 'package:tfg_app/app/controllers/schedule_controller.dart';
 import 'package:tfg_app/data/classroom_provider.dart';
 import 'package:tfg_app/data/degree_provider.dart';
 import 'package:tfg_app/data/department_provider.dart';
@@ -19,7 +19,7 @@ class EditScheduleBinding extends Bindings {
 
     Get.lazyPut<DataRepository>(
             () => DataRepositoryImpl(departmentProvider: Get.find(), subjectProvider: Get.find(), classroomProvider: Get.find(), degreeProvider: Get.find()));
-    Get.put(HomeController(dataRepository: Get.find()));
+    Get.put(ScheduleController(dataRepository: Get.find()));
   }
 
 }

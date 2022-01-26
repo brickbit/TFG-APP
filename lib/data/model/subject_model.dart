@@ -1,4 +1,3 @@
-
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'classroom_model.dart';
 import 'degree_model.dart';
@@ -42,43 +41,66 @@ class SubjectModel {
   });
 
   factory SubjectModel.fromJson(Map<String, dynamic> json) => SubjectModel(
-    id: json["id"] as int?,
-    name: json["name"] as String?,
-    acronym: json["acronym"] as String?,
-    classGroup: json["classGroup"] as String,
-    seminary: json["seminary"] as bool,
-    laboratory: json["laboratory"] as bool,
-    english: json["english"] as bool,
-    time: json["time"] as int,
-    semester: json["semester"] as int,
-    days: json["days"] as String,
-    hours: json["hours"] as String,
-    turns: json["turns"] as String,
-    classroom: ClassroomModel.fromJson(json["classroom"] as Map<String, dynamic>),
-    department: DepartmentModel.fromJson(json["department"] as Map<String, dynamic>),
-    degree: DegreeModel.fromJson(json["degree"] as Map<String, dynamic>),
-    color: json["color"] as int,
-  );
+        id: json["id"] as int?,
+        name: json["name"] as String?,
+        acronym: json["acronym"] as String?,
+        classGroup: json["classGroup"] as String,
+        seminary: json["seminary"] as bool,
+        laboratory: json["laboratory"] as bool,
+        english: json["english"] as bool,
+        time: json["time"] as int,
+        semester: json["semester"] as int,
+        days: json["days"] as String,
+        hours: json["hours"] as String,
+        turns: json["turns"] as String,
+        classroom:
+            ClassroomModel.fromJson(json["classroom"] as Map<String, dynamic>),
+        department: DepartmentModel.fromJson(
+            json["department"] as Map<String, dynamic>),
+        degree: DegreeModel.fromJson(json["degree"] as Map<String, dynamic>),
+        color: json["color"] as int,
+      );
 
   static List<SubjectModel> listFromJson(list) =>
       List<SubjectModel>.from(list.map((x) => SubjectModel.fromJson(x)));
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "acronym": acronym,
-    "classGroup":classGroup,
-    "seminary":seminary,
-    "laboratory":laboratory,
-    "english":english,
-    "time":time,
-    "semester":semester,
-    "days": days,
-    "hours":hours,
-    "turns": turns,
-    "classroom":classroom,
-    "department":department,
-    "degree":degree,
-    "color":color,
-  };
+        "id": id,
+        "name": name,
+        "acronym": acronym,
+        "classGroup": classGroup,
+        "seminary": seminary,
+        "laboratory": laboratory,
+        "english": english,
+        "time": time,
+        "semester": semester,
+        "days": days,
+        "hours": hours,
+        "turns": turns,
+        "classroom": classroom,
+        "department": department,
+        "degree": degree,
+        "color": color,
+      };
+
+  SubjectModel copyWith({
+    required int newTime,
+  }) =>
+      SubjectModel(
+          id: id,
+          name: name,
+          acronym: acronym,
+          classGroup: classGroup,
+          seminary: seminary,
+          laboratory: laboratory,
+          english: english,
+          time: newTime,
+          semester: semester,
+          days: days,
+          hours: hours,
+          turns: turns,
+          classroom: classroom,
+          department: department,
+          degree: degree,
+          color: color);
 }
