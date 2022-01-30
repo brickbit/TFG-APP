@@ -1,23 +1,23 @@
 
 import 'package:flutter/material.dart';
 
-Widget buildScheduleHeaderHour(int numRows, bool mobile) {
+Widget buildScheduleHeaderHour(int numRows, bool mobile, bool morning) {
   return Column(children: [
     if (numRows == 15)
       _buildHour('', 20),
     _buildHour('',mobile ? 40 : 40),
-    _buildHour('8:30',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('9:00',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('9:30',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('10:00',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('10:30',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('11:00',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('11:30',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('12:00',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('12:30',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('13:00',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('13:30',mobile ? 440/12.2 : 575/14.38),
-    _buildHour('14:00',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '8:30' : '15:30',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '9:00' : '16:00',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '9:30' : '16:30',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '10:00' : '17:00',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '10:30' : '17:30',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '11:00' : '18:00',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '11:30' : '18:30',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '12:00' : '19:00',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '12:30' : '19:30',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '13:00' : '20:00',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '13:30' : '20:30',mobile ? 440/12.2 : 575/14.38),
+    _buildHour(morning ? '14:00' : '21:00',mobile ? 440/12.2 : 575/14.38),
   ]);
 }
 

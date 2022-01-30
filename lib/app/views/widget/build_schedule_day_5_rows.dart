@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'build_schedule_header_hour.dart';
 import 'drag_target_subject.dart';
 
-Widget buildScheduleDay5Rows(bool mobile) {
+Widget buildScheduleDay5Rows(bool mobile, bool morning) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      buildScheduleHeaderHour(5,mobile),
+      buildScheduleHeaderHour(5, mobile, morning),
       Column(
         children: [
           SizedBox(
@@ -30,12 +30,15 @@ Widget buildScheduleDay5Rows(bool mobile) {
                 crossAxisSpacing: 0,
                 mainAxisSpacing: 0,
                 childAspectRatio: mobile ? 6.1 : 5.5,
-
               ),
               primary: false,
               itemCount: 60,
               itemBuilder: (BuildContext context, int index) {
-                return DragTargetSubject(column: index ~/ 5, row: index % 5);
+                return DragTargetSubject(
+                  column: index ~/ 5,
+                  row: index % 5,
+                  morning: morning,
+                );
               },
             ),
           )

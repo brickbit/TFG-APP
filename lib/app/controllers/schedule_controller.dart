@@ -43,14 +43,24 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
     });
   }
 
-  void restoreItem(int row, int column) {
-    SubjectModel? item = subjects.value.firstWhereOrNull(
-        (element) => element.id == morning5Rows.value[column][row]?.id);
-    item ??= morning5Rows.value[column][row];
-    var pos = subjects.value.indexOf(item!);
-    var newItem = item.deleteItem(newTime: item.time + 30);
-    subjects.value[pos] = newItem;
-    morning5Rows.value[column][row] = null;
+  void restoreItem(int row, int column, bool morning) {
+    if (morning) {
+      SubjectModel? item = subjects.value.firstWhereOrNull(
+          (element) => element.id == morning5Rows.value[column][row]?.id);
+      item ??= morning5Rows.value[column][row];
+      var pos = subjects.value.indexOf(item!);
+      var newItem = item.deleteItem(newTime: item.time + 30);
+      subjects.value[pos] = newItem;
+      morning5Rows.value[column][row] = null;
+    } else {
+      SubjectModel? item = subjects.value.firstWhereOrNull(
+          (element) => element.id == afternoon5Rows.value[column][row]?.id);
+      item ??= afternoon5Rows.value[column][row];
+      var pos = subjects.value.indexOf(item!);
+      var newItem = item.deleteItem(newTime: item.time + 30);
+      subjects.value[pos] = newItem;
+      afternoon5Rows.value[column][row] = null;
+    }
     update();
   }
 }

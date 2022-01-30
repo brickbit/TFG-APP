@@ -62,12 +62,19 @@ class _DragTargetSubjectState extends State<DragTargetSubject> {
 class DragTargetSubject extends GetView<ScheduleController> {
   final int row;
   final int column;
-  const DragTargetSubject({Key? key, required this.row, required this.column})
+  final bool morning;
+  const DragTargetSubject(
+      {Key? key,
+      required this.row,
+      required this.column,
+      required this.morning})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var acceptedData = controller.morning5Rows.value[column][row];
+    var acceptedData = morning
+        ? controller.morning5Rows.value[column][row]
+        : controller.afternoon5Rows.value[column][row];
     return DragTarget<SubjectBox>(
       builder: (
         BuildContext context,
@@ -94,7 +101,7 @@ class DragTargetSubject extends GetView<ScheduleController> {
                   acceptedData != null
                       ? IconButton(
                           onPressed: () {
-                            controller.restoreItem(row, column);
+                            controller.restoreItem(row, column, morning);
                           },
                           icon: const Icon(
                             Icons.delete,
@@ -108,8 +115,9 @@ class DragTargetSubject extends GetView<ScheduleController> {
       },
       onAccept: (SubjectBox data) {
         var item = data.subject.selectItem(newDay: row, newHour: column);
-        controller.morning5Rows.value[column][row] = item;
-        print(controller.morning5Rows);
+        morning
+            ? controller.morning5Rows.value[column][row] = item
+            : controller.afternoon5Rows.value[column][row] = item;
       },
     );
   }

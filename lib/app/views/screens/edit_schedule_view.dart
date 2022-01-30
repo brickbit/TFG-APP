@@ -55,42 +55,46 @@ class EditScheduleView extends GetView<ScheduleController> {
   }
 
   Widget oneSubjectPerHourView(bool mobile) {
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Expanded(
-          child: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: materialDropdown('Mañana'.obs, ['Mañana', 'Tarde']),
-
-            ),
-            Stack(children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: mobile
-                            ? SizedBox(
-                                height: 480,
-                                child: buildScheduleDay5Rows(mobile))
-                            : SizedBox(
-                                height: 615,
-                                child: buildScheduleDay5Rows(mobile)),
-                      ),
-                    ]),
+    var _shift = 'Mañana'.obs;
+    return Obx(
+      () => Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Expanded(
+            child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: materialDropdown(_shift, ['Mañana', 'Tarde']),
               ),
-            ]),
-          ],
-        ),
-      )),
-      controller.obx((data) {
-        return dragListSubject();
-      })
-    ]);
+              Stack(children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, right: 16),
+                          child: mobile
+                              ? SizedBox(
+                                  height: 480,
+                                  child: buildScheduleDay5Rows(
+                                      mobile, _shift.value == 'Mañana'))
+                              : SizedBox(
+                                  height: 615,
+                                  child: buildScheduleDay5Rows(
+                                      mobile, _shift.value == 'Mañana')),
+                        ),
+                      ]),
+                ),
+              ]),
+            ],
+          ),
+        )),
+        controller.obx((data) {
+          return dragListSubject();
+        })
+      ]),
+    );
   }
 
   Widget dragListSubject() {
