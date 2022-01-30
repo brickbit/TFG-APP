@@ -103,4 +103,46 @@ class SubjectModel {
           department: department,
           degree: degree,
           color: color);
+
+  SubjectModel deleteItem({
+    required int newTime,
+  }) =>
+      SubjectModel(
+          id: id,
+          name: name,
+          acronym: acronym,
+          classGroup: classGroup,
+          seminary: seminary,
+          laboratory: laboratory,
+          english: english,
+          time: newTime,
+          semester: semester,
+          days: "",
+          hours: "",
+          turns: "",
+          classroom: classroom,
+          department: department,
+          degree: degree,
+          color: color);
+
+  SubjectModel selectItem({
+    required int newDay, required int newHour
+  }) =>
+      SubjectModel(
+          id: id,
+          name: name,
+          acronym: acronym,
+          classGroup: classGroup,
+          seminary: seminary,
+          laboratory: laboratory,
+          english: english,
+          time: time,
+          semester: semester,
+          days: days.isEmpty ? '$newDay' : '$days,$newDay',
+          hours: hours.isEmpty ? '$newHour' : '$hours,$newHour',
+          turns: "",
+          classroom: classroom,
+          department: department,
+          degree: degree,
+          color: color);
 }

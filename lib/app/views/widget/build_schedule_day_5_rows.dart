@@ -12,7 +12,7 @@ Widget buildScheduleDay5Rows(int index) {
           children: [
             SizedBox(
                 width: 1100,
-                height: 20,
+                height: 40,
                 child: Row(
                   children: [
                     _dayCell('Lunes'),
@@ -24,18 +24,18 @@ Widget buildScheduleDay5Rows(int index) {
                 )),
             SizedBox(
               width: 1100,
-              height: 595,
+              height: 575,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: 9.18,
+                  childAspectRatio: 5.5,
                 ),
                 primary: false,
-                itemCount: 120,
+                itemCount: 60,
                 itemBuilder: (BuildContext context, int index) {
-                  return const DragTargetSubject();
+                  return DragTargetSubject(column: index~/5, row: index%5);
                 },
               ),
             )
@@ -46,7 +46,7 @@ Widget buildScheduleDay5Rows(int index) {
 
 Widget _dayCell(String day){
   return Container(
-    height: 30.0,
+    height: 50.0,
     width: 1100 / 5,
     decoration: BoxDecoration(
         border: Border.all(
