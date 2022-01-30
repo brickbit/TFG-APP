@@ -22,7 +22,7 @@ class EditScheduleView extends GetView<ScheduleController> {
               ),
               body: SafeArea(
                 child: features.scheduleType == 'One subject per hour'
-                    ? oneSubjectPerHourView()
+                    ? oneSubjectPerHourView(true)
                     : severalSubjectsPerHourView(),
               ),
             );
@@ -33,7 +33,7 @@ class EditScheduleView extends GetView<ScheduleController> {
               ),
               body: SafeArea(
                 child: features.scheduleType == 'One subject per hour'
-                    ? oneSubjectPerHourView()
+                    ? oneSubjectPerHourView(false)
                     : severalSubjectsPerHourView(),
               ),
             );
@@ -53,12 +53,27 @@ class EditScheduleView extends GetView<ScheduleController> {
     );
   }
 
-  Widget oneSubjectPerHourView() {
+  Widget oneSubjectPerHourView(bool mobile) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Expanded(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        SizedBox(height: 615, child: buildScheduleDay5Rows(0)),
-      ])),
+          child: Center(
+        child: Stack(children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: mobile
+                    ? SizedBox(
+                        height: 565, child: buildScheduleDay5Rows(mobile))
+                    : SizedBox(
+                        height: 615, child: buildScheduleDay5Rows(mobile)),
+              ),
+            ]),
+          ),
+        ]),
+      )),
       controller.obx((data) {
         return dragListSubject();
       })
