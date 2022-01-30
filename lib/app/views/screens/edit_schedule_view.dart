@@ -4,6 +4,7 @@ import 'package:tfg_app/app/controllers/schedule_controller.dart';
 import 'package:tfg_app/app/mappers/subject_model_mapper.dart';
 import 'package:tfg_app/app/model/schedule_features_model.dart';
 import 'package:tfg_app/app/views/widget/build_schedule_day_5_rows.dart';
+import 'package:tfg_app/app/views/widget/material_dropdown.dart';
 import 'package:tfg_app/app/views/widget/subject_box.dart';
 
 class EditScheduleView extends GetView<ScheduleController> {
@@ -57,22 +58,34 @@ class EditScheduleView extends GetView<ScheduleController> {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Expanded(
           child: Center(
-        child: Stack(children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: mobile
-                    ? SizedBox(
-                        height: 565, child: buildScheduleDay5Rows(mobile))
-                    : SizedBox(
-                        height: 615, child: buildScheduleDay5Rows(mobile)),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: materialDropdown('Mañana'.obs, ['Mañana', 'Tarde']),
+
+            ),
+            Stack(children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, right: 16),
+                        child: mobile
+                            ? SizedBox(
+                                height: 480,
+                                child: buildScheduleDay5Rows(mobile))
+                            : SizedBox(
+                                height: 615,
+                                child: buildScheduleDay5Rows(mobile)),
+                      ),
+                    ]),
               ),
             ]),
-          ),
-        ]),
+          ],
+        ),
       )),
       controller.obx((data) {
         return dragListSubject();

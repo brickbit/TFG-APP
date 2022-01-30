@@ -44,7 +44,7 @@ class LoginView extends GetView<LoginController> {
                         image: AssetImage('assets/images/mural_epcc.png'),
                         fit: BoxFit.cover,
                       )),
-                  height: 350,
+                  height: 310,
                 ),
               ),
               SizedBox(
