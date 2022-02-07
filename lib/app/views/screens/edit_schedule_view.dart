@@ -19,10 +19,10 @@ class EditScheduleView extends GetView<ScheduleController> {
           if (constraints.maxWidth < 600) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Edit schedule'),
+                title: Text('editSchedule'.tr),
               ),
               body: SafeArea(
-                child: features.scheduleType == 'One subject per hour'
+                child: features.scheduleType == 'oneSubjectPerHour'.tr
                     ? oneSubjectPerHourView(true)
                     : severalSubjectsPerHourView(),
               ),
@@ -30,10 +30,10 @@ class EditScheduleView extends GetView<ScheduleController> {
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Edit schedule'),
+                title: Text('editSchedule'.tr),
               ),
               body: SafeArea(
-                child: features.scheduleType == 'One subject per hour'
+                child: features.scheduleType == 'oneSubjectPerHour'.tr
                     ? oneSubjectPerHourView(false)
                     : severalSubjectsPerHourView(),
               ),
@@ -49,13 +49,13 @@ class EditScheduleView extends GetView<ScheduleController> {
       ),
       onEmpty: Container(
         color: Colors.white,
-        child: const Text('There is not data to load'),
+        child: Text('noDataLoaded'.tr),
       ),
     );
   }
 
   Widget oneSubjectPerHourView(bool mobile) {
-    var _shift = 'Mañana'.obs;
+    var _shift = 'morningShift'.tr.obs;
     return Obx(
       () => Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Expanded(
@@ -64,7 +64,7 @@ class EditScheduleView extends GetView<ScheduleController> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: materialDropdown(_shift, ['Mañana', 'Tarde']),
+                child: materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]),
               ),
               Stack(children: [
                 SingleChildScrollView(
@@ -78,11 +78,11 @@ class EditScheduleView extends GetView<ScheduleController> {
                               ? SizedBox(
                                   height: 480,
                                   child: buildScheduleDay5Rows(
-                                      mobile, _shift.value == 'Mañana'))
+                                      mobile, _shift.value == 'morningShift'.tr))
                               : SizedBox(
                                   height: 615,
                                   child: buildScheduleDay5Rows(
-                                      mobile, _shift.value == 'Mañana')),
+                                      mobile, _shift.value == 'morningShift'.tr)),
                         ),
                       ]),
                 ),

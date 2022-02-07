@@ -15,7 +15,7 @@ class DepartmentListView extends GetView<HomeController> {
           if (constraints.maxWidth < 600) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Departments'),
+                title: Text('department'.tr),
               ),
               body: SafeArea(
                 child: _listDepartment(),
@@ -24,7 +24,7 @@ class DepartmentListView extends GetView<HomeController> {
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Departments'),
+                title: Text('department'.tr),
               ),
               body: SafeArea(
                 child: Column(),
@@ -52,7 +52,7 @@ class DepartmentListView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          departmentDialog(data?.departments[index], 'Edit Department').then(
+                          departmentDialog(data?.departments[index], 'editDepartment'.tr).then(
                                 (value) {
                               if (value != null) {
                                 controller.updateDepartment(value);

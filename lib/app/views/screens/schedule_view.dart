@@ -22,7 +22,7 @@ class ScheduleView extends GetView<HomeController> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => scheduleDialog('Create Schedule', controller.degrees.value),
+        onPressed: () => scheduleDialog('createSchedule'.tr, controller.degrees.value),
       ),
     );
   }
@@ -30,7 +30,7 @@ class ScheduleView extends GetView<HomeController> {
   Widget _scheduleView() {
     return Scaffold(
       appBar:AppBar(
-        title: const Text('Schedules'),
+        title: Text('schedule'.tr),
       ),
       body: SafeArea(
         child: Column(),

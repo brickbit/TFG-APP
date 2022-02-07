@@ -27,7 +27,7 @@ class SplashView extends GetView<SplashController> {
             const CircularProgressIndicator(),
             const SizedBox(height: 16,),
             Text(
-              'Cargando...',
+              'loading'.tr,
               style: GoogleFonts.montserrat(fontSize: 16.0),
             )
           ],

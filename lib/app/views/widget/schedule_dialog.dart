@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/model/schedule_features_model.dart';
 import 'package:tfg_app/app/navigation/app_routes.dart';
@@ -7,15 +6,12 @@ import 'package:get/get.dart';
 import 'material_dropdown.dart';
 import 'material_dropdown_degree.dart';
 
-Future<DegreeModel?> scheduleDialog(String title, List<DegreeModel> degrees ) {
+Future<DegreeModel?> scheduleDialog(String title, List<DegreeModel> degrees) {
   var _degree = (degrees[0]).obs;
   var _semesters = ['1', '2', '3', '4', '5', '6', '7', '8'];
   var _semester = '1'.obs;
-  var _scheduleTypes = [
-    'One subject per hour',
-    'Several subject per hour'
-  ];
-  var _scheduleType = 'One subject per hour'.obs;
+  var _scheduleTypes = ['oneSubjectPerHour'.tr, 'severalSubjectsPerHour'.tr];
+  var _scheduleType = 'oneSubjectPerHour'.tr.obs;
 
   return Get.defaultDialog(
     title: title,
@@ -28,20 +24,17 @@ Future<DegreeModel?> scheduleDialog(String title, List<DegreeModel> degrees ) {
             SizedBox(
                 height: 50,
                 width: Size.infinite.width,
-                child: materialDropdownDegree(_degree, degrees)
-            ),
+                child: materialDropdownDegree(_degree, degrees)),
             const SizedBox(height: 24),
             SizedBox(
                 height: 50,
                 width: Size.infinite.width,
-                child: materialDropdown(_semester, _semesters)
-            ),
+                child: materialDropdown(_semester, _semesters)),
             const SizedBox(height: 24),
             SizedBox(
                 height: 50,
                 width: Size.infinite.width,
-                child: materialDropdown(_scheduleType, _scheduleTypes)
-            ),
+                child: materialDropdown(_scheduleType, _scheduleTypes)),
           ],
         ),
       ),
@@ -51,20 +44,23 @@ Future<DegreeModel?> scheduleDialog(String title, List<DegreeModel> degrees ) {
         onPressed: () {
           Get.back();
         },
-        child: const Text(
-          'Cancel',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'cancel'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       TextButton(
         onPressed: () {
-          var features = ScheduleFeaturesModel(scheduleType: _scheduleType.value, semester: int.parse(_semester.value), degree: _degree.value);
+          var features = ScheduleFeaturesModel(
+              scheduleType: _scheduleType.value,
+              semester: int.parse(_semester.value),
+              degree: _degree.value);
           Get.back();
-          Get.toNamed(Routes.EDIT_SCHEDULE, arguments: features);
+          Get.toNamed(Routes.editSchedule, arguments: features);
         },
-        child: const Text(
-          'OK',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'ok'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     ],

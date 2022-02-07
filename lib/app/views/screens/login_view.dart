@@ -16,16 +16,21 @@ class LoginView extends GetView<LoginController> {
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
-            return _loginView(Size.infinite.width,Size.infinite.width,Size.infinite.width);
+            return _loginView(
+                Size.infinite.width, Size.infinite.width, Size.infinite.width);
           } else {
-            return _loginView(300,300,300);
+            return _loginView(300, 300, 300);
           }
         },
       ),
     );
   }
 
-  Widget _loginView(double userTextFieldWidth, double passwordTextFieldWidth, double buttonWidth,) {
+  Widget _loginView(
+    double userTextFieldWidth,
+    double passwordTextFieldWidth,
+    double buttonWidth,
+  ) {
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: false),
       body: SafeArea(
@@ -37,26 +42,28 @@ class LoginView extends GetView<LoginController> {
             children: [
               ColorFiltered(
                 colorFilter:
-                ColorFilter.mode((Colors.grey[400])!, BlendMode.modulate),
+                    ColorFilter.mode((Colors.grey[400])!, BlendMode.modulate),
                 child: Container(
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/mural_epcc.png'),
-                        fit: BoxFit.cover,
-                      )),
+                    image: AssetImage('assets/images/mural_epcc.png'),
+                    fit: BoxFit.cover,
+                  )),
                   height: 310,
                 ),
               ),
               SizedBox(
                 width: userTextFieldWidth,
-                child: buildTextField('Usuario', "", _usernameController),
+                child: buildTextField('email'.tr, "", _usernameController),
               ),
               const SizedBox(
                 height: 16.0,
               ),
               SizedBox(
                 width: passwordTextFieldWidth,
-                child: const CustomPasswordTextField(title: 'Contraseña',),
+                child: CustomPasswordTextField(
+                  title: 'password'.tr,
+                ),
               ),
               const SizedBox(
                 height: 30.0,
@@ -65,7 +72,7 @@ class LoginView extends GetView<LoginController> {
                   width: buttonWidth,
                   height: 45,
                   child: ElevatedButton(
-                      child: const Text('Iniciar session'),
+                      child: Text('login'.tr),
                       onPressed: () {
                         controller.login("username", "password");
                       })),
@@ -74,9 +81,9 @@ class LoginView extends GetView<LoginController> {
               ),
               TextButton(
                   onPressed: () {
-                    Get.toNamed(Routes.RECOVER_PASSWORD);
+                    Get.toNamed(Routes.recoverPassword);
                   },
-                  child: const Text('¿Has olvidado tu contraseña?')),
+                  child: Text('forgottenPassword'.tr)),
             ],
           ),
         ),

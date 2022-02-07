@@ -28,7 +28,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
   var _department = _departmentItems[0].obs;
   var _degreeItems = controller.degrees.value;
   var _degree = _degreeItems[0].obs;
-  var _colorItems = ['Azul', 'Verde', 'Rojo','Amarillo','Naranja'];
+  var _colorItems = ['blue'.tr, 'green'.tr, 'red'.tr,'yellow'.tr,'orange'.tr];
   var _color = _colorItems[0].obs;
 
   return Get.defaultDialog(
@@ -44,18 +44,18 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
           child: ListView(
             children: [
               buildTextField(
-                  'Name of subject', subject?.name ?? "", _nameController),
+                  'name'.tr, subject?.name ?? "", _nameController),
               const SizedBox(height: 16),
-              buildTextField('Acronym of subject', subject?.acronym ?? "",
+              buildTextField('acronym'.tr, subject?.acronym ?? "",
                   _acronymController),
               const SizedBox(height: 24),
-              buildTextField('Group of subject', subject?.classGroup ?? "",
+              buildTextField('group'.tr, subject?.classGroup ?? "",
                   _groupController),
               const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Seminary'),
+                  Text('seminary'.tr),
                   Obx(
                     () => Switch(
                       value: _isSeminary.value,
@@ -69,7 +69,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Laboratory'),
+                  Text('laboratory'.tr),
                   Obx(
                         () => Switch(
                     value: _isLaboratory.value,
@@ -95,7 +95,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Time(minutes)'),
+                  Text('time'.tr),
                   materialDropdown(_time, [
                     '60',
                     '90',
@@ -111,28 +111,28 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
               ),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('Semester'),
+                Text('semester'.tr),
                 materialDropdown(
                     _semester, ['1', '2', '3', '4', '5', '6', '7', '8']),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('Classroom'),
+                Text('classroom'.tr),
                 materialDropdownClassroom(_classroom, _classroomItems),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('Department'),
+                Text('department'.tr),
                 materialDropdownDepartment(_department, _departmentItems),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('Degree'),
+                Text('degree'.tr),
                 materialDropdownDegree(_degree, _degreeItems),
               ]),
               const SizedBox(height: 24),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('Color'),
+                Text('color'.tr),
                 materialDropdownColor(_color, _colorItems),
               ]),
             ],
@@ -145,9 +145,9 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
         onPressed: () {
           Get.back();
         },
-        child: const Text(
-          'Cancel',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'cancel'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       TextButton(
@@ -173,9 +173,9 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
           );
           Get.back(result: subject);
         },
-        child: const Text(
-          'OK',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'ok'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     ],

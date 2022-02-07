@@ -30,10 +30,12 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.1
+  get_storage: ^2.0.3
   google_fonts: ^2.1.0
   http: ^0.13.4
   uuid: 3.0.5
   desktop_window: ^0.4.0
+  package_info_plus: ^1.0.6
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

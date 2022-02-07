@@ -15,7 +15,7 @@ class ClassroomListView extends GetView<HomeController> {
           if (constraints.maxWidth < 600) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Classrooms'),
+                title: Text('classroom'.tr),
               ),
               body: SafeArea(
                 child: _listClassroom(),
@@ -24,7 +24,7 @@ class ClassroomListView extends GetView<HomeController> {
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Classrooms'),
+                title: Text('classroom'.tr),
               ),
               body: SafeArea(
                 child: Column(),
@@ -52,7 +52,7 @@ class ClassroomListView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          classroomDialog(data?.classrooms[index], 'Edit Classroom')
+                          classroomDialog(data?.classrooms[index], 'editClassroom'.tr)
                               .then(
                             (value) {
                               if (value != null) {

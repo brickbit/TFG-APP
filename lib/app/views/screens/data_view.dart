@@ -32,21 +32,22 @@ class DataView extends GetView<HomeController> {
   Widget _dataViewSmall() {
     var indexObx = 0.obs;
     return Obx(
-            () => Scaffold(
-      appBar: AppBar(
-        title: const Text('Fill data'),
-      ),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            _dataTile('Degree', 0, indexObx, true),
-            _dataTile('Classroom',1, indexObx, true),
-            _dataTile('Department',2, indexObx, true),
-            _dataTile('Subject',3, indexObx, true),
-          ],
+      () => Scaffold(
+        appBar: AppBar(
+          title: Text('fillData'.tr),
+        ),
+        body: SafeArea(
+          child: ListView(
+            children: [
+              _dataTile('degree'.tr, 0, indexObx, true),
+              _dataTile('classroom'.tr, 1, indexObx, true),
+              _dataTile('department'.tr, 2, indexObx, true),
+              _dataTile('subject'.tr, 3, indexObx, true),
+            ],
+          ),
         ),
       ),
-    ),);
+    );
   }
 
   Widget _dataViewLarge() {
@@ -54,7 +55,7 @@ class DataView extends GetView<HomeController> {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: const Text('Fill data'),
+          title: Text('fillData'.tr),
         ),
         body: SafeArea(
           child: Row(
@@ -63,10 +64,10 @@ class DataView extends GetView<HomeController> {
                 width: 300,
                 child: ListView(
                   children: [
-                    _dataTile('Degree', 0, indexObx, false),
-                    _dataTile('Classroom', 1, indexObx, false),
-                    _dataTile('Department', 2, indexObx, false),
-                    _dataTile('Subject', 3, indexObx, false)
+                    _dataTile('degree'.tr, 0, indexObx, false),
+                    _dataTile('classroom'.tr, 1, indexObx, false),
+                    _dataTile('department'.tr, 2, indexObx, false),
+                    _dataTile('subject'.tr, 3, indexObx, false)
                   ],
                 ),
               ),
@@ -89,7 +90,7 @@ class DataView extends GetView<HomeController> {
   }
 
   Future<void> showDegreeDialog() async {
-    degreeDialog(null, 'Create Degree').then(
+    degreeDialog(null, 'createDegree'.tr).then(
       (value) {
         if (value != null) {
           controller.createDegree(value);
@@ -101,7 +102,7 @@ class DataView extends GetView<HomeController> {
   }
 
   Future<void> showClassroomDialog() async {
-    classroomDialog(null, 'Create Classroom').then(
+    classroomDialog(null, 'createClassroom'.tr).then(
       (value) {
         if (value != null) {
           controller.createClassroom(value);
@@ -113,7 +114,7 @@ class DataView extends GetView<HomeController> {
   }
 
   Future<void> showDepartmentDialog() async {
-    departmentDialog(null, 'Create Department').then(
+    departmentDialog(null, 'createDepartment'.tr).then(
       (value) {
         if (value != null) {
           controller.createDepartment(value);
@@ -125,8 +126,8 @@ class DataView extends GetView<HomeController> {
   }
 
   Future<void> showSubjectDialog() async {
-    subjectDialog(null, 'Create Subject', controller).then(
-          (value) {
+    subjectDialog(null, 'createSubject'.tr, controller).then(
+      (value) {
         if (value != null) {
           controller.createSubject(value);
           controller.getData();
@@ -166,30 +167,32 @@ class DataView extends GetView<HomeController> {
         title,
         style: const TextStyle(fontSize: 20),
       ),
-      trailing: mobile != false ? TextButton(
-        onPressed: () {
-          switch (index) {
-            case 0:
-              Get.toNamed(Routes.DEGREE_LIST);
-              break;
-            case 1:
-              Get.toNamed(Routes.CLASSROOM_LIST);
-              break;
-            case 2:
-              Get.toNamed(Routes.DEPARTMENT_LIST);
-              break;
-            case 3:
-              Get.toNamed(Routes.SUBJECT_LIST);
-              break;
-            default:
-              Get.toNamed(Routes.DEGREE_LIST);
-          }
-        },
-        child: const Text(
-          'See all',
-          style: TextStyle(color: Colors.green),
-        ),
-      ) : null,
+      trailing: mobile != false
+          ? TextButton(
+              onPressed: () {
+                switch (index) {
+                  case 0:
+                    Get.toNamed(Routes.degreeList);
+                    break;
+                  case 1:
+                    Get.toNamed(Routes.classroomList);
+                    break;
+                  case 2:
+                    Get.toNamed(Routes.departmentList);
+                    break;
+                  case 3:
+                    Get.toNamed(Routes.subjectList);
+                    break;
+                  default:
+                    Get.toNamed(Routes.degreeList);
+                }
+              },
+              child: Text(
+                'seeAll'.tr,
+                style: const TextStyle(color: Colors.green),
+              ),
+            )
+          : null,
       selectedColor: selectedIndex.value == index ? Colors.grey : null,
       onTap: () {
         indexObx.value = index;
@@ -232,7 +235,7 @@ class DataView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          degreeDialog(data?.degrees[index], 'Edit Degree')
+                          degreeDialog(data?.degrees[index], 'editDegree'.tr)
                               .then(
                             (value) {
                               if (value != null) {
@@ -282,7 +285,7 @@ class DataView extends GetView<HomeController> {
       ),
       onEmpty: Container(
         color: Colors.white,
-        child: const Text('There is not data to load'),
+        child: Text('noDataLoaded'.tr),
       ),
     );
   }
@@ -304,7 +307,7 @@ class DataView extends GetView<HomeController> {
                       IconButton(
                         onPressed: () async {
                           classroomDialog(
-                                  data?.classrooms[index], 'Edit Classroom')
+                                  data?.classrooms[index], 'editClassroom'.tr)
                               .then(
                             (value) {
                               if (value != null) {
@@ -367,7 +370,7 @@ class DataView extends GetView<HomeController> {
                       IconButton(
                         onPressed: () async {
                           departmentDialog(
-                                  data?.departments[index], 'Edit Department')
+                                  data?.departments[index], 'editDepartment'.tr)
                               .then(
                             (value) {
                               if (value != null) {
@@ -429,10 +432,7 @@ class DataView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          /*var degrees = degreeController.degrees.value;
-                          var classrooms = classroomController.classrooms.value;
-                          var departments = departmentController.departments.value;
-                          subjectDialog(listSubject[index], 'Edit Subject',degrees, departments,classrooms)
+                          subjectDialog(data?.subjects[index], 'editSubject'.tr,controller)
                               .then(
                                 (value) {
                               if (value != null) {
@@ -440,7 +440,7 @@ class DataView extends GetView<HomeController> {
                                 controller.update();
                               }
                             },
-                          );*/
+                          );
                         },
                         icon: const Icon(
                           Icons.edit,

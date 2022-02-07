@@ -22,56 +22,56 @@ import 'package:tfg_app/app/views/screens/subject_list_view.dart';
 import 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.SPLASH;
+  static const initial = Routes.splash;
 
   static final routes = [
     GetPage(
-      name: Routes.SPLASH,
+      name: Routes.splash,
       page: () => const SplashView(),
       binding: SplashBinding(),
     ),
     GetPage(
-        name: Routes.LOGIN,
-        page: () => LoginView(),
-        binding: LoginBinding(),
+      name: Routes.login,
+      page: () => LoginView(),
+      binding: LoginBinding(),
     ),
     GetPage(
-      name: Routes.RECOVER_PASSWORD,
+      name: Routes.recoverPassword,
       page: () => RecoverPasswordView(),
       binding: RecoverPasswordBinding(),
     ),
     GetPage(
-      name: Routes.HOME,
+      name: Routes.home,
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: Routes.DEGREE_LIST,
+      name: Routes.degreeList,
       page: () => const DegreeListView(),
       binding: DegreeBinding(),
     ),
     GetPage(
-      name: Routes.CLASSROOM_LIST,
+      name: Routes.classroomList,
       page: () => const ClassroomListView(),
       binding: ClassroomBinding(),
     ),
     GetPage(
-      name: Routes.DEPARTMENT_LIST,
+      name: Routes.departmentList,
       page: () => const DepartmentListView(),
       binding: DepartmentBinding(),
     ),
     GetPage(
-      name: Routes.SUBJECT_LIST,
+      name: Routes.subjectList,
       page: () => const SubjectListView(),
       binding: SubjectBinding(),
     ),
     GetPage(
-      name: Routes.SCHEDULE,
+      name: Routes.schedule,
       page: () => ScheduleView(),
       binding: ScheduleBinding(),
     ),
     GetPage(
-      name: Routes.EDIT_SCHEDULE,
+      name: Routes.editSchedule,
       page: () => EditScheduleView(),
       binding: EditScheduleBinding(),
     ),

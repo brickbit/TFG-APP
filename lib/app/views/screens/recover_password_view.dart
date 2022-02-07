@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:tfg_app/app/controllers/recover_password_controller.dart';
 import 'package:tfg_app/app/views/widget/build_text_field.dart';
 
@@ -26,7 +27,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
   Widget _recoverPasswordView(double instructionsWidth, double mailTextFieldWidth, double buttonWidth,) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recover password'),
+        title: Text('recoverPassword'.tr),
       ),
       body: SafeArea(
         child: Padding(
@@ -48,7 +49,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
                 ),
                 SizedBox(
                   width: instructionsWidth,
-                  child: const Text('Introduca su correo, le enviaremos un correo con las intrucciones necesarias para restaurar su contraseña'),
+                  child: Text('passwordInstructions'.tr),
                 ),
                 const SizedBox(
                   height: 16,
@@ -56,7 +57,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
                 SizedBox(
                   width: mailTextFieldWidth,
                   child:
-                  buildTextField('Introcuzca su correo', "", _mailController),
+                  buildTextField('putEmail'.tr, "", _mailController),
                 ),
                 const SizedBox(
                   height: 16,
@@ -65,7 +66,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
                     width: buttonWidth,
                     height: 45,
                     child: ElevatedButton(
-                        child: const Text('RecuperarContraseña'),
+                        child: Text('recoverPassword'.tr),
                         onPressed: () {
                           controller.recoverPassword("mail");
                         })),

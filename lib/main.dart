@@ -1,13 +1,17 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'app/logger/Logger.dart';
 import 'app/navigation/app_pages.dart';
+import 'app/views/lang/localization_service.dart';
+import 'app/views/themes/themes.dart';
+import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
 
   if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
     await DesktopWindow.setWindowSize(const Size(1350, 900));
@@ -23,40 +27,15 @@ class EpccApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData();
-
     return GetMaterialApp(
+      locale: window.locale,
       debugShowCheckedModeBanner: false,
       enableLog: true,
       logWriterCallback: Logger.write,
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.initial,
       getPages: AppPages.routes,
-      theme: theme.copyWith(
-        textTheme: Theme.of(context).textTheme.apply(
-            bodyColor: Colors.black54,
-            fontFamily: GoogleFonts.montserrat().fontFamily),
-        appBarTheme: const AppBarTheme().copyWith(
-            backgroundColor: Colors.transparent,
-            titleTextStyle: GoogleFonts.montserrat(
-                fontSize: 18.0,
-                color: Colors.black54
-            ),
-            actionsIconTheme: const IconThemeData(color: Colors.black54),
-            iconTheme: const IconThemeData(color: Colors.black54),
-            elevation: 0.0
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            foregroundColor: Colors.black
-        ),
-        colorScheme: theme.colorScheme.copyWith(
-            primary: Colors.green,
-            secondary: Colors.amber
-        ),
-      ),
+      theme: AppThemes.light,
+      translations: LocalizationService(),
     );
   }
-
 }
-
-
-

@@ -21,10 +21,10 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
         child: Column(
           children: [
             buildTextField(
-                'Name of degree', degree?.name ?? "", _nameController),
+                'name'.tr, degree?.name ?? "", _nameController),
             const SizedBox(height: 16),
             buildTextField(
-                'Year of degree', degree?.year ?? "", _yearController),
+                'year'.tr, degree?.year ?? "", _yearController),
             const SizedBox(height: 24),
             SizedBox(
               height: 50,
@@ -43,9 +43,9 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
         onPressed: () {
           Get.back();
         },
-        child: const Text(
-          'Cancel',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'cancel'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       TextButton(
@@ -58,9 +58,9 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
               year: _yearController.text);
           Get.back(result: degree);
         },
-        child: const Text(
-          'OK',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'ok'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     ],

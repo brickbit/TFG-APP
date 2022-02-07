@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 class LoginModel {
@@ -16,18 +15,22 @@ class LoginModel {
   String toRawJson() => json.encode(toJson());
 
   static LoginModel fromJson(dynamic json) => LoginModel(
-    responseOk: json["responseOk"] == null
-        ? null
-        : LoginResponseOk.fromJson(json["responseOk"] as Map<String, dynamic>),
-    responseKo: json["responseKo"] == null
-        ? null
-        : LoginResponseKo.fromJson(json["responseOk"] as Map<String, dynamic>),
-  );
+        responseOk: json["responseOk"] == null
+            ? null
+            : LoginResponseOk.fromJson(
+                json["responseOk"] as Map<String, dynamic>),
+        responseKo: json["responseKo"] == null
+            ? null
+            : LoginResponseKo.fromJson(
+                json["responseOk"] as Map<String, dynamic>),
+      );
 
   Map<String, dynamic> toJson() => {
-    "ResponseOk": responseOk == null ? null : responseOk?.toJson(),
-    "ResponseKo": responseKo == null ? null : responseKo?.toJson(),
-  };
+        // ignore: prefer_null_aware_operators
+        "ResponseOk": responseOk == null ? null : responseOk?.toJson(),
+        // ignore: prefer_null_aware_operators
+        "ResponseKo": responseKo == null ? null : responseKo?.toJson(),
+      };
 }
 
 class LoginResponseOk {
@@ -42,15 +45,12 @@ class LoginResponseOk {
 
   String toRawJson() => json.encode(toJson());
 
-  factory LoginResponseOk.fromJson(Map<String, dynamic> json) => LoginResponseOk(
-    jwt:
-    json["jwt"] as String
-  );
+  factory LoginResponseOk.fromJson(Map<String, dynamic> json) =>
+      LoginResponseOk(jwt: json["jwt"] as String);
 
-  Map<String, dynamic> toJson() => {
-    "jwt": jwt
-  };
+  Map<String, dynamic> toJson() => {"jwt": jwt};
 }
+
 class LoginResponseKo {
   final int code;
 
@@ -63,12 +63,8 @@ class LoginResponseKo {
 
   String toRawJson() => json.encode(toJson());
 
-  factory LoginResponseKo.fromJson(Map<String, dynamic> json) => LoginResponseKo(
-      code:
-      json["code"] as int
-  );
+  factory LoginResponseKo.fromJson(Map<String, dynamic> json) =>
+      LoginResponseKo(code: json["code"] as int);
 
-  Map<String, dynamic> toJson() => {
-    "code": code
-  };
+  Map<String, dynamic> toJson() => {"code": code};
 }

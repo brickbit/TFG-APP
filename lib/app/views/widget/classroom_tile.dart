@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 
 Widget classroomTile(bool mobile, List<ClassroomModel> classrooms, int index) {
@@ -17,7 +18,7 @@ Widget classroomTile(bool mobile, List<ClassroomModel> classrooms, int index) {
                 height: 4,
               ),
               Text(
-                'Pavilion: ${classrooms[index].pavilion}',
+                'classroomPavilion'.trParams({'pavilion': classrooms[index].pavilion!.toLowerCase().toString()}),
               ),
               const SizedBox(
                 height: 8,

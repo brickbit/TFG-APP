@@ -15,7 +15,7 @@ class DegreeListView extends GetView<HomeController> {
           if (constraints.maxWidth < 600) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Degrees'),
+                title: Text('degree'.tr),
               ),
               body: SafeArea(
                 child: _listDegree(),
@@ -24,7 +24,7 @@ class DegreeListView extends GetView<HomeController> {
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Degrees'),
+                title: Text('degree'.tr),
               ),
               body: SafeArea(
                 child: Column(),
@@ -52,7 +52,7 @@ class DegreeListView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          degreeDialog(data?.degrees[index], 'Edit Degree').then(
+                          degreeDialog(data?.degrees[index], 'editDegree'.tr).then(
                                 (value) {
                               if (value != null) {
                                 controller.updateDegree(value);

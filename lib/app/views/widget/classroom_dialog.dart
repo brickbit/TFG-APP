@@ -12,7 +12,7 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
   final _nameController = TextEditingController();
   final _acronymController = TextEditingController();
   var id = classroom?.id;
-  var _pavilion = (classroom?.pavilion ?? 'TELECOMMUNICATION').obs;
+  var _pavilion = (classroom?.pavilion ?? 'telecommunication'.tr).obs;
 
   return Get.defaultDialog(
     title: title,
@@ -23,16 +23,16 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
         child: Column(
           children: [
             buildTextField(
-                'Name of classroom', classroom?.name ?? "", _nameController),
+                'name'.tr, classroom?.name ?? "", _nameController),
             const SizedBox(height: 16),
             buildTextField(
-                'Acronym of classroom', classroom?.acronym ?? "", _acronymController),
+                'acronym'.tr, classroom?.acronym ?? "", _acronymController),
             const SizedBox(height: 24),
             SizedBox(
               height: 50,
               width: Size.infinite.width,
               child: materialDropdown(_pavilion, [
-                  'TELECOMMUNICATION', 'COMPUTING', 'ARCHITECTURE', 'CIVIL_WORK', 'CENTRAL'
+                  'telecommunication'.tr, 'computing'.tr, 'architecture'.tr, 'civilWork'.tr, 'central'.tr
                 ])
             ),
           ],
@@ -44,9 +44,9 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
         onPressed: () {
           Get.back();
         },
-        child: const Text(
-          'Cancel',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'cancel'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       TextButton(
@@ -59,9 +59,9 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
               acronym: _acronymController.text);
           Get.back(result: classroom);
         },
-        child: const Text(
-          'OK',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child:  Text(
+          'ok'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/app/views/screens/schedule_view.dart';
+import 'package:tfg_app/app/views/screens/settings_view.dart';
 import 'data_view.dart';
 import 'package:get/get.dart';
 
@@ -15,23 +16,23 @@ class HomeView extends GetView<HomeController> {
         currentIndex: landingPageController.tabIndex.value,
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.data_usage_rounded),
-            label: 'Data',
+            icon: const Icon(Icons.data_usage_rounded),
+            label: 'data'.tr,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Schedule',
+            icon: const Icon(Icons.calendar_today),
+            label: 'schedule'.tr,
           ),
           /*BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Exams',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
           ),*/
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.settings),
+            label: 'setting'.tr,
+          ),
         ],
       ),
     );
@@ -50,6 +51,7 @@ class HomeView extends GetView<HomeController> {
                   children: const [
                     DataView(),
                     ScheduleView(),
+                    SettingsView(),
                   ],
                 ),
               );
@@ -62,7 +64,7 @@ class HomeView extends GetView<HomeController> {
             ),
             onEmpty: Container(
               color: Colors.white,
-              child: const Text('There is not data to load'),
+              child: Text('noDataLoaded'.tr),
             ),
           )),
     );

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 
 Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
@@ -17,12 +18,12 @@ Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
                 height: 4,
               ),
               Text(
-                'Num.semesters: ${degrees[index].num_semesters}',
+                'degreeSemesters'.trParams({'semester': degrees[index].num_semesters.toString()}),
               ),
               const SizedBox(
                 height: 8,
               ),
-              Text('A ${degrees[index].year}',
+              Text('degreeYear'.trParams({'year': degrees[index].year.toString()}),
                   style: const TextStyle(fontSize: 12)),
             ],
           ),
@@ -38,14 +39,14 @@ Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  ' - Num.semesters: ${degrees[index].num_semesters}',
+                  ' - ' + 'degreeSemesters'.trParams({'semester': degrees[index].num_semesters.toString()}),
                 ),
               ],
             ),
             const SizedBox(
               height: 8,
             ),
-            Text('Year ${degrees[index].year}',
+            Text('degreeYear'.trParams({'year': degrees[index].year.toString()}),
                 style: const TextStyle(fontSize: 12)),
           ],
         );

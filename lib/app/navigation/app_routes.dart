@@ -1,13 +1,13 @@
 abstract class Routes {
-  static const SPLASH = '/splash';
-  static const LOGIN = '/login';
-  static const RECOVER_PASSWORD = '/recoverPassword';
-  static const HOME = '/home';
-  static const DATA = '/data';
-  static const DEGREE_LIST = '/degreeList';
-  static const CLASSROOM_LIST = '/classroomList';
-  static const DEPARTMENT_LIST = '/departmentList';
-  static const SUBJECT_LIST = '/subjectList';
-  static const SCHEDULE = '/schedule';
-  static const EDIT_SCHEDULE = '/editSchedule';
+  static const splash = '/splash';
+  static const login = '/login';
+  static const recoverPassword = '/recoverPassword';
+  static const home = '/home';
+  static const data = '/data';
+  static const degreeList = '/degreeList';
+  static const classroomList = '/classroomList';
+  static const departmentList = '/departmentList';
+  static const subjectList = '/subjectList';
+  static const schedule = '/schedule';
+  static const editSchedule = '/editSchedule';
 }

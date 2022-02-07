@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:tfg_app/app/extension/color_extension.dart';
-import 'package:tfg_app/app/views/screens/edit_schedule_view.dart';
 import 'package:tfg_app/app/views/widget/subject_dialog.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 
@@ -17,7 +16,7 @@ class SubjectListView extends GetView<HomeController> {
           if (constraints.maxWidth < 600) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Subjects'),
+                title: Text('subject'.tr),
               ),
               body: SafeArea(
                 child: _listSubject(),
@@ -26,7 +25,7 @@ class SubjectListView extends GetView<HomeController> {
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Subjects'),
+                title: Text('subject'.tr),
               ),
               body: SafeArea(
                 child: Column(),
@@ -54,7 +53,7 @@ class SubjectListView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          subjectDialog(data?.subjects[index], 'Edit Subject',
+                          subjectDialog(data?.subjects[index], 'editSubject'.tr,
                                   controller)
                               .then(
                             (value) {
@@ -109,8 +108,16 @@ class SubjectListView extends GetView<HomeController> {
             constraints: const BoxConstraints(maxWidth: 250),
             child: Row(
               children: [
-                SizedBox(width: 6, height: 140, child: Container(color: subjects[index].color.parseColor(),),),
-                const SizedBox(width: 8,),
+                SizedBox(
+                  width: 6,
+                  height: 140,
+                  child: Container(
+                    color: subjects[index].color.parseColor(),
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -128,13 +135,13 @@ class SubjectListView extends GetView<HomeController> {
                       height: 4,
                     ),
                     Text(
-                      'Department: ${subjects[index].department.acronym}',
+                      'departmentAcronym'.trParams({'acronym': subjects[index].department.name!.toLowerCase().toString()}),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
-                      'Classroom: ${subjects[index].classroom.acronym}',
+                      'classroomAcronym'.trParams({'acronym': subjects[index].classroom.acronym.toString()}),
                     ),
                     const SizedBox(
                       height: 4,
@@ -143,10 +150,12 @@ class SubjectListView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Semester: ${subjects[index].semester + 1}',
+                          'subjectSemester'.trParams({'semester': (subjects[index].semester + 1).toString()})
                         ),
+                        const SizedBox(width: 16,),
                         Text(
-                            'Language: ${subjects[index].english == false ? 'Español' : 'English'}'),
+                            'subjectLanguage'.trParams({'language': subjects[index].english == false ? 'Español' : 'English'}),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -156,9 +165,10 @@ class SubjectListView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            'Laboratorio: ${subjects[index].laboratory == false ? 'No' : 'Yes'}'),
+                            'subjectLaboratory'.trParams({'laboratory':subjects[index].laboratory == false ? 'no'.tr : 'yes'.tr}),),
+                        const SizedBox(width: 16,),
                         Text(
-                            'Seminario: ${subjects[index].seminary == false ? 'No' : 'Yes'}'),
+                            'subjectSeminar'.trParams({'seminary': subjects[index].seminary == false ? 'no'.tr : 'yes'.tr}),),
                       ],
                     ),
                   ],

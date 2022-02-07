@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tfg_app/app/views/themes/themes.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
@@ -12,6 +14,8 @@ class HomeController extends GetxController with StateMixin<DataModel> {
   var classrooms = Rx<List<ClassroomModel>>([]);
   var departments = Rx<List<DepartmentModel>>([]);
   var subjects = Rx<List<SubjectModel>>([]);
+  var isDarkMode = true.obs;
+
 
   HomeController(
       {required this.dataRepository});
@@ -20,6 +24,16 @@ class HomeController extends GetxController with StateMixin<DataModel> {
 
   void changeTabIndex(int index) {
     tabIndex.value = index;
+  }
+
+  void toggleDarkMode() {
+    isDarkMode.value = !isDarkMode.value;
+    if (isDarkMode.value) {
+      Get.changeTheme(AppThemes.dark);
+    } else {
+      Get.changeTheme(AppThemes.light);
+    }
+    update();
   }
 
   @override

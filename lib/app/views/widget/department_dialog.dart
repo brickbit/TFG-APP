@@ -19,10 +19,10 @@ Future<DepartmentModel?> departmentDialog(DepartmentModel? department, String ti
         child: Column(
           children: [
             buildTextField(
-                'Name of department', department?.name ?? "", _nameController),
+                'name'.tr, department?.name ?? "", _nameController),
             const SizedBox(height: 16),
             buildTextField(
-                'Acronym of department', department?.acronym ?? "", _acronymController),
+                'acronym'.tr, department?.acronym ?? "", _acronymController),
           ],
         ),
       ),
@@ -32,9 +32,9 @@ Future<DepartmentModel?> departmentDialog(DepartmentModel? department, String ti
         onPressed: () {
           Get.back();
         },
-        child: const Text(
-          'Cancel',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'cancel'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       TextButton(
@@ -46,9 +46,9 @@ Future<DepartmentModel?> departmentDialog(DepartmentModel? department, String ti
               acronym: _acronymController.text);
           Get.back(result: department);
         },
-        child: const Text(
-          'OK',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        child: Text(
+          'ok'.tr,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     ],
