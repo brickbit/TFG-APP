@@ -101,6 +101,7 @@ class SubjectListView extends GetView<HomeController> {
   }
 
   Widget _showContent(bool mobile, List<SubjectModel> subjects, int index) {
+    subjects.sort((a, b) => a.name!.compareTo(b.name!));
     return LayoutBuilder(
       builder: (context, constraints) {
         if (mobile) {

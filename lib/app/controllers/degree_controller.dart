@@ -19,6 +19,7 @@ class DegreeController extends GetxController with StateMixin {
 
   void createDegree(DegreeModel degree) {
     dataRepository.createDegree(degree).then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -29,6 +30,7 @@ class DegreeController extends GetxController with StateMixin {
     dataRepository.getDegrees().then((data) {
       degrees.value.clear();
       degrees.value.addAll(data);
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -37,6 +39,7 @@ class DegreeController extends GetxController with StateMixin {
 
   void updateDegree(DegreeModel degree) {
     dataRepository.updateDegree(degree).then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -45,6 +48,7 @@ class DegreeController extends GetxController with StateMixin {
 
   void deleteDegree(int id) {
     dataRepository.deleteDegree(id).then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));

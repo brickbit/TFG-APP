@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/schedule_controller.dart';
 import 'package:tfg_app/app/extension/color_extension.dart';
 import 'package:tfg_app/app/views/widget/subject_box.dart';
+import 'package:tfg_app/data/model/subject_model.dart';
 
 class DragTargetSubject extends GetView<ScheduleController> {
   final int row;
@@ -60,10 +61,10 @@ class DragTargetSubject extends GetView<ScheduleController> {
       },
       onAccept: (SubjectBox data) {
         var item = data.subject.selectItem(newDay: row, newHour: column);
-        morning
-            ? controller.morning5Rows.value[column][row] = item
-            : controller.afternoon5Rows.value[column][row] = item;
+        controller.completeDrag(item, morning, row, column);
       },
     );
   }
+
+
 }

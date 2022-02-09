@@ -17,6 +17,7 @@ class SubjectController extends GetxController with StateMixin {
 
   void createSubject(SubjectModel subject) {
     dataRepository.createSubject(subject).then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -25,6 +26,7 @@ class SubjectController extends GetxController with StateMixin {
 
   void getSubjects() {
     dataRepository.getSubjects().then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -33,6 +35,7 @@ class SubjectController extends GetxController with StateMixin {
 
   void updateSubject(SubjectModel subject) {
     dataRepository.updateSubject(subject).then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -40,6 +43,7 @@ class SubjectController extends GetxController with StateMixin {
   }
   void deleteSubject(int id) {
     dataRepository.deleteSubject(id).then((data) {
+      data.sort((a,b) => a.name!.compareTo(b.name!));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));

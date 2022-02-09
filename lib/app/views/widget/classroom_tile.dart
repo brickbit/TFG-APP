@@ -4,6 +4,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 
 Widget classroomTile(bool mobile, List<ClassroomModel> classrooms, int index) {
+  classrooms.sort((a, b) => a.name!.compareTo(b.name!));
   return LayoutBuilder(
     builder: (context, constraints) {
       if (mobile) {

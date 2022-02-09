@@ -132,22 +132,11 @@ class EditScheduleView extends GetView<ScheduleController> {
                       feedback: controller.subjects.value
                           .map((data) => data.toSubjectBox())
                           .toList()[index],
+                      onDragStarted: () {
+                        controller.startDrag(index);
+                      },
                       onDragCompleted: () {
-                        var item = controller.subjects.value.firstWhere(
-                            (element) =>
-                                controller.subjects.value
-                                    .map((data) => data.toSubjectBox())
-                                    .toList()[index]
-                                    .subject
-                                    .id ==
-                                element.id);
-                        var pos = controller.subjects.value.indexOf(item);
-                        controller.subjects.value[pos] =
-                            item.copyWith(newTime: item.time - 30);
-                        if (controller.subjects.value[pos].time == 0) {
-                          controller.subjects.value.removeAt(pos);
-                        }
-                        controller.update();
+                        controller.dragItemSuccessfully(index);
                       },
                     ),
                   );

@@ -4,6 +4,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 
 Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
+  degrees.sort((a, b) => a.name!.compareTo(b.name!));
   return LayoutBuilder(
     builder: (context, constraints) {
       if (mobile) {
