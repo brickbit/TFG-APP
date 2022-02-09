@@ -13,6 +13,8 @@ class EditScheduleView extends GetView<ScheduleController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.setDegree(features.degree);
+    //features.degree
     return controller.obx(
       (data) => Scaffold(
         body: LayoutBuilder(builder: (context, constraints) {

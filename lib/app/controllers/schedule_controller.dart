@@ -43,6 +43,7 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
           12, (i) => List.filled(15, null, growable: false),
           growable: false)
       .obs;
+  DegreeModel? targetDegree;
 
   ScheduleController({required this.dataRepository});
 
@@ -56,7 +57,7 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
     change(null, status: RxStatus.loading());
     dataRepository.getData().then((data) {
       subjects.value.clear();
-      subjects.value.addAll(data.subjects);
+      subjects.value.addAll(data.subjects.where((element) => element.degree.id == targetDegree!.id));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -141,5 +142,9 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
             .subject
             .id ==
         element.id);
+  }
+
+  void setDegree(DegreeModel degree) {
+    targetDegree = degree;
   }
 }

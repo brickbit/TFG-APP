@@ -131,7 +131,7 @@ class SubjectListView extends GetView<HomeController> {
                     const SizedBox(
                       height: 4,
                     ),
-                    Text(subjects[index].degree.name.toString()),
+                    SizedBox(width: 230, child: Text(subjects[index].degree.name.toString())),
                     const SizedBox(
                       height: 4,
                     ),
