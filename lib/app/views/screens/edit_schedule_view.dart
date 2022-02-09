@@ -22,6 +22,35 @@ class EditScheduleView extends GetView<ScheduleController> {
             return Scaffold(
               appBar: AppBar(
                 title: Text('editSchedule'.tr),
+                actions: [
+
+                  PopupMenuButton(
+                    // add icon, by default "3 dot" icon
+                      icon: const Icon(Icons.more_vert),
+                      itemBuilder: (context){
+                        return [
+                          PopupMenuItem<int>(
+                            value: 0,
+                            child: Text("saveSchedule".tr),
+                          ),
+
+                          PopupMenuItem<int>(
+                            value: 1,
+                            child: Text("downloadSchedule".tr),
+                          ),
+                        ];
+                      },
+                      onSelected:(value){
+                        if(value == 0){
+                          print("My account menu is selected.");
+                        }else if(value == 1){
+                          print("Settings menu is selected.");
+                        }
+                      }
+                  ),
+
+
+                ],
               ),
               body: SafeArea(
                 child: features.scheduleType == 'oneSubjectPerHour'.tr

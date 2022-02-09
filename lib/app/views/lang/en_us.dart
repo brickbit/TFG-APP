@@ -84,4 +84,6 @@ const Map<String, String> enUS = {
   'severalSubjectsPerHour': 'Several subject per hour',
   'morningShift': 'Morning shift',
   'afternoonShift': 'Afternoon shift',
+  'saveSchedule': 'Save',
+  'downloadSchedule': 'Download'
 };

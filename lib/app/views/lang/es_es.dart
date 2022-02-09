@@ -83,4 +83,6 @@ const Map<String, String> esES = {
   'severalSubjectsPerHour': 'Muchas asignaturas por hora',
   'morningShift': 'Turno de mañana',
   'afternoonShift': 'Turno de tarde',
+  'saveSchedule': 'Guardar',
+  'downloadSchedule': 'Descargar'
 };
