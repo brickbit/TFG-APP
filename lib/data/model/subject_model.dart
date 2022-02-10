@@ -68,7 +68,7 @@ class SubjectModel {
         "id": id,
         "name": name,
         "acronym": acronym,
-        "classGroup": classGroup,
+        "group": classGroup,
         "seminary": seminary,
         "laboratory": laboratory,
         "english": english,

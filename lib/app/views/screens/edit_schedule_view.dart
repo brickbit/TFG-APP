@@ -13,6 +13,7 @@ class EditScheduleView extends GetView<ScheduleController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.setScheduleType(features.scheduleType);
     controller.setDegree(features.degree);
     //features.degree
     return controller.obx(
@@ -44,7 +45,7 @@ class EditScheduleView extends GetView<ScheduleController> {
                         if(value == 0){
                           print("My account menu is selected.");
                         }else if(value == 1){
-                          print("Settings menu is selected.");
+                          controller.downloadFile();
                         }
                       }
                   ),

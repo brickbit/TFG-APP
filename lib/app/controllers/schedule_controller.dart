@@ -4,11 +4,14 @@ import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
+import 'package:tfg_app/data/model/schedule_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 import 'package:tfg_app/domain/data_repository.dart';
+import 'package:tfg_app/domain/schedule_repository.dart';
 
 class ScheduleController extends GetxController with StateMixin<DataModel> {
   final DataRepository dataRepository;
+  final ScheduleRepository scheduleRepository;
   var subjects = Rx<List<SubjectModel>>([]);
   Rx<SubjectModel> selectedSubject = SubjectModel(
       id: -1,
@@ -44,8 +47,11 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
           growable: false)
       .obs;
   DegreeModel? targetDegree;
+  int scheduleType = 0;
+  int fileType = 0;
+  int semester = 0;
 
-  ScheduleController({required this.dataRepository});
+  ScheduleController({required this.dataRepository, required this.scheduleRepository});
 
   @override
   void onInit() {
@@ -146,5 +152,52 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
 
   void setDegree(DegreeModel degree) {
     targetDegree = degree;
+  }
+
+  void setScheduleType(String type) {
+    if (type == 'oneSubjectPerHour'.tr) {
+      scheduleType = 0;
+    } else {
+      scheduleType = 1;
+    }
+  }
+
+  void setSemester(int numSemester) {
+    semester = numSemester;
+  }
+
+  void downloadFile() {
+    List<List<SubjectModel?>> subjects = morning5Rows.value + afternoon5Rows.value;
+    List<List<SubjectModel?>> tSubject = _transpose(subjects);
+    List<List<List<SubjectModel?>>> eSubject = _encapsulate(tSubject);
+    var schedule = ScheduleModel(subjects: eSubject, scheduleType: scheduleType, fileType: fileType, degree: targetDegree!.name!, year: targetDegree!.year!);
+    scheduleRepository.downloadSchedule(schedule);
+  }
+
+  List<List<SubjectModel?>> _transpose(List<List<SubjectModel?>> colsInRows) {
+    int nRows = colsInRows.length;
+    if (colsInRows.isEmpty) return colsInRows;
+
+    int nCols = colsInRows[0].length;
+    if (nCols == 0) throw StateError('Degenerate matrix');
+
+    // Init the transpose to make sure the size is right
+    List<List<SubjectModel?>> rowsInCols = List.filled(nCols, []);
+    for (int col = 0; col < nCols; col++) {
+      rowsInCols[col] = List.filled(nRows, null);
+    }
+
+    // Transpose
+    for (int row = 0; row < nRows; row++) {
+      for (int col = 0; col < nCols; col++) {
+        rowsInCols[col][row] = colsInRows[row][col];
+      }
+    }
+    return rowsInCols;
+  }
+
+  List<List<List<SubjectModel?>>> _encapsulate(List<List<SubjectModel?>> matrix) {
+    var result = matrix.map((items) => items.map((item) => [item]).toList()).toList();
+    return result;
   }
 }
