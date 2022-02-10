@@ -167,11 +167,16 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
   }
 
   void downloadFile() {
+    change(null, status: RxStatus.loading());
     List<List<SubjectModel?>> subjects = morning5Rows.value + afternoon5Rows.value;
     List<List<SubjectModel?>> tSubject = _transpose(subjects);
     List<List<List<SubjectModel?>>> eSubject = _encapsulate(tSubject);
     var schedule = ScheduleModel(subjects: eSubject, scheduleType: scheduleType, fileType: fileType, degree: targetDegree!.name!, year: targetDegree!.year!);
-    scheduleRepository.downloadSchedule(schedule);
+    scheduleRepository.downloadSchedule(schedule).then((value) {
+      change(null, status: RxStatus.success());
+    }, onError: (err) {
+      change(null, status: RxStatus.error(err.toString()));
+    });
   }
 
   List<List<SubjectModel?>> _transpose(List<List<SubjectModel?>> colsInRows) {

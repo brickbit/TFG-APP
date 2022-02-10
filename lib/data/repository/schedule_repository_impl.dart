@@ -11,7 +11,10 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
 
   @override
   Future<void> downloadSchedule(ScheduleModel schedule) async {
-    provider.downloadSchedule("https://politech-manager.herokuapp.com/schedule/download", schedule);
+     var request = await provider.downloadSchedule("https://politech-manager.herokuapp.com/schedule/download", schedule);
+     if (request != 200) {
+       return Future.error(request);
+     }
   }
 
 

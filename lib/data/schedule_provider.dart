@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:tfg_app/data/model/schedule_model.dart';
 
 abstract class ScheduleProvider {
-  Future<void> downloadSchedule(String path, ScheduleModel schedule);
+  Future<int> downloadSchedule(String path, ScheduleModel schedule);
 }
 
 class ScheduleProviderImpl implements ScheduleProvider {
   @override
-  Future<void> downloadSchedule(String path, ScheduleModel schedule) async {
+  Future<int> downloadSchedule(String path, ScheduleModel schedule) async {
     var request = http.Request('GET', Uri.parse(path));
     var headers = {
       'Content-Type': 'application/json'
@@ -30,11 +30,10 @@ class ScheduleProviderImpl implements ScheduleProvider {
           "xlsx",
           type);
       print(path);
-      print("OK");
+      return Future.value(response.statusCode);
     }
     else {
-      print("error");
-      print(response.statusCode);
+      return Future.error(response.statusCode);
     }
 
   }
