@@ -34,7 +34,7 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
   return Get.defaultDialog(
     title: title,
     content: SizedBox(
-      height: 400,
+      height: 300,
       width: 300,
       child: Padding(
         padding: const EdgeInsets.all(16.0),

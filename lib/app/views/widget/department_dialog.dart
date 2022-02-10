@@ -13,7 +13,7 @@ Future<DepartmentModel?> departmentDialog(DepartmentModel? department, String ti
   return Get.defaultDialog(
     title: title,
     content: SizedBox(
-      height: 265,
+      height: 170,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

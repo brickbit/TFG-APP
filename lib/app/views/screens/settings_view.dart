@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -16,9 +18,6 @@ class SettingsView extends GetView<HomeController> {
       version.value = packageInfo.version;
       buildNumber.value = packageInfo.buildNumber;
     });
-    var _isLightTheme = true.obs;
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -35,26 +34,28 @@ class SettingsView extends GetView<HomeController> {
                   languageDialog().then((value) => {});
                 },
               ),
-              ListTile(
-                title: Text('darkTheme'.tr),
-                trailing: ObxValue(
-                      (data) => Switch(
-                    value: controller.isDarkMode.value,
-                    activeColor: Colors.green,
-                    onChanged: (val) {
-                      controller.toggleDarkMode();
-                    },
+              (Platform.isIOS || Platform.isAndroid) ?
+                ListTile(
+                  title: Text('darkTheme'.tr),
+                  trailing: ObxValue(
+                        (data) =>
+                        Switch(
+                          value: controller.isDarkMode.value,
+                          activeColor: Colors.green,
+                          onChanged: (val) {
+                            controller.toggleDarkMode();
+                          },
+                        ),
+                    false.obs,
                   ),
-                  false.obs,
-                ),
-                onTap: () {
-                  if (Get.isDarkMode) {
-                    Get.changeThemeMode(ThemeMode.light);
-                  } else {
-                    Get.changeThemeMode(ThemeMode.dark);
-                  }
-                },
-              ),
+                  onTap: () {
+                    if (Get.isDarkMode) {
+                      Get.changeThemeMode(ThemeMode.light);
+                    } else {
+                      Get.changeThemeMode(ThemeMode.dark);
+                    }
+                  },
+                ) : const SizedBox(height: 0, width: 0,),
               ListTile(
                 title: Text('version'.tr),
                 trailing: Text(version.value),

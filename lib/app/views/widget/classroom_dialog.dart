@@ -17,7 +17,7 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
   return Get.defaultDialog(
     title: title,
     content: SizedBox(
-      height: 265,
+      height: 250,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

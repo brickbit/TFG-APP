@@ -14,7 +14,7 @@ class HomeController extends GetxController with StateMixin<DataModel> {
   var classrooms = Rx<List<ClassroomModel>>([]);
   var departments = Rx<List<DepartmentModel>>([]);
   var subjects = Rx<List<SubjectModel>>([]);
-  var isDarkMode = true.obs;
+  var isDarkMode = false.obs;
 
 
   HomeController(
