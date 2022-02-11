@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tfg_app/data/model/department_model.dart';
 
 Widget departmentTile(bool mobile, List<DepartmentModel> departments, int index) {
@@ -9,7 +10,7 @@ Widget departmentTile(bool mobile, List<DepartmentModel> departments, int index)
     builder: (context, constraints) {
       if (mobile) {
         return Container(
-          constraints: const BoxConstraints(maxWidth: 250),
+          constraints: const BoxConstraints(maxWidth: 220),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

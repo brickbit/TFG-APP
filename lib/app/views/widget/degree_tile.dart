@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 
 Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
@@ -9,7 +10,7 @@ Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
     builder: (context, constraints) {
       if (mobile) {
         return Container(
-          constraints: const BoxConstraints(maxWidth: 250),
+          constraints: const BoxConstraints(maxWidth: 220),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -33,16 +34,12 @@ Widget degreeTile(bool mobile, List<DegreeModel> degrees, int index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  degrees[index].name!,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  ' - ' + 'degreeSemesters'.trParams({'semester': degrees[index].num_semesters.toString()}),
-                ),
-              ],
+            Text(degrees[index].name!, style: GoogleFonts.montserrat(fontWeight: FontWeight.w500),),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              'degreeSemesters'.trParams({'semester': degrees[index].num_semesters.toString()}),
             ),
             const SizedBox(
               height: 8,
