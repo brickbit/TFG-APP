@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
-import 'package:tfg_app/domain/degree_repository.dart';
+import 'package:tfg_app/domain/repository/degree_repository.dart';
 
 class DegreeController extends GetxController with StateMixin {
 

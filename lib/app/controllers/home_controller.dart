@@ -6,7 +6,7 @@ import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
-import 'package:tfg_app/domain/data_repository.dart';
+import 'package:tfg_app/domain/repository/data_repository.dart';
 
 class HomeController extends GetxController with StateMixin<DataModel> {
   final DataRepository dataRepository;

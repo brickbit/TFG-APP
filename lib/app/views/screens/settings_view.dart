@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
-import 'package:tfg_app/app/views/widget/language_dialog.dart';
+import 'package:tfg_app/app/views/widget/dialog/language_dialog.dart';
 
 class SettingsView extends GetView<HomeController> {
   const SettingsView({Key? key}) : super(key: key);

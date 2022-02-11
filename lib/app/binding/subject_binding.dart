@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/subject_controller.dart';
 import 'package:tfg_app/data/repository/subject_repository_impl.dart';
-import 'package:tfg_app/data/subject_provider.dart';
-import 'package:tfg_app/domain/subject_repository.dart';
+import 'package:tfg_app/data/provider/subject_provider.dart';
+import 'package:tfg_app/domain/repository/subject_repository.dart';
+import '../../domain/provider/subject_provider.dart';
 
 class SubjectBinding extends Bindings {
 

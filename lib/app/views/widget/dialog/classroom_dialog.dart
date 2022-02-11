@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/extension/string_extension.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:uuid/uuid.dart';
-import 'build_text_field.dart';
+import '../textfields/build_text_field.dart';
 import 'package:get/get.dart';
 
-import 'material_dropdown.dart';
+import '../dropdowns/material_dropdown.dart';
 
 Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title ) {
   final _nameController = TextEditingController();

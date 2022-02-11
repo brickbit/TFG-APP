@@ -1,8 +1,7 @@
 
 import 'package:tfg_app/data/model/login_model.dart';
-import 'package:tfg_app/domain/login_repository.dart';
-
-import '../login_provider.dart';
+import 'package:tfg_app/domain/repository/login_repository.dart';
+import '../../domain/provider/login_provider.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   LoginRepositoryImpl({required this.provider});

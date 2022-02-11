@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
-import 'package:tfg_app/app/views/widget/department_dialog.dart';
+import 'package:tfg_app/app/views/widget/dialog/department_dialog.dart';
 import 'package:get/get.dart';
-import 'package:tfg_app/app/views/widget/department_tile.dart';
+import 'package:tfg_app/app/views/widget/tiles/department_tile.dart';
 
 class DepartmentListView extends GetView<HomeController> {
   const DepartmentListView({Key? key}) : super(key: key);

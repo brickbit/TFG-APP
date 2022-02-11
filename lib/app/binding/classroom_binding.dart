@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/classroom_controller.dart';
-import 'package:tfg_app/data/classroom_provider.dart';
+import 'package:tfg_app/data/provider/classroom_provider.dart';
 import 'package:tfg_app/data/repository/classroom_repository_impl.dart';
-import 'package:tfg_app/domain/classroom_repository.dart';
+import 'package:tfg_app/domain/repository/classroom_repository.dart';
+import '../../domain/provider/classroom_provider.dart';
 
 class ClassroomBinding extends Bindings {
 

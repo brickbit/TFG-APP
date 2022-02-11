@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'app/logger/Logger.dart';
+import 'app/logger/logger.dart';
 import 'app/navigation/app_pages.dart';
 import 'app/views/lang/localization_service.dart';
 import 'app/views/themes/themes.dart';

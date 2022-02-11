@@ -1,8 +1,8 @@
 
 import 'dart:convert';
 import 'package:tfg_app/data/model/department_model.dart';
-import 'package:tfg_app/domain/department_repository.dart';
-import '../department_provider.dart';
+import 'package:tfg_app/domain/repository/department_repository.dart';
+import '../../domain/provider/department_provider.dart';
 
 class DepartmentRepositoryImpl implements DepartmentRepository {
   DepartmentRepositoryImpl({required this.provider});

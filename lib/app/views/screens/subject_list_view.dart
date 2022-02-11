@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:tfg_app/app/extension/color_extension.dart';
-import 'package:tfg_app/app/views/widget/subject_dialog.dart';
+import 'package:tfg_app/app/views/widget/dialog/subject_dialog.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 
-import '../widget/subject_tile.dart';
+import '../widget/tiles/subject_tile.dart';
 
 class SubjectListView extends GetView<HomeController> {
   const SubjectListView({Key? key}) : super(key: key);

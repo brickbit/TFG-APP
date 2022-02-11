@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
-import 'package:tfg_app/app/views/widget/schedule_dialog.dart';
+import 'package:tfg_app/app/views/widget/dialog/schedule_dialog.dart';
 import 'package:get/get.dart';
 
 class ScheduleView extends GetView<HomeController> {

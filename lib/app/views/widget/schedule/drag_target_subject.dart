@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/schedule_controller.dart';
 import 'package:tfg_app/app/extension/color_extension.dart';
-import 'package:tfg_app/app/views/widget/subject_box.dart';
+import 'package:tfg_app/app/views/widget/schedule/subject_box.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 
 class DragTargetSubject extends GetView<ScheduleController> {

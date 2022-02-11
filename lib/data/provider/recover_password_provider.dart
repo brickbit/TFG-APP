@@ -1,12 +1,9 @@
 
 import 'package:get/get_connect/connect.dart';
 import 'package:tfg_app/data/model/login_model.dart';
+import '../../domain/provider/recover_password_provider.dart';
 
-abstract class LoginProvider {
-  Future<Response<LoginModel>> login(String path);
-}
-
-class LoginProviderImpl extends GetConnect implements LoginProvider {
+class RecoverPasswordProviderImpl extends GetConnect implements RecoverPasswordProvider {
   @override
   void onInit() {
     //httpClient.defaultDecoder = LoginModel.fromJson;
@@ -14,5 +11,5 @@ class LoginProviderImpl extends GetConnect implements LoginProvider {
   }
 
   @override
-  Future<Response<LoginModel>> login(String path) => get(path);
+  Future<Response<LoginModel>> recoverPassword(String path) => get(path);
 }

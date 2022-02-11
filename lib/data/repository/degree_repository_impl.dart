@@ -1,8 +1,8 @@
 
 import 'dart:convert';
 import 'package:tfg_app/data/model/degree_model.dart';
-import 'package:tfg_app/domain/degree_repository.dart';
-import '../degree_provider.dart';
+import 'package:tfg_app/domain/repository/degree_repository.dart';
+import '../../domain/provider/degree_provider.dart';
 
 class DegreeRepositoryImpl implements DegreeRepository {
   DegreeRepositoryImpl({required this.provider});

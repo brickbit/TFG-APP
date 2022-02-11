@@ -1,8 +1,8 @@
 
 import 'dart:convert';
 import 'package:tfg_app/data/model/subject_model.dart';
-import 'package:tfg_app/domain/subject_repository.dart';
-import '../subject_provider.dart';
+import 'package:tfg_app/domain/repository/subject_repository.dart';
+import '../../domain/provider/subject_provider.dart';
 
 class SubjectRepositoryImpl implements SubjectRepository {
   SubjectRepositoryImpl({required this.provider});

@@ -1,14 +1,8 @@
 
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'model/subject_model.dart';
-
-abstract class SubjectProvider {
-  Future<Response> getSubjects(String path);
-  Future<Response> updateSubject(String path, SubjectModel subject);
-  Future<Response> createSubject(String path, SubjectModel subject);
-  Future<Response> deleteSubject(String path);
-}
+import '../../domain/provider/subject_provider.dart';
+import '../model/subject_model.dart';
 
 class SubjectProviderImpl implements SubjectProvider {
   @override

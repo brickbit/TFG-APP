@@ -6,8 +6,8 @@ import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
 import 'package:tfg_app/data/model/schedule_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
-import 'package:tfg_app/domain/data_repository.dart';
-import 'package:tfg_app/domain/schedule_repository.dart';
+import 'package:tfg_app/domain/repository/data_repository.dart';
+import 'package:tfg_app/domain/repository/schedule_repository.dart';
 
 class ScheduleController extends GetxController with StateMixin<DataModel> {
   final DataRepository dataRepository;

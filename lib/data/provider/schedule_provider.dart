@@ -3,10 +3,7 @@ import 'dart:convert';
 import 'package:file_saver/file_saver.dart';
 import 'package:http/http.dart' as http;
 import 'package:tfg_app/data/model/schedule_model.dart';
-
-abstract class ScheduleProvider {
-  Future<int> downloadSchedule(String path, ScheduleModel schedule);
-}
+import '../../domain/provider/schedule_provider.dart';
 
 class ScheduleProviderImpl implements ScheduleProvider {
   @override

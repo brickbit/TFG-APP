@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/login_controller.dart';
 import 'package:tfg_app/app/navigation/app_routes.dart';
 import 'package:get/get.dart';
-import 'package:tfg_app/app/views/widget/build_text_field.dart';
-import 'package:tfg_app/app/views/widget/custom_password_textfield.dart';
+import 'package:tfg_app/app/views/widget/textfields/build_text_field.dart';
+import 'package:tfg_app/app/views/widget/textfields/custom_password_textfield.dart';
 
 class LoginView extends GetView<LoginController> {
   LoginView({Key? key}) : super(key: key);

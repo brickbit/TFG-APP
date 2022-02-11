@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
 import 'package:tfg_app/data/model/department_model.dart';
-import 'package:tfg_app/domain/department_repository.dart';
+import 'package:tfg_app/domain/repository/department_repository.dart';
 
 class DepartmentController extends GetxController with StateMixin {
 

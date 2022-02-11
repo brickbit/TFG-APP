@@ -3,8 +3,8 @@ import 'package:tfg_app/app/model/schedule_features_model.dart';
 import 'package:tfg_app/app/navigation/app_routes.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:get/get.dart';
-import 'material_dropdown.dart';
-import 'material_dropdown_degree.dart';
+import '../dropdowns/material_dropdown.dart';
+import '../dropdowns/material_dropdown_degree.dart';
 
 Future<DegreeModel?> scheduleDialog(String title, List<DegreeModel> degrees) {
   var _degree = (degrees[0]).obs;

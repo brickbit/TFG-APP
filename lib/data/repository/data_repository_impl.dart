@@ -1,16 +1,16 @@
 import 'dart:convert';
 
-import 'package:tfg_app/data/degree_provider.dart';
-import 'package:tfg_app/data/department_provider.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
-import 'package:tfg_app/data/subject_provider.dart';
-import 'package:tfg_app/domain/data_repository.dart';
-import '../classroom_provider.dart';
+import 'package:tfg_app/domain/repository/data_repository.dart';
 import 'package:get/get.dart';
+import '../../domain/provider/classroom_provider.dart';
+import '../../domain/provider/degree_provider.dart';
+import '../../domain/provider/department_provider.dart';
+import '../../domain/provider/subject_provider.dart';
 
 class DataRepositoryImpl implements DataRepository {
   DataRepositoryImpl({

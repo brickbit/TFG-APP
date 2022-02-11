@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/schedule_controller.dart';
 import 'package:tfg_app/app/mappers/subject_model_mapper.dart';
 import 'package:tfg_app/app/model/schedule_features_model.dart';
-import 'package:tfg_app/app/views/widget/build_schedule_day_5_rows.dart';
-import 'package:tfg_app/app/views/widget/material_dropdown.dart';
-import 'package:tfg_app/app/views/widget/subject_box.dart';
+import 'package:tfg_app/app/views/widget/schedule/build_schedule_day_5_rows.dart';
+import 'package:tfg_app/app/views/widget/dropdowns/material_dropdown.dart';
+import 'package:tfg_app/app/views/widget/schedule/subject_box.dart';
 
 class EditScheduleView extends GetView<ScheduleController> {
   final ScheduleFeaturesModel features = Get.arguments;

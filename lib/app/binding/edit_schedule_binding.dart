@@ -1,15 +1,20 @@
 
 import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/schedule_controller.dart';
-import 'package:tfg_app/data/classroom_provider.dart';
-import 'package:tfg_app/data/degree_provider.dart';
-import 'package:tfg_app/data/department_provider.dart';
+import 'package:tfg_app/data/provider/classroom_provider.dart';
+import 'package:tfg_app/data/provider/degree_provider.dart';
+import 'package:tfg_app/data/provider/department_provider.dart';
 import 'package:tfg_app/data/repository/data_repository_impl.dart';
 import 'package:tfg_app/data/repository/schedule_repository_impl.dart';
-import 'package:tfg_app/data/schedule_provider.dart';
-import 'package:tfg_app/data/subject_provider.dart';
-import 'package:tfg_app/domain/data_repository.dart';
-import 'package:tfg_app/domain/schedule_repository.dart';
+import 'package:tfg_app/data/provider/schedule_provider.dart';
+import 'package:tfg_app/data/provider/subject_provider.dart';
+import 'package:tfg_app/domain/repository/data_repository.dart';
+import 'package:tfg_app/domain/repository/schedule_repository.dart';
+import '../../domain/provider/classroom_provider.dart';
+import '../../domain/provider/degree_provider.dart';
+import '../../domain/provider/department_provider.dart';
+import '../../domain/provider/schedule_provider.dart';
+import '../../domain/provider/subject_provider.dart';
 
 class EditScheduleBinding extends Bindings {
 

@@ -1,39 +1,28 @@
 
 import 'package:flutter/material.dart';
-import 'package:tfg_app/data/model/degree_model.dart';
+import 'package:tfg_app/data/model/department_model.dart';
 import 'package:uuid/uuid.dart';
-import 'build_text_field.dart';
+import '../textfields/build_text_field.dart';
 import 'package:get/get.dart';
-import 'material_dropdown.dart';
 
-Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
+Future<DepartmentModel?> departmentDialog(DepartmentModel? department, String title ) {
   final _nameController = TextEditingController();
-  final _yearController = TextEditingController();
-  var id = degree?.id;
-  var _numSemesters = (degree?.num_semesters.toString() ?? '8').obs;
+  final _acronymController = TextEditingController();
+  var id = department?.id;
 
   return Get.defaultDialog(
     title: title,
     content: SizedBox(
-      height: 265,
+      height: 170,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             buildTextField(
-                'name'.tr, degree?.name ?? "", _nameController),
+                'name'.tr, department?.name ?? "", _nameController),
             const SizedBox(height: 16),
             buildTextField(
-                'year'.tr, degree?.year ?? "", _yearController),
-            const SizedBox(height: 24),
-            SizedBox(
-              height: 50,
-              width: Size.infinite.width,
-              child: materialDropdown(_numSemesters, [
-                  '4',
-                  '8'
-                ])
-            ),
+                'acronym'.tr, department?.acronym ?? "", _acronymController),
           ],
         ),
       ),
@@ -51,12 +40,11 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
       TextButton(
         onPressed: () {
           var uuid = const Uuid();
-          var degree = DegreeModel(
+          var department = DepartmentModel(
               id: id ?? uuid.v4().hashCode,
               name: _nameController.text,
-              num_semesters: int.parse(_numSemesters.value),
-              year: _yearController.text);
-          Get.back(result: degree);
+              acronym: _acronymController.text);
+          Get.back(result: department);
         },
         child: Text(
           'ok'.tr,

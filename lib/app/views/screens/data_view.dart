@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/app/navigation/app_routes.dart';
-import 'package:tfg_app/app/views/widget/classroom_dialog.dart';
-import 'package:tfg_app/app/views/widget/classroom_tile.dart';
-import 'package:tfg_app/app/views/widget/degree_dialog.dart';
-import 'package:tfg_app/app/views/widget/degree_tile.dart';
-import 'package:tfg_app/app/views/widget/department_dialog.dart';
-import 'package:tfg_app/app/views/widget/department_tile.dart';
-import 'package:tfg_app/app/views/widget/subject_dialog.dart';
-import 'package:tfg_app/app/views/widget/subject_tile.dart';
+import 'package:tfg_app/app/views/widget/dialog/classroom_dialog.dart';
+import 'package:tfg_app/app/views/widget/tiles/classroom_tile.dart';
+import 'package:tfg_app/app/views/widget/dialog/degree_dialog.dart';
+import 'package:tfg_app/app/views/widget/tiles/degree_tile.dart';
+import 'package:tfg_app/app/views/widget/dialog/department_dialog.dart';
+import 'package:tfg_app/app/views/widget/tiles/department_tile.dart';
+import 'package:tfg_app/app/views/widget/dialog/subject_dialog.dart';
+import 'package:tfg_app/app/views/widget/tiles/subject_tile.dart';
 
 class DataView extends GetView<HomeController> {
   const DataView({Key? key});

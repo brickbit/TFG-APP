@@ -1,14 +1,8 @@
 
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'model/department_model.dart';
-
-abstract class DepartmentProvider {
-  Future<Response> getDepartments(String path);
-  Future<Response> updateDepartment(String path, DepartmentModel degree);
-  Future<Response> createDepartment(String path, DepartmentModel degree);
-  Future<Response> deleteDepartment(String path);
-}
+import '../../domain/provider/department_provider.dart';
+import '../model/department_model.dart';
 
 class DepartmentProviderImpl implements DepartmentProvider {
   @override

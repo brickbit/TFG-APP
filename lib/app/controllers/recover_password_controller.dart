@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:tfg_app/app/navigation/app_routes.dart';
 import 'package:tfg_app/data/model/recover_password_model.dart';
-import 'package:tfg_app/domain/recover_password_repository.dart';
+import 'package:tfg_app/domain/repository/recover_password_repository.dart';
 
 class RecoverPasswordController extends GetxController
     with StateMixin<RecoverPasswordModel> {

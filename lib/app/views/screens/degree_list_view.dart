@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
-import 'package:tfg_app/app/views/widget/degree_dialog.dart';
-import 'package:tfg_app/app/views/widget/degree_tile.dart';
+import 'package:tfg_app/app/views/widget/dialog/degree_dialog.dart';
+import 'package:tfg_app/app/views/widget/tiles/degree_tile.dart';
 import 'package:get/get.dart';
 
 class DegreeListView extends GetView<HomeController> {

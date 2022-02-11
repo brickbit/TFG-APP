@@ -3,13 +3,13 @@ import 'package:tfg_app/app/controllers/home_controller.dart';
 import 'package:tfg_app/app/extension/color_extension.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 import 'package:uuid/uuid.dart';
-import 'build_text_field.dart';
+import '../textfields/build_text_field.dart';
 import 'package:get/get.dart';
-import 'material_dropdown.dart';
-import 'material_dropdown_classroom.dart';
-import 'material_dropdown_color.dart';
-import 'material_dropdown_degree.dart';
-import 'material_dropdown_department.dart';
+import '../dropdowns/material_dropdown.dart';
+import '../dropdowns/material_dropdown_classroom.dart';
+import '../dropdowns/material_dropdown_color.dart';
+import '../dropdowns/material_dropdown_degree.dart';
+import '../dropdowns/material_dropdown_department.dart';
 
 Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeController controller) {
   final _nameController = TextEditingController();

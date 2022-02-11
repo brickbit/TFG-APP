@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/home_controller.dart';
-import 'package:tfg_app/app/views/widget/classroom_dialog.dart';
-import 'package:tfg_app/app/views/widget/classroom_tile.dart';
+import 'package:tfg_app/app/views/widget/dialog/classroom_dialog.dart';
+import 'package:tfg_app/app/views/widget/tiles/classroom_tile.dart';
 import 'package:get/get.dart';
 
 class ClassroomListView extends GetView<HomeController> {
