@@ -222,6 +222,9 @@ class DataView extends GetView<HomeController> {
   Widget _listDegree() {
     return controller.obx(
       (data) => ListView.separated(
+          scrollDirection: Axis.vertical,
+          primary: false,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(16),
@@ -230,14 +233,14 @@ class DataView extends GetView<HomeController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   degreeTile(MediaQuery.of(context).size.width < 600,
-                      data?.degrees ?? [], index),
+                    data?.degrees ?? [], index),
                   Row(
                     children: [
                       IconButton(
                         onPressed: () async {
                           degreeDialog(data?.degrees[index], 'editDegree'.tr)
                               .then(
-                            (value) {
+                                (value) {
                               if (value != null) {
                                 controller.updateDegree(value);
                                 controller.update();
@@ -293,6 +296,8 @@ class DataView extends GetView<HomeController> {
   Widget _listClassroom() {
     return controller.obx((data) {
       return ListView.separated(
+          primary: false,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(16),
@@ -356,6 +361,8 @@ class DataView extends GetView<HomeController> {
   Widget _listDepartment() {
     return controller.obx((data) {
       return ListView.separated(
+          primary: false,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(16),
@@ -419,6 +426,8 @@ class DataView extends GetView<HomeController> {
   Widget _listSubject() {
     return controller.obx((data) {
       return ListView.separated(
+          primary: false,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(16),
@@ -432,9 +441,10 @@ class DataView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          subjectDialog(data?.subjects[index], 'editSubject'.tr,controller)
+                          subjectDialog(data?.subjects[index], 'editSubject'.tr,
+                                  controller)
                               .then(
-                                (value) {
+                            (value) {
                               if (value != null) {
                                 controller.updateSubject(value);
                                 controller.update();

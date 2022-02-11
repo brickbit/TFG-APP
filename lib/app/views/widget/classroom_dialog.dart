@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:tfg_app/app/extension/string_extension.dart';
 import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:uuid/uuid.dart';
 import 'build_text_field.dart';
@@ -32,7 +33,7 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
               height: 50,
               width: Size.infinite.width,
               child: materialDropdown(_pavilion, [
-                  'telecommunication'.tr, 'computing'.tr, 'architecture'.tr, 'civilWork'.tr, 'central'.tr
+                  'telecommunication'.tr, 'computing'.tr, 'architecture'.tr, 'civil_work'.tr, 'central'.tr
                 ])
             ),
           ],
@@ -55,7 +56,7 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
           var classroom = ClassroomModel(
               id: id ?? uuid.v4().hashCode,
               name: _nameController.text,
-              pavilion: _pavilion.value,
+              pavilion: _pavilion.value.toClassroom(),
               acronym: _acronymController.text);
           Get.back(result: classroom);
         },
@@ -67,3 +68,4 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
     ],
   );
 }
+

@@ -56,7 +56,7 @@ const Map<String, String> esES = {
   'telecommunication': 'Telecomunicaciones',
   'computing': 'Informática',
   'architecture': 'Arquitectura',
-  'civilWork': 'Obras públicas',
+  'civil_work': 'Obras públicas',
   'central': 'Central',
   //Subject dialog
   'group':'Grupo',

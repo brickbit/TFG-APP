@@ -56,7 +56,7 @@ const Map<String, String> enUS = {
   'telecommunication': 'Telecommunication',
   'computing': 'Computing',
   'architecture': 'Architecture',
-  'civilWork': 'Civil work',
+  'civil_work': 'Civil work',
   'central': 'Central',
   //Subject dialog
   'group':'Group',
