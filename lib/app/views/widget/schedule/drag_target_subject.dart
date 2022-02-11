@@ -41,8 +41,26 @@ class DragTargetSubject extends GetView<ScheduleController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    acceptedData?.name ?? '',
+                    acceptedData?.acronym ?? '',
                     style: const TextStyle(fontSize: 12),
+                  ),
+                  acceptedData?.seminary == true
+                      ? const Icon(Icons.emoji_people_sharp, color: Colors.black45,size: 20,)
+                      : const SizedBox(
+                          width: 0,
+                          height: 0,
+                        ),
+                  acceptedData?.laboratory == true
+                      ? const Icon(Icons.science_sharp, color: Colors.black45,size: 20,)
+                      : const SizedBox(
+                          width: 0,
+                          height: 0,
+                        ),
+                  acceptedData?.english == true
+                      ? const Icon(Icons.flag, color: Colors.black45,size: 20,)
+                      : const SizedBox(
+                    width: 0,
+                    height: 0,
                   ),
                   acceptedData != null
                       ? IconButton(
@@ -65,6 +83,4 @@ class DragTargetSubject extends GetView<ScheduleController> {
       },
     );
   }
-
-
 }

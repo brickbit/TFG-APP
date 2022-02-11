@@ -25,9 +25,32 @@ class SubjectBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              subject.acronym ?? '',
-              style: const TextStyle(fontSize: 12, color: Colors.black),
+            Row(
+              children: [
+                const SizedBox(width: 4,),
+                subject.seminary == true
+                    ? const Icon(Icons.emoji_people_sharp, color: Colors.black45,size: 16)
+                    : const SizedBox(
+                  width: 0,
+                  height: 0,
+                ),
+                subject.laboratory == true
+                    ? const Icon(Icons.science_sharp, color: Colors.black45,size: 16,)
+                    : const SizedBox(
+                  width: 0,
+                  height: 0,
+                ),
+                subject.english == true
+                    ? const Icon(Icons.flag, color: Colors.black45,size: 16,)
+                    : const SizedBox(
+                  width: 0,
+                  height: 0,
+                ),
+                Text(
+                  subject.acronym ?? '',
+                  style: const TextStyle(fontSize: 12, color: Colors.black),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
             Row(
