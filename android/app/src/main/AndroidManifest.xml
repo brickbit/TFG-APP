@@ -2,7 +2,7 @@
     package="com.epcc.tfg.tfg_app">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
    <application
-        android:label="tfg_app"
+        android:label="Manager"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
