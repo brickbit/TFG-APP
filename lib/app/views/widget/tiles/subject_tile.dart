@@ -52,7 +52,7 @@ Widget subjectTile(bool mobile, List<SubjectModel> subjects, int index) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                    'subjectSemester'.trParams({'semester': (subjects[index].semester + 1).toString()})
+                    'subjectSemester'.trParams({'semester': (subjects[index].semester).toString()})
                 ),
                 const SizedBox(width: 16,),
                 Text(

@@ -20,7 +20,7 @@ Future<SubjectModel?> subjectDialog(bool mobile,
   var _isLaboratory = (subject?.laboratory ?? false).obs;
   var _isEnglish = (subject?.english ?? false).obs;
   var _time = (subject?.time.toString() ?? '60').obs;
-  var _semester = ((subject?.semester ?? 0) + 1).toString().obs;
+  var _semester = (subject?.semester ?? 1).toString().obs;
   var id = subject?.id;
 
   var _classroomItems = controller.classrooms.value;
@@ -29,8 +29,8 @@ Future<SubjectModel?> subjectDialog(bool mobile,
   var _department = _departmentItems[0].obs;
   var _degreeItems = controller.degrees.value;
   var _degree = _degreeItems[0].obs;
-  var _colorItems = ['blue'.tr, 'green'.tr, 'red'.tr, 'yellow'.tr, 'orange'.tr];
-  var _color = _colorItems[0].obs;
+  var _colorItems = ['blue'.tr, 'red'.tr, 'yellow'.tr, 'orange'.tr, 'green'.tr];
+  var _color = _colorItems[subject?.color ?? 0].obs;
 
   return Get.defaultDialog(
     title: title,

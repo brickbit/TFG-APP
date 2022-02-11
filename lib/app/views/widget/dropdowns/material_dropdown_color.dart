@@ -36,18 +36,17 @@ Widget materialDropdownColor(RxString selected, List<String> items) {
 }
 
 MaterialColor getColor(value) {
-  switch (value) {
-    case 'Azul':
-      return Colors.blue;
-    case 'Rojo':
-      return Colors.red;
-    case 'Naranja':
-      return Colors.orange;
-    case 'Verde':
-      return Colors.green;
-    case 'Amarillo':
-      return Colors.yellow;
-    default:
-      return Colors.blue;
+  if (value == 'blue'.tr) {
+    return Colors.blue;
+  } else if (value == 'red'.tr) {
+    return Colors.red;
+  } else if (value == 'yellow'.tr) {
+    return Colors.yellow;
+  } else if (value == 'orange'.tr) {
+    return Colors.orange;
+  } else if (value == 'green'.tr) {
+    return Colors.green;
+  } else {
+    return Colors.blue;
   }
 }

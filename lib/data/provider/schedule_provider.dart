@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:file_saver/file_saver.dart';
 import 'package:http/http.dart' as http;
 import 'package:tfg_app/data/model/schedule_model.dart';
@@ -21,12 +22,14 @@ class ScheduleProviderImpl implements ScheduleProvider {
       http.ByteStream stream = response.stream;
       var bytes = await stream.toBytes();
       MimeType type = MimeType.MICROSOFTEXCEL;
-      String path = await FileSaver.instance.saveAs(
-          "schedule",
-          bytes,
-          "xlsx",
-          type);
-      print(path);
+      if (Platform.isIOS || Platform.isAndroid) {
+        String path = await FileSaver.instance.saveAs(
+            "schedule",
+            bytes,
+            "xlsx",
+            type);
+        print(path);
+      }
       return Future.value(response.statusCode);
     }
     else {
