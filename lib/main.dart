@@ -14,8 +14,8 @@ Future<void> main() async {
   await GetStorage.init();
 
   if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-    await DesktopWindow.setWindowSize(const Size(1400, 880));
-    await DesktopWindow.setMinWindowSize(const Size(1400, 880));
+    await DesktopWindow.setWindowSize(const Size(1440, 880));
+    await DesktopWindow.setMinWindowSize(const Size(1440, 880));
     await DesktopWindow.setMaxWindowSize(Size.infinite);
   }
 

@@ -23,13 +23,13 @@ Widget buildScheduleDay5Rows(bool mobile, bool morning) {
               )),
           SizedBox(
             width: 1100,
-            height: mobile ? 440 : 575,
+            height: mobile ? 440 : 530,
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5,
                 crossAxisSpacing: 0,
                 mainAxisSpacing: 0,
-                childAspectRatio: mobile ? 6.1 : 5.5,
+                childAspectRatio: mobile ? 6.1 : 6.03,
               ),
               primary: false,
               itemCount: 60,

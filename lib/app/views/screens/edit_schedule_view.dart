@@ -38,6 +38,10 @@ class EditScheduleView extends GetView<ScheduleController> {
             return Scaffold(
               appBar: AppBar(
                 title: Text('editSchedule'.tr),
+                actions:  [
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.save_sharp)),
+                  IconButton(onPressed: () {controller.downloadFile();}, icon: const Icon(Icons.download))
+                ],
               ),
               body: SafeArea(
                 child: features.scheduleType == 'oneSubjectPerHour'.tr
@@ -70,8 +74,8 @@ class EditScheduleView extends GetView<ScheduleController> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]),
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                child: mobile ? materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]) : SizedBox(width: 600, child: materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]),),
               ),
               Stack(children: [
                 SingleChildScrollView(
