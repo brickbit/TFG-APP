@@ -10,7 +10,7 @@ Widget buildScheduleDay5Rows(bool mobile, bool morning) {
       Column(
         children: [
           SizedBox(
-              width: 1100,
+              width: mobile ? 750 : 1100,
               height: 40,
               child: Row(
                 children: [
@@ -22,14 +22,14 @@ Widget buildScheduleDay5Rows(bool mobile, bool morning) {
                 ],
               )),
           SizedBox(
-            width: 1100,
+            width: mobile ? 750 : 1100,
             height: mobile ? 440 : 530,
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5,
                 crossAxisSpacing: 0,
                 mainAxisSpacing: 0,
-                childAspectRatio: mobile ? 6.1 : 6.03,
+                childAspectRatio: mobile ? 4.16 : 6.03,
               ),
               primary: false,
               itemCount: 60,
@@ -51,7 +51,7 @@ Widget buildScheduleDay5Rows(bool mobile, bool morning) {
 Widget _dayCell(String day, bool mobile) {
   return Container(
     height: mobile ? 50.0 : 50.0,
-    width: 1100 / 5,
+    width: mobile ? 750/5 : 1100 / 5,
     decoration: BoxDecoration(
         border: Border.all(
       color: Colors.black,

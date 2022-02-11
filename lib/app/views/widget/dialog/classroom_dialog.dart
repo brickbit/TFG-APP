@@ -17,10 +17,10 @@ Future<ClassroomModel?> classroomDialog(ClassroomModel? classroom, String title 
 
   return Get.defaultDialog(
     title: title,
-    content: SizedBox(
-      height: 250,
+    content: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           children: [
             buildTextField(

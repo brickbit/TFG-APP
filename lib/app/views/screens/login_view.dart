@@ -16,10 +16,10 @@ class LoginView extends GetView<LoginController> {
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
-            return _loginView(
+            return _loginView(true,
                 Size.infinite.width, Size.infinite.width, Size.infinite.width);
           } else {
-            return _loginView(300, 300, 300);
+            return _loginView(false, 300, 300, 300);
           }
         },
       ),
@@ -27,6 +27,7 @@ class LoginView extends GetView<LoginController> {
   }
 
   Widget _loginView(
+      bool mobile,
     double userTextFieldWidth,
     double passwordTextFieldWidth,
     double buttonWidth,
@@ -49,7 +50,7 @@ class LoginView extends GetView<LoginController> {
                     image: AssetImage('assets/images/mural_epcc.png'),
                     fit: BoxFit.cover,
                   )),
-                  height: 310,
+                  height: mobile ? 280 : 320,
                 ),
               ),
               SizedBox(

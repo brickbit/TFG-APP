@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:uuid/uuid.dart';
@@ -6,7 +5,7 @@ import '../textfields/build_text_field.dart';
 import 'package:get/get.dart';
 import '../dropdowns/material_dropdown.dart';
 
-Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
+Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title) {
   final _nameController = TextEditingController();
   final _yearController = TextEditingController();
   var id = degree?.id;
@@ -14,30 +13,25 @@ Future<DegreeModel?> degreeDialog(DegreeModel? degree, String title ) {
 
   return Get.defaultDialog(
     title: title,
-    content: SizedBox(
-      height: 265,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            buildTextField(
-                'name'.tr, degree?.name ?? "", _nameController),
-            const SizedBox(height: 16),
-            buildTextField(
-                'year'.tr, degree?.year ?? "", _yearController),
-            const SizedBox(height: 24),
-            SizedBox(
-              height: 50,
-              width: Size.infinite.width,
-              child: materialDropdown(_numSemesters, [
-                  '4',
-                  '8'
-                ])
-            ),
-          ],
+    content: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: Column(
+            children: [
+              buildTextField('name'.tr, degree?.name ?? "", _nameController),
+              const SizedBox(height: 16),
+              buildTextField('year'.tr, degree?.year ?? "", _yearController),
+              const SizedBox(height: 24),
+              SizedBox(
+                  height: 50,
+                  width: Size.infinite.width,
+                  child: materialDropdown(_numSemesters, ['4', '8'])),
+            ],
+          ),
         ),
       ),
-    ),
+
     actions: <Widget>[
       TextButton(
         onPressed: () {

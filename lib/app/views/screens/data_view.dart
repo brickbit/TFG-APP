@@ -81,7 +81,7 @@ class DataView extends GetView<HomeController> {
                   ),
                 ),
               ),
-              _getListData(indexObx.value),
+              _getListData(false, indexObx.value),
             ],
           ),
         ),
@@ -125,8 +125,8 @@ class DataView extends GetView<HomeController> {
     );
   }
 
-  Future<void> showSubjectDialog() async {
-    subjectDialog(null, 'createSubject'.tr, controller).then(
+  Future<void> showSubjectDialog(bool mobile) async {
+    subjectDialog(mobile, null, 'createSubject'.tr, controller).then(
       (value) {
         if (value != null) {
           controller.createSubject(value);
@@ -157,7 +157,7 @@ class DataView extends GetView<HomeController> {
                 showDepartmentDialog();
                 break;
               case 3:
-                showSubjectDialog();
+                showSubjectDialog(mobile);
                 break;
               default:
                 showDegreeDialog();
@@ -202,7 +202,7 @@ class DataView extends GetView<HomeController> {
     );
   }
 
-  Widget _getListData(int index) {
+  Widget _getListData(bool mobile, int index) {
     switch (index) {
       case 0:
         return Expanded(child: _listDegree());
@@ -211,7 +211,7 @@ class DataView extends GetView<HomeController> {
       case 2:
         return Expanded(child: _listDepartment());
       case 3:
-        return Expanded(child: _listSubject());
+        return Expanded(child: _listSubject(mobile));
       default:
         return Container(
           color: Colors.white54,
@@ -423,7 +423,7 @@ class DataView extends GetView<HomeController> {
     });
   }
 
-  Widget _listSubject() {
+  Widget _listSubject(bool mobile) {
     return controller.obx((data) {
       return ListView.separated(
           primary: false,
@@ -441,7 +441,7 @@ class DataView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          subjectDialog(data?.subjects[index], 'editSubject'.tr,
+                          subjectDialog(mobile, data?.subjects[index], 'editSubject'.tr,
                                   controller)
                               .then(
                             (value) {

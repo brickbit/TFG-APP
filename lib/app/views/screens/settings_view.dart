@@ -29,7 +29,7 @@ class SettingsView extends GetView<HomeController> {
             children: [
               ListTile(
                 title: Text('language'.tr),
-                trailing: const Icon(Icons.chevron_right),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey,),
                 onTap: () async {
                   languageDialog().then((value) => {});
                 },

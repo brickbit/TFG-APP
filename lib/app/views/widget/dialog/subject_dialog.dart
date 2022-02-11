@@ -11,7 +11,8 @@ import '../dropdowns/material_dropdown_color.dart';
 import '../dropdowns/material_dropdown_degree.dart';
 import '../dropdowns/material_dropdown_department.dart';
 
-Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeController controller) {
+Future<SubjectModel?> subjectDialog(bool mobile,
+    SubjectModel? subject, String title, HomeController controller) {
   final _nameController = TextEditingController();
   final _acronymController = TextEditingController();
   final _groupController = TextEditingController();
@@ -28,115 +29,112 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
   var _department = _departmentItems[0].obs;
   var _degreeItems = controller.degrees.value;
   var _degree = _degreeItems[0].obs;
-  var _colorItems = ['blue'.tr, 'green'.tr, 'red'.tr,'yellow'.tr,'orange'.tr];
+  var _colorItems = ['blue'.tr, 'green'.tr, 'red'.tr, 'yellow'.tr, 'orange'.tr];
   var _color = _colorItems[0].obs;
 
   return Get.defaultDialog(
     title: title,
-    content: SizedBox(
-      height: 300,
-      width: 300,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SizedBox(
-          height: 360,
-          width: 280,
-          child: ListView(
-            children: [
-              buildTextField(
-                  'name'.tr, subject?.name ?? "", _nameController),
-              const SizedBox(height: 16),
-              buildTextField('acronym'.tr, subject?.acronym ?? "",
-                  _acronymController),
-              const SizedBox(height: 24),
-              buildTextField('group'.tr, subject?.classGroup ?? "",
-                  _groupController),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('seminary'.tr),
-                  Obx(
-                    () => Switch(
-                      value: _isSeminary.value,
-                      activeColor: Colors.amber,
-                      onChanged: (value) => _isSeminary.value = value,
-                    ),
+    content: Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16),
+      child: SizedBox(
+        height: mobile ? 200 : 360,
+        width: 280,
+        child: ListView(
+          children: [
+            buildTextField('name'.tr, subject?.name ?? "", _nameController),
+            const SizedBox(height: 16),
+            buildTextField(
+                'acronym'.tr, subject?.acronym ?? "", _acronymController),
+            const SizedBox(height: 24),
+            buildTextField(
+                'group'.tr, subject?.classGroup ?? "", _groupController),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('seminary'.tr),
+                Obx(
+                  () => Switch(
+                    value: _isSeminary.value,
+                    activeColor: Colors.amber,
+                    onChanged: (value) => _isSeminary.value = value,
                   ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('laboratory'.tr),
-                  Obx(
-                        () => Switch(
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('laboratory'.tr),
+                Obx(
+                  () => Switch(
                     value: _isLaboratory.value,
                     activeColor: Colors.amber,
                     onChanged: (value) => _isLaboratory.value = value,
-                  ),),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('English'),
-                  Obx(
-                        () => Switch(
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('English'),
+                Obx(
+                  () => Switch(
                     value: _isEnglish.value,
                     activeColor: Colors.amber,
                     onChanged: (value) => _isEnglish.value = value,
-                  ),),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('time'.tr),
-                  materialDropdown(_time, [
-                    '60',
-                    '90',
-                    '120',
-                    '150',
-                    '180',
-                    '210',
-                    '240',
-                    '270',
-                    '300'
-                  ]),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('semester'.tr),
-                materialDropdown(
-                    _semester, ['1', '2', '3', '4', '5', '6', '7', '8']),
-              ]),
-              const SizedBox(height: 24),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('classroom'.tr),
-                materialDropdownClassroom(_classroom, _classroomItems),
-              ]),
-              const SizedBox(height: 24),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('department'.tr),
-                materialDropdownDepartment(_department, _departmentItems),
-              ]),
-              const SizedBox(height: 24),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('degree'.tr),
-                materialDropdownDegree(_degree, _degreeItems),
-              ]),
-              const SizedBox(height: 24),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('color'.tr),
-                materialDropdownColor(_color, _colorItems),
-              ]),
-            ],
-          ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('time'.tr),
+                materialDropdown(_time, [
+                  '60',
+                  '90',
+                  '120',
+                  '150',
+                  '180',
+                  '210',
+                  '240',
+                  '270',
+                  '300'
+                ]),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('semester'.tr),
+              materialDropdown(
+                  _semester, ['1', '2', '3', '4', '5', '6', '7', '8']),
+            ]),
+            const SizedBox(height: 24),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('classroom'.tr),
+              materialDropdownClassroom(_classroom, _classroomItems),
+            ]),
+            const SizedBox(height: 24),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('department'.tr),
+              materialDropdownDepartment(_department, _departmentItems),
+            ]),
+            const SizedBox(height: 24),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('degree'.tr),
+              materialDropdownDegree(_degree, _degreeItems),
+            ]),
+            const SizedBox(height: 24),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('color'.tr),
+              materialDropdownColor(_color, _colorItems),
+            ]),
+          ],
         ),
       ),
     ),
@@ -181,13 +179,3 @@ Future<SubjectModel?> subjectDialog(SubjectModel? subject, String title, HomeCon
     ],
   );
 }
-
-
-
-
-
-
-
-
-
-

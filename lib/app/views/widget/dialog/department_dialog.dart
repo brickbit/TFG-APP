@@ -15,7 +15,7 @@ Future<DepartmentModel?> departmentDialog(DepartmentModel? department, String ti
     content: SizedBox(
       height: 170,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: Column(
           children: [
             buildTextField(

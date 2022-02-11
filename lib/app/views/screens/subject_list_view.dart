@@ -21,7 +21,7 @@ class SubjectListView extends GetView<HomeController> {
                 title: Text('subject'.tr),
               ),
               body: SafeArea(
-                child: _listSubject(),
+                child: _listSubject(constraints.maxWidth < 600),
               ),
             );
           } else {
@@ -39,7 +39,7 @@ class SubjectListView extends GetView<HomeController> {
     );
   }
 
-  Widget _listSubject() {
+  Widget _listSubject(bool mobile) {
     return controller.obx((data) {
       return ListView.separated(
           itemBuilder: (context, index) {
@@ -55,7 +55,7 @@ class SubjectListView extends GetView<HomeController> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          subjectDialog(data?.subjects[index], 'editSubject'.tr,
+                          subjectDialog(mobile, data?.subjects[index], 'editSubject'.tr,
                                   controller)
                               .then(
                             (value) {
