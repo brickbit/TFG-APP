@@ -43,6 +43,7 @@ const Map<String, String> esES = {
   //List subjects
   'departmentAcronym': 'Departmento: @acronym',
   'classroomAcronym': 'Aula: @acronym',
+  'groupAcronym': 'Grupo: @acronym',
   'subjectSemester': 'Semestre: @semester',
   'subjectLanguage': 'Idioma: @language',
   'subjectLaboratory': 'Laboratorio: @laboratory',

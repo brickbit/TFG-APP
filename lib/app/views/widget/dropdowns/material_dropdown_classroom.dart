@@ -7,7 +7,7 @@ Widget materialDropdownClassroom(
     Rx<ClassroomModel> selected, List<ClassroomModel> items) {
   return Obx(
         () => DropdownButton<String>(
-      value: selected.value.acronym,
+      value: selected.value.name,
       style: const TextStyle(color: Colors.green, fontSize: 16.0),
       underline: Container(
         height: 2,
@@ -16,8 +16,8 @@ Widget materialDropdownClassroom(
       isExpanded: true,
       items: items.map((ClassroomModel value) {
         return DropdownMenuItem<String>(
-          value: value.acronym,
-          child: Text(value.acronym!),
+          value: value.name,
+          child: Text(value.name!),
         );
       }).toList(),
       onChanged: (String? updatedValue) {

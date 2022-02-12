@@ -43,6 +43,7 @@ const Map<String, String> enUS = {
   //List subjects
   'departmentAcronym': 'Department: @acronym',
   'classroomAcronym': 'Classroom: @acronym',
+  'groupAcronym': 'Group: @acronym',
   'subjectSemester': 'Semester: @semester',
   'subjectLanguage': 'Language: @language',
   'subjectLaboratory': 'Laboratory: @laboratory',

@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:file_saver/file_saver.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 import 'package:tfg_app/data/model/schedule_model.dart';
 import '../../domain/provider/schedule_provider.dart';
 
@@ -22,13 +24,16 @@ class ScheduleProviderImpl implements ScheduleProvider {
       http.ByteStream stream = response.stream;
       var bytes = await stream.toBytes();
       MimeType type = MimeType.MICROSOFTEXCEL;
-      if (Platform.isIOS || Platform.isAndroid) {
+      if (Platform.isAndroid || Platform. isIOS) {
         String path = await FileSaver.instance.saveAs(
             "schedule",
             bytes,
             "xlsx",
             type);
-        print(path);
+      } else  if (Platform.isMacOS){
+        final path = await _localPath;
+        File f = File('$path/schedule.xlsx');
+        await f.writeAsBytes(bytes);
       }
       return Future.value(response.statusCode);
     }
@@ -36,6 +41,12 @@ class ScheduleProviderImpl implements ScheduleProvider {
       return Future.error(response.statusCode);
     }
 
+  }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
   }
 
 }
