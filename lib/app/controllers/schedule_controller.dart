@@ -46,6 +46,47 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
           12, (i) => List.filled(15, null, growable: false),
           growable: false)
       .obs;
+
+  var morningMonday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var afternoonMonday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var morningTuesday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var afternoonTuesday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var morningWednesday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var afternoonWednesday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var morningThursday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var afternoonThursday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var morningFriday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
+  var afternoonFriday5Rows = List.generate(
+      12, (i) => List<SubjectModel?>.filled(3, null, growable: false),
+      growable: false)
+      .obs;
   DegreeModel? targetDegree;
   int scheduleType = 0;
   int fileType = 0;

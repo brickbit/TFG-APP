@@ -7,6 +7,8 @@ import 'package:tfg_app/app/views/widget/schedule/build_schedule_day_5_rows.dart
 import 'package:tfg_app/app/views/widget/dropdowns/material_dropdown.dart';
 import 'package:tfg_app/app/views/widget/schedule/subject_box.dart';
 
+import '../widget/schedule/build_schedule_day_15_rows.dart';
+
 class EditScheduleView extends GetView<ScheduleController> {
   final ScheduleFeaturesModel features = Get.arguments;
   EditScheduleView({Key? key}) : super(key: key);
@@ -31,7 +33,7 @@ class EditScheduleView extends GetView<ScheduleController> {
               body: SafeArea(
                 child: features.scheduleType == 'oneSubjectPerHour'.tr
                     ? oneSubjectPerHourView(true)
-                    : severalSubjectsPerHourView(),
+                    : severalSubjectsPerHourView(true),
               ),
             );
           } else {
@@ -46,7 +48,7 @@ class EditScheduleView extends GetView<ScheduleController> {
               body: SafeArea(
                 child: features.scheduleType == 'oneSubjectPerHour'.tr
                     ? oneSubjectPerHourView(false)
-                    : severalSubjectsPerHourView(),
+                    : severalSubjectsPerHourView(false),
               ),
             );
           }
@@ -108,6 +110,50 @@ class EditScheduleView extends GetView<ScheduleController> {
     );
   }
 
+
+  Widget severalSubjectsPerHourView(bool mobile) {
+    var _shift = 'morningShift'.tr.obs;
+    return Obx(
+          () => Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Expanded(
+            child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                    child: mobile ? materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]) : SizedBox(width: 600, child: materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]),),
+                  ),
+                  Stack(children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16, right: 16),
+                              child: mobile
+                                  ? SizedBox(
+                                  height: 480,
+                                  child: buildScheduleDay15Rows(
+                                      mobile, _shift.value == 'morningShift'.tr))
+                                  : SizedBox(
+                                  height: 615,
+                                  child: buildScheduleDay15Rows(
+                                      mobile, _shift.value == 'morningShift'.tr)),
+                            ),
+                          ]),
+                    ),
+                  ]),
+                ],
+              ),
+            )),
+        controller.obx((data) {
+          return dragListSubject();
+        })
+      ]),
+    );
+  }
+
   Widget dragListSubject() {
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -162,12 +208,6 @@ class EditScheduleView extends GetView<ScheduleController> {
           ),
         ),
       ]),
-    );
-  }
-
-  Widget severalSubjectsPerHourView() {
-    return Container(
-      color: Colors.blue,
     );
   }
 }
