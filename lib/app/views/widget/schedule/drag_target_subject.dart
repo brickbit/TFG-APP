@@ -3,24 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:tfg_app/app/controllers/schedule_controller.dart';
 import 'package:tfg_app/app/extension/color_extension.dart';
 import 'package:tfg_app/app/views/widget/schedule/subject_box.dart';
-import 'package:tfg_app/data/model/subject_model.dart';
+
+import '../../../../data/model/subject_model.dart';
+import '../../../model/day.dart';
 
 class DragTargetSubject extends GetView<ScheduleController> {
   final int row;
   final int column;
   final bool morning;
+  final Day day;
   const DragTargetSubject(
       {Key? key,
       required this.row,
       required this.column,
-      required this.morning})
+      required this.morning,
+      required this.day})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var acceptedData = morning
-        ? controller.morning5Rows.value[column][row]
-        : controller.afternoon5Rows.value[column][row];
+    var acceptedData = getAcceptedData(day, morning);
     return DragTarget<SubjectBox>(
       builder: (
         BuildContext context,
@@ -79,8 +81,25 @@ class DragTargetSubject extends GetView<ScheduleController> {
       },
       onAccept: (SubjectBox data) {
         var item = data.subject.selectItem(newDay: row, newHour: column);
-        controller.completeDrag(item, morning, row, column);
+        controller.completeDrag(item, morning, row, column, day);
       },
     );
+  }
+
+  SubjectModel? getAcceptedData(Day day, bool morning) {
+    switch (day) {
+      case Day.monday:
+        return morning ? controller.morningMonday5Rows.value[column][row] : controller.afternoonMonday5Rows.value[column][row];
+      case Day.tuesday:
+        return morning ? controller.morningTuesday5Rows.value[column][row] : controller.afternoonTuesday5Rows.value[column][row];
+      case Day.wednesday:
+        return morning ? controller.morningWednesday5Rows.value[column][row] : controller.afternoonWednesday5Rows.value[column][row];
+      case Day.thursday:
+        return morning ? controller.morningThursday5Rows.value[column][row] : controller.afternoonThursday5Rows.value[column][row];
+      case Day.friday:
+        return morning ? controller.morningFriday5Rows.value[column][row] : controller.afternoonFriday5Rows.value[column][row];
+      case Day.none:
+        return morning ? controller.morning5Rows.value[column][row] : controller.afternoon5Rows.value[column][row];
+    }
   }
 }

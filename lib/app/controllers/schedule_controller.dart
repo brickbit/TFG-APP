@@ -9,6 +9,8 @@ import 'package:tfg_app/data/model/subject_model.dart';
 import 'package:tfg_app/domain/repository/data_repository.dart';
 import 'package:tfg_app/domain/repository/schedule_repository.dart';
 
+import '../model/day.dart';
+
 class ScheduleController extends GetxController with StateMixin<DataModel> {
   final DataRepository dataRepository;
   final ScheduleRepository scheduleRepository;
@@ -157,28 +159,99 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
     update();
   }
 
-  void completeDrag(SubjectModel subject, bool morning, int row, int column) {
+  void completeDrag(SubjectModel subject, bool morning, int row, int column, Day day) {
     morning
-        ? assignItemMorning(subject, row, column)
-        : assignItemAfternoon(subject, row, column);
+        ? assignItemMorning(subject, row, column, day)
+        : assignItemAfternoon(subject, row, column, day);
   }
 
-  void assignItemMorning(SubjectModel subject, int row, int column) {
-    if (morning5Rows.value[column][row] == null) {
-      morning5Rows.value[column][row] = subject;
-      var pos = subjects.value.indexOf(selectedSubject.value);
-      subjects.value[pos] = selectedSubject.value
-          .copyWith(newTime: selectedSubject.value.time - 30);
+  void assignItemMorning(SubjectModel subject, int row, int column, Day day) {
+    switch (day) {
+      case Day.monday:
+        if (morningMonday5Rows.value[column][row] == null) {
+          morningMonday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.tuesday:
+        if (morningTuesday5Rows.value[column][row] == null) {
+          morningTuesday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.wednesday:
+        if (morningWednesday5Rows.value[column][row] == null) {
+          morningWednesday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.thursday:
+        if (morningThursday5Rows.value[column][row] == null) {
+          morningThursday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.friday:
+        if (morningFriday5Rows.value[column][row] == null) {
+          morningFriday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.none:
+        if (morning5Rows.value[column][row] == null) {
+          morning5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
     }
   }
 
-  void assignItemAfternoon(SubjectModel subject, int row, int column) {
-    if (afternoon5Rows.value[column][row] == null) {
-      afternoon5Rows.value[column][row] = subject;
-      var pos = subjects.value.indexOf(selectedSubject.value);
-      subjects.value[pos] = selectedSubject.value
-          .copyWith(newTime: selectedSubject.value.time - 30);
+  void assignItemAfternoon(SubjectModel subject, int row, int column, Day day) {
+    switch (day) {
+
+      case Day.monday:
+        if (afternoonMonday5Rows.value[column][row] == null) {
+          afternoonMonday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.tuesday:
+        if (afternoonTuesday5Rows.value[column][row] == null) {
+          afternoonTuesday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.wednesday:
+        if (afternoonWednesday5Rows.value[column][row] == null) {
+          afternoonWednesday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.thursday:
+        if (afternoonThursday5Rows.value[column][row] == null) {
+          afternoonThursday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.friday:
+        if (afternoonFriday5Rows.value[column][row] == null) {
+          afternoonFriday5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
+      case Day.none:
+        if (afternoon5Rows.value[column][row] == null) {
+          afternoon5Rows.value[column][row] = subject;
+          subtractTime();
+        }
+        break;
     }
+  }
+
+  void subtractTime() {
+    var pos = subjects.value.indexOf(selectedSubject.value);
+    subjects.value[pos] = selectedSubject.value
+        .copyWith(newTime: selectedSubject.value.time - 30);
   }
 
   void startDrag(int index) {

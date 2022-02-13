@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../model/day.dart';
 import 'build_schedule_header_hour.dart';
 import 'drag_target_subject.dart';
 
@@ -38,6 +39,7 @@ Widget buildScheduleDay5Rows(bool mobile, bool morning) {
                   column: index ~/ 5,
                   row: index % 5,
                   morning: morning,
+                  day: Day.none,
                 );
               },
             ),

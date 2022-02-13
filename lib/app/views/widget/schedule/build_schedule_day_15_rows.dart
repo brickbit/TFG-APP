@@ -59,6 +59,7 @@ Widget buildMonday(bool mobile, bool morning) {
                     column: index ~/ 3,
                     row: index % 3,
                     morning: morning,
+                    day: Day.monday
                   );
                 }),
           )
@@ -97,6 +98,7 @@ Widget buildTuesday(bool mobile, bool morning) {
                     column: index ~/ 3,
                     row: index % 3,
                     morning: morning,
+                    day: Day.tuesday,
                   );
                 }),
           )
@@ -135,6 +137,7 @@ Widget buildWednesday(bool mobile, bool morning) {
                     column: index ~/ 3,
                     row: index % 3,
                     morning: morning,
+                    day: Day.wednesday
                   );
                 }),
           )
@@ -173,6 +176,7 @@ Widget buildThursday(bool mobile, bool morning) {
                     column: index ~/ 3,
                     row: index % 3,
                     morning: morning,
+                    day: Day.thursday
                   );
                 }),
           )
@@ -211,6 +215,7 @@ Widget buildFriday(bool mobile, bool morning) {
                     column: index ~/ 3,
                     row: index % 3,
                     morning: morning,
+                    day: Day.friday
                   );
                 }),
           )
