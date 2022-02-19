@@ -17,6 +17,8 @@ class EditScheduleView extends GetView<ScheduleController> {
   Widget build(BuildContext context) {
     controller.setScheduleType(features.scheduleType);
     controller.setDegree(features.degree);
+    controller.setSemester(features.semester);
+    controller.getData();
     //features.degree
     return controller.obx(
       (data) => Scaffold(

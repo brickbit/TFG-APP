@@ -38,19 +38,19 @@ Widget buildMonday(bool mobile, bool morning) {
       Column(
         children: [
           SizedBox(
-            width: mobile ? 750 : 380,
+            width: mobile ? 380 : 380,
             height: 40,
             child: _dayCell('Lunes', mobile),
           ),
           SizedBox(
-            width: mobile ? 750 : 380,
-            height: mobile ? 440 : 438,
+            width: mobile ? 380 : 380,
+            height: mobile ? 438 : 438,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: mobile ? 4.16 : 3.475,
+                  childAspectRatio: mobile ? 3.51 : 3.475,
                 ),
                 primary: false,
                 itemCount: 36,
@@ -77,19 +77,19 @@ Widget buildTuesday(bool mobile, bool morning) {
       Column(
         children: [
           SizedBox(
-            width: mobile ? 750 : 380,
+            width: mobile ? 380 : 380,
             height: 40,
             child: _dayCell('Martes', mobile),
           ),
           SizedBox(
-            width: mobile ? 750 : 380,
-            height: mobile ? 440 : 438,
+            width: mobile ? 380 : 380,
+            height: mobile ? 438 : 438,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: mobile ? 4.16 : 3.475,
+                  childAspectRatio: mobile ? 3.51 : 3.475,
                 ),
                 primary: false,
                 itemCount: 36,
@@ -116,19 +116,19 @@ Widget buildWednesday(bool mobile, bool morning) {
       Column(
         children: [
           SizedBox(
-            width: mobile ? 750 : 380,
+            width: mobile ? 380 : 380,
             height: 40,
             child: _dayCell('Miércoles', mobile),
           ),
           SizedBox(
-            width: mobile ? 750 : 380,
-            height: mobile ? 440 : 438,
+            width: mobile ? 380 : 380,
+            height: mobile ? 438 : 438,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: mobile ? 4.16 : 3.475,
+                  childAspectRatio: mobile ? 3.51 : 3.475,
                 ),
                 primary: false,
                 itemCount: 36,
@@ -155,19 +155,19 @@ Widget buildThursday(bool mobile, bool morning) {
       Column(
         children: [
           SizedBox(
-            width: mobile ? 750 : 380,
+            width: mobile ? 380 : 380,
             height: 40,
             child: _dayCell('Jueves', mobile),
           ),
           SizedBox(
-            width: mobile ? 750 : 380,
-            height: mobile ? 440 : 438,
+            width: mobile ? 380 : 380,
+            height: mobile ? 438 : 438,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: mobile ? 4.16 : 3.475,
+                  childAspectRatio: mobile ? 3.51 : 3.475,
                 ),
                 primary: false,
                 itemCount: 36,
@@ -194,19 +194,19 @@ Widget buildFriday(bool mobile, bool morning) {
       Column(
         children: [
           SizedBox(
-            width: mobile ? 750 : 380,
+            width: mobile ? 380 : 380,
             height: 40,
             child: _dayCell('Viernes', mobile),
           ),
           SizedBox(
-            width: mobile ? 750 : 380,
-            height: mobile ? 440 : 438,
+            width: mobile ? 380 : 380,
+            height: mobile ? 438 : 438,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: mobile ? 4.16 : 3.475,
+                  childAspectRatio: mobile ? 3.51 : 3.475,
                 ),
                 primary: false,
                 itemCount: 36,

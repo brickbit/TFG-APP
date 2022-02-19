@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:file_saver/file_saver.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 import 'package:tfg_app/data/model/schedule_model.dart';
 import '../../domain/provider/schedule_provider.dart';
 

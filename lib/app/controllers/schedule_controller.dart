@@ -98,7 +98,6 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
 
   @override
   void onInit() {
-    getData();
     super.onInit();
   }
 
@@ -106,7 +105,7 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
     change(null, status: RxStatus.loading());
     dataRepository.getData().then((data) {
       subjects.value.clear();
-      subjects.value.addAll(data.subjects.where((element) => element.degree.id == targetDegree!.id));
+      subjects.value.addAll(data.subjects.where((element) => element.degree.id == targetDegree!.id && element.semester == semester));
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
