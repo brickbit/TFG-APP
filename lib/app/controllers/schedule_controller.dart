@@ -282,7 +282,7 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
 
   void downloadFile() {
     change(null, status: RxStatus.loading());
-    List<List<SubjectModel?>> subjects = morning5Rows.value + afternoon5Rows.value;
+    List<List<SubjectModel?>> subjects =  scheduleType == 0 ? morning5Rows.value + afternoon5Rows.value : combineMatrix();
     List<List<SubjectModel?>> tSubject = _transpose(subjects);
     List<List<List<SubjectModel?>>> eSubject = _encapsulate(tSubject);
     var schedule = ScheduleModel(subjects: eSubject, scheduleType: scheduleType, fileType: fileType, degree: targetDegree!.name!, year: targetDegree!.year!);
@@ -292,6 +292,35 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
       change(null, status: RxStatus.error(err.toString()));
     });
   }
+
+  List<List<SubjectModel?>> combineMatrix() {
+    List<List<SubjectModel?>> matrixMorning = List.generate(
+        12, (i) => List<SubjectModel?>.filled(15, null, growable: false),
+        growable: false);
+    for( var i = 0 ; i < morningMonday5Rows.value.length; i++ ) {
+      matrixMorning[i] = [
+        morningMonday5Rows.value[i][0],morningMonday5Rows.value[i][1],morningMonday5Rows.value[i][2],
+        morningTuesday5Rows.value[i][0],morningTuesday5Rows.value[i][1],morningTuesday5Rows.value[i][2],
+        morningWednesday5Rows.value[i][0],morningWednesday5Rows.value[i][1],morningWednesday5Rows.value[i][2],
+        morningThursday5Rows.value[i][0],morningThursday5Rows.value[i][1],morningThursday5Rows.value[i][2],
+        morningFriday5Rows.value[i][0],morningFriday5Rows.value[i][1],morningFriday5Rows.value[i][2],
+      ];
+    }
+    List<List<SubjectModel?>> matrixAfternoon = List.generate(
+        12, (i) => List<SubjectModel?>.filled(15, null, growable: false),
+        growable: false);
+    for( var i = 0 ; i < morningMonday5Rows.value.length; i++ ) {
+      matrixAfternoon[i] = [
+        afternoonMonday5Rows.value[i][0],afternoonMonday5Rows.value[i][1],afternoonMonday5Rows.value[i][2],
+        afternoonTuesday5Rows.value[i][0],afternoonTuesday5Rows.value[i][1],afternoonTuesday5Rows.value[i][2],
+        afternoonWednesday5Rows.value[i][0],afternoonWednesday5Rows.value[i][1],afternoonWednesday5Rows.value[i][2],
+        afternoonThursday5Rows.value[i][0],afternoonThursday5Rows.value[i][1],afternoonThursday5Rows.value[i][2],
+        afternoonFriday5Rows.value[i][0],afternoonFriday5Rows.value[i][1],afternoonFriday5Rows.value[i][2],
+      ];
+    }
+    return matrixMorning + matrixAfternoon;
+  }
+
 
   List<List<SubjectModel?>> _transpose(List<List<SubjectModel?>> colsInRows) {
     int nRows = colsInRows.length;
