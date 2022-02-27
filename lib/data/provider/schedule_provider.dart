@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:tfg_app/data/model/schedule_model.dart';
 import '../../domain/provider/schedule_provider.dart';
+import 'package:http/http.dart';
+
 
 class ScheduleProviderImpl implements ScheduleProvider {
   @override
@@ -46,6 +48,41 @@ class ScheduleProviderImpl implements ScheduleProvider {
     final directory = await getApplicationDocumentsDirectory();
 
     return directory.path;
+  }
+
+  @override
+  Future<http.Response> createSchedule(String path, ScheduleModel schedule) {
+    var body = schedule.toJson();
+
+    return post(
+      Uri.parse(path),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(body),
+    );
+  }
+
+  @override
+  Future<http.Response> deleteSchedule(String path) {
+    return post(
+      Uri.parse(path),
+      headers: {'Content-Type': 'application/json'},
+    );
+  }
+
+  @override
+  Future<http.Response> getSchedules(String path) {
+    return get(Uri.parse(path));
+  }
+
+  @override
+  Future<http.Response> updateSchedule(String path, ScheduleModel schedule) {
+    var body = schedule.toJson();
+
+    return post(
+      Uri.parse(path),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(body),
+    );
   }
 
 }

@@ -2,6 +2,7 @@
 import 'package:tfg_app/data/model/subject_model.dart';
 
 class ScheduleModel {
+  final int? id;
   final List<List<List<SubjectModel?>>> subjects;
   final int scheduleType;
   final int fileType;
@@ -9,6 +10,7 @@ class ScheduleModel {
   final String year;
 
   ScheduleModel({
+    required this.id,
     required this.subjects,
     required this.scheduleType,
     required this.fileType,
@@ -17,7 +19,8 @@ class ScheduleModel {
   });
 
   factory ScheduleModel.fromJson(Map<String, dynamic> json) => ScheduleModel(
-    subjects: json["subjects"] as List<List<List<SubjectModel?>>>,
+    id: json["id"] as int,
+    subjects: listDynamicTo3DMatrixSubject(json["subjects"]),  //json["subjects"] as List<List<List<SubjectModel?>>>,
     scheduleType: json["scheduleType"] as int,
     fileType: json["fileType"] as int,
     degree: json["degree"] as String,
@@ -27,7 +30,28 @@ class ScheduleModel {
   static List<ScheduleModel> listFromJson(list) =>
       List<ScheduleModel>.from(list.map((x) => ScheduleModel.fromJson(x)));
 
-  Map<String, dynamic> toJson() => {
+  static List<List<List<SubjectModel?>>> listDynamicTo3DMatrixSubject(List<dynamic> list) {
+    return list.map((x) => listDynamicTo2DMatrixSubject(x)).toList();
+  }
+
+  static List<List<SubjectModel?>> listDynamicTo2DMatrixSubject(List<dynamic> list) {
+    return list.map((x) {
+      return listDynamicToListSubject(x);
+    }).toList();
+  }
+
+  static List<SubjectModel?> listDynamicToListSubject(List<dynamic> list) {
+    return list.map((x) {
+      if(x != null) {
+        return SubjectModel.fromJson(x as Map<String, dynamic>);
+      } else {
+        return null;
+      }
+    }).toList();
+  }
+
+
+    Map<String, dynamic> toJson() => {
     "subjects": subjects,
     "scheduleType": scheduleType,
     "fileType": fileType,

@@ -279,12 +279,25 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
     semester = numSemester;
   }
 
+  void saveSchedule() {
+    change(null, status: RxStatus.loading());
+    List<List<SubjectModel?>> subjects =  scheduleType == 0 ? morning5Rows.value + afternoon5Rows.value : combineMatrix();
+    List<List<SubjectModel?>> tSubject = _transpose(subjects);
+    List<List<List<SubjectModel?>>> eSubject = _encapsulate(tSubject);
+    var schedule = ScheduleModel(id: null, subjects: eSubject, scheduleType: scheduleType, fileType: fileType, degree: targetDegree!.name!, year: targetDegree!.year!);
+    scheduleRepository.createSchedule(schedule).then((value) {
+      change(null, status: RxStatus.success());
+    }, onError: (err) {
+      change(null, status: RxStatus.error(err.toString()));
+    });
+  }
+
   void downloadFile() {
     change(null, status: RxStatus.loading());
     List<List<SubjectModel?>> subjects =  scheduleType == 0 ? morning5Rows.value + afternoon5Rows.value : combineMatrix();
     List<List<SubjectModel?>> tSubject = _transpose(subjects);
     List<List<List<SubjectModel?>>> eSubject = _encapsulate(tSubject);
-    var schedule = ScheduleModel(subjects: eSubject, scheduleType: scheduleType, fileType: fileType, degree: targetDegree!.name!, year: targetDegree!.year!);
+    var schedule = ScheduleModel(id: null,subjects: eSubject, scheduleType: scheduleType, fileType: fileType, degree: targetDegree!.name!, year: targetDegree!.year!);
     scheduleRepository.downloadSchedule(schedule).then((value) {
       change(null, status: RxStatus.success());
     }, onError: (err) {

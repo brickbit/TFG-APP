@@ -28,7 +28,9 @@ class EditScheduleView extends GetView<ScheduleController> {
               appBar: AppBar(
                 title: Text('editSchedule'.tr),
                 actions:  [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.save_sharp)),
+                  IconButton(onPressed: () {
+                    controller.saveSchedule();
+                    }, icon: const Icon(Icons.save_sharp)),
                   IconButton(onPressed: () {controller.downloadFile();}, icon: const Icon(Icons.download))
                 ],
               ),
@@ -43,7 +45,9 @@ class EditScheduleView extends GetView<ScheduleController> {
               appBar: AppBar(
                 title: Text('editSchedule'.tr),
                 actions:  [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.save_sharp)),
+                  IconButton(onPressed: () {
+                    controller.saveSchedule();
+                  }, icon: const Icon(Icons.save_sharp)),
                   IconButton(onPressed: () {controller.downloadFile();}, icon: const Icon(Icons.download))
                 ],
               ),
@@ -78,7 +82,7 @@ class EditScheduleView extends GetView<ScheduleController> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                 child: mobile ? materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]) : SizedBox(width: 600, child: materialDropdown(_shift, ['morningShift'.tr, 'afternoonShift'.tr]),),
               ),
               Stack(children: [
@@ -95,7 +99,7 @@ class EditScheduleView extends GetView<ScheduleController> {
                                   child: buildScheduleDay5Rows(
                                       mobile, _shift.value == 'morningShift'.tr))
                               : SizedBox(
-                                  height: 615,
+                                  height: 610,
                                   child: buildScheduleDay5Rows(
                                       mobile, _shift.value == 'morningShift'.tr)),
                         ),

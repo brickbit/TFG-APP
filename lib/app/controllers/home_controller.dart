@@ -5,6 +5,7 @@ import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
+import 'package:tfg_app/data/model/schedule_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 import 'package:tfg_app/domain/repository/data_repository.dart';
 
@@ -14,6 +15,7 @@ class HomeController extends GetxController with StateMixin<DataModel> {
   var classrooms = Rx<List<ClassroomModel>>([]);
   var departments = Rx<List<DepartmentModel>>([]);
   var subjects = Rx<List<SubjectModel>>([]);
+  var schedule = Rx<List<ScheduleModel>>([]);
   var isDarkMode = false.obs;
 
 
@@ -53,6 +55,8 @@ class HomeController extends GetxController with StateMixin<DataModel> {
       departments.value.addAll(data.departments);
       subjects.value.clear();
       subjects.value.addAll(data.subjects);
+      schedule.value.clear();
+      schedule.value.addAll(data.schedules);
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));
@@ -155,9 +159,19 @@ class HomeController extends GetxController with StateMixin<DataModel> {
       change(null, status: RxStatus.error(err.toString()));
     });
   }
+
   void deleteSubject(int id) {
     change(null, status: RxStatus.loading());
     dataRepository.deleteSubject(id).then((data) {
+      change(data, status: RxStatus.success());
+    }, onError: (err) {
+      change(null, status: RxStatus.error(err.toString()));
+    });
+  }
+
+  void deleteSchedule(int id) {
+    change(null, status: RxStatus.loading());
+    dataRepository.deleteSchedule(id).then((data) {
       change(data, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error(err.toString()));

@@ -3,6 +3,7 @@ import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
+import 'package:tfg_app/data/model/schedule_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 
 abstract class DataRepository {
@@ -19,4 +20,7 @@ abstract class DataRepository {
   Future<DataModel> updateSubject(SubjectModel subject);
   Future<DataModel> createSubject(SubjectModel subject);
   Future<DataModel> deleteSubject(int id);
+  Future<DataModel> updateSchedule(ScheduleModel schedule);
+  Future<DataModel> createSchedule(ScheduleModel schedule);
+  Future<DataModel> deleteSchedule(int id);
 }

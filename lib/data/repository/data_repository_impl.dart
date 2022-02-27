@@ -4,12 +4,14 @@ import 'package:tfg_app/data/model/classroom_model.dart';
 import 'package:tfg_app/data/model/data_model.dart';
 import 'package:tfg_app/data/model/degree_model.dart';
 import 'package:tfg_app/data/model/department_model.dart';
+import 'package:tfg_app/data/model/schedule_model.dart';
 import 'package:tfg_app/data/model/subject_model.dart';
 import 'package:tfg_app/domain/repository/data_repository.dart';
 import 'package:get/get.dart';
 import '../../domain/provider/classroom_provider.dart';
 import '../../domain/provider/degree_provider.dart';
 import '../../domain/provider/department_provider.dart';
+import '../../domain/provider/schedule_provider.dart';
 import '../../domain/provider/subject_provider.dart';
 
 class DataRepositoryImpl implements DataRepository {
@@ -18,17 +20,20 @@ class DataRepositoryImpl implements DataRepository {
     required this.classroomProvider,
     required this.departmentProvider,
     required this.subjectProvider,
+    required this.scheduleProvider
   });
 
   final DegreeProvider degreeProvider;
   final ClassroomProvider classroomProvider;
   final DepartmentProvider departmentProvider;
   final SubjectProvider subjectProvider;
+  final ScheduleProvider scheduleProvider;
 
   var degrees = Rx<List<DegreeModel>>([]);
   var classrooms = Rx<List<ClassroomModel>>([]);
   var departments = Rx<List<DepartmentModel>>([]);
   var subjects = Rx<List<SubjectModel>>([]);
+  var schedules = Rx<List<ScheduleModel>>([]);
 
   @override
   Future<DataModel> getData() async {
@@ -68,11 +73,22 @@ class DataRepositoryImpl implements DataRepository {
       return Future.error(subjectResponse.statusCode);
     }
 
+    final scheduleResponse = await scheduleProvider
+        .getSchedules("https://politech-manager.herokuapp.com/schedule");
+    if (scheduleResponse.statusCode == 200) {
+      schedules.value = ScheduleModel.listFromJson(
+          jsonDecode(utf8.decode(scheduleResponse.bodyBytes)));
+    } else {
+      return Future.error(scheduleResponse.statusCode);
+    }
+
     return DataModel(
         degrees: degrees.value,
         classrooms: classrooms.value,
         departments: departments.value,
-        subjects: subjects.value);
+        subjects: subjects.value,
+        schedules: schedules.value
+    );
   }
 
   @override
@@ -84,7 +100,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -100,7 +118,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -115,7 +135,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -144,7 +166,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -159,7 +183,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -174,7 +200,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -199,7 +227,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -214,7 +244,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -229,7 +261,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -254,7 +288,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -269,7 +305,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -284,7 +322,9 @@ class DataRepositoryImpl implements DataRepository {
           degrees: degrees.value,
           classrooms: classrooms.value,
           departments: departments.value,
-          subjects: subjects.value);
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
     } else {
       return Future.error(response.statusCode);
     }
@@ -295,6 +335,67 @@ class DataRepositoryImpl implements DataRepository {
     if (response.statusCode == 200) {
       subjects.value = SubjectModel.listFromJson(jsonDecode(utf8.decode(response.bodyBytes)));
       return subjects.value;
+    } else {
+      return Future.error(response.statusCode);
+    }
+  }
+
+  @override
+  Future<DataModel> createSchedule(ScheduleModel schedule) async {
+    final response = await scheduleProvider.createSchedule("https://politech-manager.herokuapp.com/schedule", schedule);
+    if (response.statusCode == 200) {
+      await _getSchedules();
+      return DataModel(
+          degrees: degrees.value,
+          classrooms: classrooms.value,
+          departments: departments.value,
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
+    } else {
+      return Future.error(response.statusCode);
+    }
+  }
+
+  @override
+  Future<DataModel> deleteSchedule(int id) async {
+    final response = await scheduleProvider.deleteSchedule("https://politech-manager.herokuapp.com/schedule/delete/$id");
+    if (response.statusCode == 200) {
+      await _getSchedules();
+      return DataModel(
+          degrees: degrees.value,
+          classrooms: classrooms.value,
+          departments: departments.value,
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
+    } else {
+      return Future.error(response.statusCode);
+    }
+  }
+
+  @override
+  Future<DataModel> updateSchedule(ScheduleModel schedule) async {
+    final response = await scheduleProvider.updateSchedule("https://politech-manager.herokuapp.com/schedule/update", schedule);
+    if (response.statusCode == 200) {
+      await _getSchedules();
+      return DataModel(
+          degrees: degrees.value,
+          classrooms: classrooms.value,
+          departments: departments.value,
+          subjects: subjects.value,
+          schedules: schedules.value
+      );
+    } else {
+      return Future.error(response.statusCode);
+    }
+  }
+
+  Future<List<ScheduleModel>> _getSchedules() async {
+    final response = await scheduleProvider.getSchedules("https://politech-manager.herokuapp.com/schedules");
+    if (response.statusCode == 200) {
+      schedules.value = ScheduleModel.listFromJson(jsonDecode(utf8.decode(response.bodyBytes)));
+      return schedules.value;
     } else {
       return Future.error(response.statusCode);
     }

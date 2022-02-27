@@ -27,7 +27,7 @@ class EditScheduleBinding extends Bindings {
     Get.lazyPut<ScheduleProvider>(() => ScheduleProviderImpl());
 
     Get.lazyPut<DataRepository>(
-            () => DataRepositoryImpl(departmentProvider: Get.find(), subjectProvider: Get.find(), classroomProvider: Get.find(), degreeProvider: Get.find()));
+            () => DataRepositoryImpl(departmentProvider: Get.find(), subjectProvider: Get.find(), classroomProvider: Get.find(), degreeProvider: Get.find(),scheduleProvider: Get.find()));
     Get.lazyPut<ScheduleRepository>(() => ScheduleRepositoryImpl(provider: Get.find()));
     Get.put(ScheduleController(dataRepository: Get.find(), scheduleRepository: Get.find()));
   }
