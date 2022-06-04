@@ -41,7 +41,6 @@ class ScheduleProviderImpl implements ScheduleProvider {
     else {
       return Future.error(response.statusCode);
     }
-
   }
 
   Future<String> get _localPath async {

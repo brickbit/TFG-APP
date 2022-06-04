@@ -38,21 +38,14 @@ class ScheduleView extends GetView<HomeController> {
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: ListTile(
-                    leading: Icon(Icons.download),
-                    title: Row(children: [
-                      Text(data!.schedules[index].id.toString()),
-                      Container(
-                        width: 16,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(data.schedules[index].degree),
-                          Text(data.schedules[index].year)
-                        ],
-                      ),
-                    ]),
+                    title: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(data!.schedules[index].degree),
+                        Text(data.schedules[index].year)
+                      ],
+                    ),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(

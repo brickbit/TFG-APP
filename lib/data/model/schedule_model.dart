@@ -20,7 +20,7 @@ class ScheduleModel {
 
   factory ScheduleModel.fromJson(Map<String, dynamic> json) => ScheduleModel(
     id: json["id"] as int,
-    subjects: listDynamicTo3DMatrixSubject(json["subjects"]),  //json["subjects"] as List<List<List<SubjectModel?>>>,
+    subjects: listDynamicTo3DMatrixSubject(json["subjects"]),
     scheduleType: json["scheduleType"] as int,
     fileType: json["fileType"] as int,
     degree: json["degree"] as String,

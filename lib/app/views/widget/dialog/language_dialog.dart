@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tfg_app/app/views/lang/localization_service.dart';
 
 Future<String?> languageDialog() {
   return Get.defaultDialog(

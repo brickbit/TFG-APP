@@ -42,7 +42,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.home,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -67,7 +67,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.schedule,
-      page: () => ScheduleView(),
+      page: () => const ScheduleView(),
       binding: ScheduleBinding(),
     ),
     GetPage(

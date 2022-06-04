@@ -96,10 +96,6 @@ class ScheduleController extends GetxController with StateMixin<DataModel> {
 
   ScheduleController({required this.dataRepository, required this.scheduleRepository});
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   void getData() {
     change(null, status: RxStatus.loading());
